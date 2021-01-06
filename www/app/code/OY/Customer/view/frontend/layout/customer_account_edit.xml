@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceContainer name="form.additional.info">
+            <block class="OY\Customer\Block\Customer\Account" name="additional_field_account" template="OY_Customer::customer/form/imagefieldaccount.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

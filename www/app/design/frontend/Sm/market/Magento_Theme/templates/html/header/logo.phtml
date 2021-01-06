@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+$_config    = $this->helper('Sm\Market\Helper\Data');
+$isHomePage = $_config->isHomePage();
+?>
+<?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt(); ?>
+<div class="logo-wrapper">
+    <?php if ($isHomePage){ ?>
+    <h1 class="logo-content">
+        <?php } else { ?>
+        <h2 class="logo-content">
+            <?php } ?>
+            <strong class="logo-text">
+                <?= /* @escapeNotVerified */
+                $storeName ?>
+            </strong>
+            <strong class="logo">
+                <a class="logo" href="<?php echo $block->getUrl(''); ?>" title="<?php /* @escapeNotVerified */
+                echo $storeName ?>">
+                    <img src="<?php /* @escapeNotVerified */
+                    echo $block->getLogoSrc() ?>"
+                         alt="<?php /* @escapeNotVerified */
+                         echo $block->getLogoAlt() ?>"
+                        <?php echo $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+                        <?php echo $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+                    />
+
+                </a>
+            </strong>
+            <?php if ($isHomePage){ ?>
+    </h1>
+<?php } else { ?>
+    </h2>
+<?php } ?>
+</div>
+

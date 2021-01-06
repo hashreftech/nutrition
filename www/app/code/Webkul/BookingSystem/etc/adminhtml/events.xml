@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_BookingSystem
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_catalog_product_save_entity_after">
+        <observer name="AfterProductSave" instance="Webkul\BookingSystem\Observer\AfterProductSave" />
+    </event>
+    <event name="catalog_product_edit_action">
+        <observer name="BeforeViewProduct" instance="Webkul\BookingSystem\Observer\BeforeViewProduct" />
+    </event>
+    <event name="order_cancel_after">
+        <observer name="AfterCancelOrder" instance="Webkul\BookingSystem\Observer\AfterCancelOrder" />
+    </event>
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="AfterRefundOrder" instance="Webkul\BookingSystem\Observer\AfterRefundOrder" />
+    </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="AfterInvoiceSave" instance="Webkul\BookingSystem\Observer\AfterInvoiceSave" />
+    </event>
+</config>

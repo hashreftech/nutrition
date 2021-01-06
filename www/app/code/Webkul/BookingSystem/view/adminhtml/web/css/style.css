@@ -1,0 +1,262 @@
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_BookingSystem
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+.wk-container * {
+    box-sizing: border-box;
+}
+.wk-container {
+    display: inline-block;
+    width: 100%;
+}
+.wk-head {
+    display: inline-block;
+    font-weight: bold;
+    width: 100%;
+    background-color: #514943;
+    color: #fff;
+    float: left;
+}
+.wk-body {
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+.wk-row {
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+.wk-col {
+    display: inline-block;
+    float: left;
+    padding: 10px;
+}
+.wk-day {
+    width: 15%;
+}
+.wk-time {
+    width: 35%;
+    position: relative;
+}
+.wk-status {
+    width: 15%;
+}
+.wk-even {
+    background: #D6D6D6;
+}
+.wk-odd {
+    background: #F5F5F5;
+}
+.wk-label {
+    display: inline-block;
+    padding: 7px 0;
+}
+.wk-row-label {
+    padding: 5px 0px;
+    font-weight: bold;
+}
+.wk-row-content {
+    display: inline-block;
+    padding: 5px;
+}
+.wk-primary-container {
+    padding: 10px;
+}
+.wk-secondary-container {
+    padding: 10px;
+}
+.wk-primary-row {
+    padding: 10px 0;
+}
+.wk-col-2 {
+    float: left;
+    width: 50%;
+    display: inline-block;
+}
+.wk-text-center {
+    text-align: center;
+}
+.wk-border {
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+.wk-input-wrapper {
+
+}
+.wk-border {
+    border: 2px dotted #888;
+    display: inline-block;
+    width: 100%;
+}
+.wk-many-booing-table {
+    display: inline-block;
+    width: 80%;
+}
+.wk-display-none {
+    display: none;
+}
+.wk-one-booking-col {
+    display: inline-block;
+    width: 45%;
+    float: left;
+}
+.wk-one-booking-remove-col {
+    display: inline-block;
+    width: 10%;
+    float: left;
+    padding: 5px;
+}
+.wk-one-booking-col input {
+    text-align: center;
+    width: 100px;
+}
+.wk-remove {
+    background: #bd362f none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 18px;
+    padding: 2px 8px;
+    text-align: center;
+}
+.wk-btn {
+    background: #1979c3 none repeat scroll 0 0;
+    border: 1px solid #1979c3;
+    border-radius: 2px;
+    color: #fff;
+    padding: 7px 30px;
+}
+.wk-btn:hover, .wk-btn:focus {
+    background: #006bb4;
+    border: 1px solid #006bb4;
+    color: #eee;
+}
+.wk-input-col {
+    display: inline-block;
+    position: relative;
+    float: left;
+    margin: 0 5px;
+}
+.wk-col-wrapper {
+    display: inline-block;
+}
+.wk-mbod-hour {
+
+}
+.wk-mbod-minute {
+
+}
+.wk-inc {
+    background: #e3e3e3 none repeat scroll 0 0;
+    color: #222;
+    display: inline-block;
+    font-size: 18px;
+    height: 31px;
+    line-height: 20px;
+    padding: 5px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 30px;
+    border-left: 1px solid #adadad;
+    cursor: pointer;
+}
+.wk-dec {
+    background: #e3e3e3 none repeat scroll 0 0;
+    color: #222;
+    display: inline-block;
+    font-size: 18px;
+    height: 31px;
+    line-height: 20px;
+    padding: 5px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 30px;
+    border-right: 1px solid #adadad;
+    cursor: pointer;
+}
+.wk-one-booking-col input {
+    background: white none repeat scroll 0 0 !important;
+    cursor: default !important;
+    opacity: 1 !important;
+    text-align: center;
+    width: 100px;
+}
+.wk-input-col *::selection {
+    color: #222;
+    background: #E3E3E3;
+}
+.wk-input-col *::-moz-selection {
+    background: #E3E3E3;
+    color: #222;
+}
+.wk-mbod-time {
+    width: 100%;
+}
+.wk-time .wk-input-col {
+    text-align: center;
+    width: 100px;
+}
+.wk-time .wk-input-col input {
+    text-align: center;
+}
+div[data-index="custom_options"]{
+    display: none;
+}
+.wk-bs._has-datepicker ~ .ui-datepicker-trigger {
+    background-image: none;
+    background: none;
+    -moz-box-sizing: content-box;
+    border: 0;
+    box-shadow: none;
+    line-height: inherit;
+    margin: 0;
+    margin-left: 0px;
+    padding: 0;
+    text-shadow: none;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline-block;
+    height: 3.2rem;
+    margin-left: -3.2rem;
+    overflow: hidden;
+    position: absolute;
+    vertical-align: top;
+    z-index: 1;
+}
+.wk-bs._has-datepicker ~ .ui-datepicker-trigger > span {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+.wk-bs._has-datepicker ~ .ui-datepicker-trigger::after {
+    -webkit-font-smoothing: antialiased;
+    font-size: 2.1rem;
+    line-height: 32px;
+    color: #514943;
+    content: '\e627';
+    font-family: 'Admin Icons';
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+.wk-bs._has-datepicker + .mage-error{
+    position: absolute;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+	<css src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"  src_type="url" rel="stylesheet" type="text/css"  />
+        <css src="Gym_JsAuth::css/style.css"/>
+    </head>
+    <referenceBlock name="page.title">
+        <action method="setPageTitle">
+            <argument name="title" xsi:type="string">Reconocimiento</argument>
+        </action>
+    </referenceBlock>
+    <body>
+        <referenceContainer name="page.main.actions" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Gym\JsAuth\Block\Adminhtml\Auth" template="Gym_JsAuth::auth.phtml"/>
+        </referenceContainer>
+    </body>
+
+</page>

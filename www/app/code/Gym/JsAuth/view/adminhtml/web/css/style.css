@@ -1,0 +1,33 @@
+#main-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+}
+.alert, .btn {
+    font-size: 2rem !important;
+}
+.card-user-info {
+    font-size: 1.5rem !important;
+}
+.card-user-name {
+    font-size: 3rem !important;
+}
+.admin__field {
+    margin-bottom: 0px !important;
+}
+.admin__field-label {
+    width: 3% !important;
+    display: inline-block ;
+    margin-right: 1%;
+}
+.admin__field-control {
+    width: 95% !important;
+    display: inline-block !important;
+}
+.display-flex {
+    display: flex;
+}
+canvas {
+    position: absolute;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- for diffrentiate layout.xml on product basis -->
+    <event name="layout_load_before">
+        <observer name="load_custom_handler" instance="Gym\Catalog\Observer\LayoutLoadBefore" />
+    </event>
+    <event name="sales_quote_product_add_after">
+        <observer name="add_to_cart_custom" instance="Gym\Catalog\Observer\AddToCartObserver" />
+    </event>
+    <event name="controller_action_predispatch_checkout_cart_add">
+        <observer name="add_to_cart_before" instance="Gym\Catalog\Observer\AddToCartBeforeObserver" />
+    </event>
+</config>

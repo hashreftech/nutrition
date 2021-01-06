@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="StoreeventGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="PostGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">OY\Plan\Model\ResourceModel\Plan\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">StoreeventGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="OY\Plan\Model\ResourceModel\Plan\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">plan_entity</argument>
+            <argument name="eventPrefix" xsi:type="string">plan_entity</argument>
+            <argument name="eventObject" xsi:type="string">plan_entity</argument>
+            <argument name="resourceModel" xsi:type="string">OY\Plan\Model\ResourceModel\Plan</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="plan_listing_data_source" xsi:type="string">OY\Plan\Model\ResourceModel\Plan\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="OY\Plan\Api\PlanRepositoryInterface" type="OY\Plan\Model\Repository\PlanRepository"/>
+    <preference for="OY\Plan\Api\Data\PlanInterface" type="OY\Plan\Model\Plan"/>
+    <preference for="OY\Plan\Api\PlanRepositoryInterface" type="OY\Plan\Model\Repository\PlanRepository"/>
+    <preference for="OY\Plan\Api\Data\PlanInterface" type="OY\Plan\Model\Plan"/>
+</config>
+

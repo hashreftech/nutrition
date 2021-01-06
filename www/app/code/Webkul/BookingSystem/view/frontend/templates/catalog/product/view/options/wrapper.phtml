@@ -1,0 +1,21 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_BookingSystem
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$required = '';
+if ($block->hasRequiredOptions()) {
+    $required = ' data-hasrequired="' . $escaper->escapeHtml(__('* Required Fields')) . '"';
+}
+?>
+<div class="product-options-wrapper" id="product-options-wrapper"<?= /** @escapeNotVerified */ $required; ?>>
+    <div class="fieldset" tabindex="0">
+    </div>
+</div>

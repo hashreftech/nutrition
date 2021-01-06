@@ -1,0 +1,83 @@
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Gym\JsAuth\Block\Adminhtml\Auth
+ */
+?>
+
+<div class="row" id="appvue">
+    <div class="col-12">
+        <div :class="'alert alert-' + info.type" role="alert">
+            <div v-if="info.showSpinner" class="spinner-grow" role="status">
+            </div> {{ info.msg }}
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="admin__field">
+                    <div class="admin__field-label">
+                        <label for="ci">
+                            <span>CI</span>
+                        </label>
+                    </div>
+                    <div class="admin__field-control">
+                        <input class="admin__control-text" type="number" name="ci" id="ci" maxlength="7" v-model="ci">
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button :disabled="isProcessing || !ci" type="button" class="btn btn-success btn-lg btn-block"
+                    v-on:click="registerWithCi">Registrar con CI</button>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="col-8">
+        <div class="card">
+            <div class="card-body display-flex">
+                <video id="main-video" autoplay muted></video>
+            </div>
+            <div class="card-footer">
+                <button :disabled="disableRegisterWithFace" type="button" class="btn btn-success btn-lg btn-block"
+                    v-on:click="registerWithFace">Registrar</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card card-user-info" v-if="showUserData">
+            <img class="card-img-top" v-bind:src="'data:image/png;base64,' + identifiedPerson.image64"
+                alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title card-user-name">{{ identifiedPerson.name }}</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <span>{{ identifiedPerson.email }}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>CI:</strong>
+                        <span>{{ identifiedPerson.ci }}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <button :disabled="isProcessing" type="button" v-on:click="resetValues"
+                    class="btn btn-danger btn-lg btn-block">Ocultar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "jsAuth": {
+                "assetBaseUrl" : "<?= $block->getAdminBaseUrl() ?>",
+                "luxandApiUrl" : "<?= $block->getApiUrl() ?>",
+                "luxandToken" : "<?= $block->getApiToken() ?>",
+                "registerUrl" : "<?= $block->getUrlRegistry() ?>"
+                }
+        }
+    }
+</script>

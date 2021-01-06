@@ -1,0 +1,732 @@
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_BookingSystem
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+.wk-display-none {
+    display: none;
+}
+.wk-bg-container * {
+    box-sizing: border-box;
+}
+.wk-bg-container {
+    display: none;
+    position: fixed;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+.wk-box-modal {
+    background: #fff none repeat scroll 0 0;
+    position: relative;
+    width: 800px;
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    border-radius: 2px;
+    margin: 125px auto;
+    margin-top:-400px;
+    padding: 35px;
+    max-width: 90%;
+}
+.wk-modal-head {
+    font-size: 22px;
+    font-weight: 600;
+    padding-bottom: 15px;
+    text-align: center;
+    float: left;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+.wk-modal-body {
+    display: inline-block;
+    float: left;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.2);
+}
+.wk-modal-foot {
+    text-align: left;
+    float: left;
+    padding: 20px 0;
+    width: 100%;
+}
+.wk-modal-foot .booked-slot-summary{
+    max-height: 50px;
+    overflow: auto;
+}
+.wk-modal-foot .booked-slot-summary .booked-short-history{
+    color: #000;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    width: auto;
+    padding-right: 20px;
+}
+.wk-modal-foot .booked-slot-summary .remove-slot{
+    cursor: pointer;
+    display: inline-block;
+    padding-left: 7px;
+    text-decoration: none;
+}
+.wk-modal-foot .booked-slot-summary .remove-slot:hover{
+    text-decoration: none;
+}
+.wk-modal-foot .booked-slot-summary .remove-slot:before{
+    background-color: #f1aba9;
+    border-radius: 35px;
+    color: #fff;
+    content: "";
+    font-family: "Fontawesome";
+    font-size: 13px;
+    font-weight: lighter;
+    padding: 2px 4px;
+}
+.wk-modal-foot .wk-slots-summary-wrapper{
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+}
+.wk-modal-foot .slots-summary > label{
+    color: #a1a1a1;
+    font-size: 11px;
+    font-weight: 600;
+}
+.wk-modal-foot .slots-summary{
+    display: inline-block;
+    float: left;
+    width: 80%;
+}
+.wk-modal-foot .slots-summary + .cart.button {
+    float: right;
+    text-align: right;
+    width: 20%;
+}
+.wk-modal-foot .slots-summary + .cart.button .wk-book.action.tocart.primary{
+    background-color: #52b2b0;
+    border-color: #52b2b0;
+    border-radius: 0;
+    font-size: 15px;
+    padding: 12px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.wk-col {
+    float: left;
+    width: 33.33%;
+    text-align: left;
+}
+.wk-col.first {
+    width: 24%;
+}
+.wk-col.middle {
+    width: 47%;
+}
+.wk-col.last{
+    width: 27%;
+}
+.wk-col.middle .wk-label-dates{
+    display: inline-block;
+    width: 100%;
+}
+.wk-col.middle .wk-label-dates > span{
+    float: left;
+    font-weight: 600;
+}
+.wk-col.middle .wk-label-dates > span:not(:first-child){
+    padding-left: 4px;
+}
+.wk-col.middle .wk-label-avl-qty .wk-avl-text{
+    color: #98fefc;
+    font-size: 11px;
+}
+.wk-col.middle .wk-label-avl-qty .wk-avl-text + span{
+    color: #fff;
+    font-size: 11px;
+}
+.wk-col.last .wk-booked-txt{
+    color: #fff;
+    float: left;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 6px;
+    padding-right: 5px;
+    text-align: right;
+    vertical-align: top;
+    width: 60%;
+}
+.wk-col.last .wk-qty{
+    display: inline-block;
+    float: left;
+    margin-right: 0;
+}
+.wk-col.last .wk-confirm-qty{
+    /*font-size: 0;
+    color: #fff;*/
+    display: none;
+    cursor: pointer;
+
+    /*display: block;*/
+    float: right;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 23px;
+    color: #59c3c1;
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+}
+/*.wk-col.last .wk-confirm-qty::after {
+    content: "\f00c";
+    font-family: "Fontawesome";
+    font-size: 15px;
+    color: #8afc50;
+    padding-left: 4px;
+    float: left;
+    position: absolute;
+}*/
+.wk-col .wk-label-days {
+    float: left;
+    font-size: 35px;
+    line-height: 1;
+    color: #fff;
+    font-weight: 500;
+    width: auto;
+}
+.wk-col .wk-label-days-text {
+    float: left;
+    color: #fff;
+    width: auto;
+    font-size: 12px;
+    padding-left: 5px;
+    font-weight: 600;
+    padding-right: 10px;
+    border-right: 1px solid #59c3c1;
+}
+.wk-col .wk-label-dates{
+    color: #fff;
+    font-size: 12px;
+    opacity: 0.8;
+}
+.wk-box-modal::after, .wk-box-modal::before {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+.wk-calendar-conatiner::after,
+.wk-calendar-conatiner::before {
+    clear: both;
+    content: ".";
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+.wk-day-container .wk-booking-table{
+    background-color: #52b2b0;
+    height: 100%;
+    padding: 15px;
+}
+.wk-day-container .wk-booking-table-head{
+    padding-bottom: 10px;
+}
+.wk-booking-table {
+    display: inline-block;
+    float: left;
+    width: 100%;
+    position: relative;
+    padding: 15px 25px;
+}
+.wk-booking-table-head {
+    display: inline-block;
+    float: left;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+}
+.wk-booking-table-body {
+    display: inline-block;
+    float: left;
+    width: 100%;
+    max-height: 300px;
+    overflow: auto;
+}
+.wk-selected-date-wrapper {
+    display: inline-block;
+    width: 100%;
+}
+.wk-selected-date-wrapper .wk-selected-date{
+    float: left;
+    width: 20%;
+    display: inline-block;
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 1;
+    width: auto;
+    padding-right: 10px;
+}
+.wk-selected-date-wrapper .wk-selected-month-day{
+    float: left;
+    width: auto;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+}
+.wk-row {
+    border-bottom: 1px solid #59c3c1;
+    display: inline-block;
+    float: left;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    width: 100%;
+}
+.wk-row.wk-many-row .wk-col.last{
+    float: right;
+    width: 40%;
+}
+.wk-modal-foot .wk-notation-wrapper{
+    display: inline-block;
+    width: 100%;
+}
+.wk-modal-foot .wk-notation-wrapper .label,
+.wk-modal-foot .wk-notation-wrapper .noations-group {
+    float: left;
+}
+.wk-modal-foot .wk-notation-wrapper .label {
+    color: #000;
+    font-size: 12px;
+    font-weight: 600;
+}
+.wk-modal-foot .wk-notation-wrapper .label::after {
+    content: " : ";
+}
+.wk-modal-foot .wk-notation-wrapper .noations-group {
+    color: #000;
+    float: left;
+    font-size: 12px;
+    font-weight: 600;
+    padding-left: 15px;
+}
+.wk-modal-foot .wk-notation-wrapper .available-slots::before {
+    background-color: #52b2b0;
+}
+.wk-modal-foot .wk-notation-wrapper .not-available-slots::before {
+    background-color: #ffb846;
+}
+.wk-modal-foot .wk-notation-wrapper .already-booked-slots::before {
+    background-color: red;
+}
+.wk-modal-foot .wk-notation-wrapper .notation-slots::before{
+    content: "";
+    display: inline-block;
+    height: 10px;
+    margin-right: 5px;
+    width: 13px;
+    margin-left: 10px;
+}
+.wk-label {
+    color: #666;
+    display: inline-block;
+    font-weight: bold;
+    vertical-align: top;
+    padding: 6px 0;
+}
+.wk-even {
+    background: #f5f5f5 none repeat scroll 0 0;
+}
+.wk-btn {
+    background: #1979c3;
+    color: #fff;
+}
+.wk-close {
+    color: #ccc;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute;
+    right: 7px;
+    top: -2px;
+}
+.wk-qty-info {
+    color: #3c763d;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: bold;
+    width: 100%;
+    float: left;
+}
+.wk-calendar-conatiner * {
+    box-sizing: border-box;
+}
+.wk-calendar-content {
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+.wk-calendar-body {
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+.wk-calendar-row {
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+.wk-day {
+    width: 100%;
+    height: 100%;
+    padding: 3px 0;
+    font-weight: bold;
+}
+.wk-calendar-col {
+    display: inline-block;
+    width: 14.28%;
+    float: left;
+    padding: 10px 7px;
+}
+.wk-calendar-title {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px 0;
+    width: 100%;
+}
+.wk-available-day {
+    color: #666666;
+    border-bottom: 2px solid #52b2b0;
+}
+.wk-available-day.booked-slot{
+    border-color: red;
+}
+.wk-available-day.active{
+    background-color: #52b2b0;
+    color: #fff;
+    border-color: #52b2b0;
+}
+.wk-available-day.slot-not-available{
+    border-color: #ffb846;
+}
+.wk-passed-day {
+    color: #d1d1d1;
+    cursor: not-allowed !important;
+}
+.wk-booked-day {
+    background: #CC0000;
+    color: #fff;
+}
+.wk-unavailable-day {
+    background: #b3aa65;
+    color: #fff;
+}
+.wk-calendar-head {
+    color: #222;
+    display: inline-block;
+    width: 100%;
+}
+.wk-calendar-head .wk-calendar-col {
+    color: #52b2b0;
+    font-size: 12px;
+    font-weight: 700;
+    height: auto;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.wk-calendar-conatiner {
+    text-align: center;
+    width: 100%;
+    display: none;
+}
+.wk-calendar {
+    display: inline-block;
+    width: 100%;
+}
+.wk-cal-row {
+    display: inline-block;
+    float: left;
+    width: 33.33%;
+    padding: 0 15px;
+}
+.wk-symbol {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+}
+.wk-booked {
+    background: #CC0000;
+}
+.wk-available {
+    background: #4C994C;
+}
+.wk-unavailable {
+    background: #B3AA65;
+}
+.wk-label {
+    vertical-align: top;
+    display: inline-block;
+}
+.wk-calendar-marker {
+    display: inline-block;
+    padding: 10px 15px;
+}
+.wk-calendar-wrapper {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    margin-top: 25px;
+    padding: 10px;
+    position: relative;
+}
+.wk-title {
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 100%;
+}
+.wk-calendar-tooltip {
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+}
+.wk-calendar-navigation {
+    float: right;
+    font-size: 12px;
+    min-width: 100px;
+}
+.wk-next-cal {
+    cursor: pointer;
+    float: right;
+    font-size: 13px;
+    display: inline-block;
+    padding: 0 10px;
+    font-weight: 100;
+}
+.wk-next-cal::after {
+    content: "\e608";
+    font-family: "luma-icons";
+}
+.wk-previous-cal::before {
+    content: "\e617";
+    font-family: "luma-icons";
+}
+.wk-previous-cal {
+    cursor: pointer;
+    float: left;
+    font-size: 13px;
+    display: inline-block;
+    padding: 0 10px;
+    font-weight: 100;
+}
+.wk-bg {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.70);
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+.wk-loader {
+    background: url("../images/loader.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 32px;
+    left: 50%;
+    position: relative;
+    top: 50%;
+    width: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
+}
+.wk-show {
+    display: block !important;
+}
+.wk-calendar-cell {
+    position: relative;
+    cursor: pointer;
+}
+.wk-wrapper {
+    display: flex;
+    width: 100%;
+    float: left;
+}
+.wk-calendar-container {
+    width: 45%;
+    float: left;
+    display: inline-block;
+}
+.wk-day-container {
+    width: 55%;
+    float: left;
+    display: inline-block;
+}
+.wk-calendar-conatiner.wk-current-month {
+    display: inline-block;
+}
+.wk-close {
+    background: #da4f49 none repeat scroll 0 0;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 20px;
+    line-height: 8px;
+    padding: 5px;
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    width: 20px;
+}
+.wk-box-modal-bg {
+    background: rgba(255, 255, 255, 0.7) none repeat scroll 0 0;
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+.wk-no-booking {
+    color: #bafcff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+.wk-col > input {
+    height: 25px;
+    padding: 0 5px;
+    text-align: center;
+    width: 35px;
+}
+@media screen and (max-width:850px) {
+    .wk-booking-table{
+        padding: 15px;
+    }
+    .wk-day-container{
+        width: 60%;
+    }
+}
+@media screen and (max-width:767px) {
+    .wk-modal-body .wk-wrapper{
+        display: inline-block;
+    }
+    .wk-modal-body .wk-calendar-container,
+    .wk-modal-body .wk-day-container{
+        float: none;
+        width: 100%;
+        display: inline-block;
+    }
+}
+@media screen and (max-width:620px) {
+    .wk-box-modal {
+        width: 98%;
+    }
+}
+@media screen and (max-width:550px) {
+    .wk-modal-foot .wk-notation-wrapper .notation-slots{
+        display: inline-block;
+        width: 100%;
+    }
+    .wk-modal-foot .slots-summary {
+        display: inline-block;
+        float: none;
+        width: 100%;
+    }
+    .wk-modal-foot .slots-summary + .cart.button {
+        float: none;
+        text-align: center;
+        width: auto;
+        padding-top: 15px;
+    }
+    .wk-modal-foot .slots-summary + .cart.button .wk-book.action.tocart.primary{
+        padding: 12px 30px;
+    }
+    .wk-modal-foot .booked-slot-summary .booked-short-history{
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width:480px) {
+    .wk-row:not(.wk-many-row) .wk-col.first {
+        width: 35%;
+    }
+    .wk-row:not(.wk-many-row) .wk-col.middle {
+        width: 65%;
+    }
+    .wk-row:not(.wk-many-row) .wk-col.last {
+        clear: both;
+        display: inline-block;
+        float: none;
+        padding: 9px 0;
+        width: 100%;
+    }
+    .wk-row:not(.wk-many-row) .wk-col.last .wk-booked-txt{
+        text-align: left;
+        width: 30%;
+    }
+}
+@media screen and (max-width:450px) {
+    .wk-label-res {
+        display: inline-block;
+        color: #666;
+        font-weight: bold;
+        padding: 6px 0;
+        vertical-align: top;
+        font-size: 13px;
+    }
+    .wk-booking-table-body .wk-row .wk-col:nth-child(2) .wk-label {
+        display: none;
+    }
+    .wk-col .action.primary {
+        padding: 7px 8px;
+    }
+    .wk-label {
+        font-size: 13px;
+    }
+}
+@media screen and (max-width:430px) {
+    .wk-box-modal{
+        padding: 15px;
+    }
+}
+@media screen and (max-width:380px) {
+    .wk-calendar-col{
+        padding: 7px;
+    }
+    .wk-row.wk-many-row .wk-col.middle {
+        width: 55%;
+    }
+}
+@media screen and (max-width:360px) {
+    .wk-booking-table{
+        padding: 15px;
+    }
+}
+@media screen and (max-width:320px) {
+    .wk-booking-table{
+        padding: 10px;
+    }
+    .wk-row.wk-many-row .wk-col.last{
+        width: 42%;
+    }
+}

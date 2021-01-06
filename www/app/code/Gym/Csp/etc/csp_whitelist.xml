@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="luxand" type="host">https://api.luxand.cloud</value>
+                <value id="addthis" type="host">https://s7.addthis.com</value>
+                <value id="maddthis" type="host">https://m.addthis.com</value>
+                <value id="addthisedge" type="host">https://v1.addthisedge.com</value>
+                <value id="moatads" type="host">https://z.moatads.com</value>
+                <value id="facebook" type="host">https://connect.facebook.net</value>
+                <value id="publicaddthis" type="host">https://api-public.addthis.com</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="stackpath" type="host">https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="luxand" type="host">https://api.luxand.cloud</value>
+                <value id="addthis" type="host">https://s7.addthis.com</value>
+                <value id="maddthis" type="host">https://m.addthis.com</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="twitter" type="host">https://platform.twitter.com</value>
+                <value id="addthis" type="host">https://s7.addthis.com</value>
+                <value id="facebook" type="host">https://www.facebook.com</value>
+            </values>
+        </policy>
+	<policy id="font-src">
+            <values>
+                <value id="twitter" type="host">https://platform.twitter.com</value>
+                <value id="addthis" type="host">https://s7.addthis.com</value>
+                <value id="facebook" type="host">https://www.facebook.com</value>
+		<value id="localhost" type="host">https://localhost:446</value>
+            </values>
+        </policy>
+	<policy id="img-src">
+            <values>
+                <value id="localhost" type="host">https://localhost:446</value>
+                <value id="prod" type="host">https://134.209.117.84:446</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

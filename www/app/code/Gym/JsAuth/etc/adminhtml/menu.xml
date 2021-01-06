@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Gym_JsAuth::jsauth" title="JsAuth" translate="title" module="Gym_JsAuth" sortOrder="50" dependsOnModule="Gym_JsAuth" resource="Gym_JsAuth::jsauth"/>
+        <add id="Gym_JsAuth::auth" title="Auth" translate="title" module="Gym_JsAuth" parent="Gym_JsAuth::jsauth" sortOrder="10" dependsOnModule="Gym_JsAuth" action="jsauth/auth" resource="Gym_JsAuth::jsauth" target="_blank"/>
+    </menu>
+</config>

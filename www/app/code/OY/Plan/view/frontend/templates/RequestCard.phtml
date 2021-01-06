@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @var \Mageplaza\HelloWorld\Block\Display $block
+ */
+?>
+
+<div id="container-request-card">
+    <?php
+    echo $this->getLayout()
+        ->createBlock('OY\Catalog\Block\RequestCard')
+        ->setTemplate('OY_Catalog::RequestCard.phtml')
+        ->toHtml();
+    ?>
+</div>
+<div class="full-wrapper full-wrapper-sv wrapper-no-padding hot-categories-container">
+    <div class="container">
+        <div class="full-categories">
+            <div class="hot-categories-home">
+                <?php
+                echo $this->getLayout()
+                    ->createBlock('Magento\Cms\Block\Block')
+                    ->setBlockId('mashkady-hot-categories')
+                    ->toHtml();
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="home-page-6">
+    <?php
+    echo $this->getLayout()
+        ->createBlock('Magento\Cms\Block\Block')
+        ->setBlockId('id-6-block-3')
+        ->toHtml();
+    ?>
+</div>

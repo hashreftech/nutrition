@@ -1,0 +1,90 @@
+"Select Slot To Book","Cupos para Reservar"
+Notation, Leyenda
+Booking Information,Infomación sobre Reservas
+View Bookings,Ver Reservas
+No slot available,No hay cupos disponibles
+Slot quantity not available,Cantidad de cupos no disponibles
+Sunday,Domingo
+Monday,Lunes
+Tuesday,Martes
+Wednesday,Miércoles
+Thursday,Jueves
+Friday,Viernes
+Saturday,Sábado
+There was some error while processing your request,Hubo un error al procesar su solicitud
+Disable,Deshabilitar
+Many booking in one day,Muchas reservas para un día
+One booking for many days,Una reserva para muchos días
+Start Date of Booking,Fecha de inicio de Reserva
+End Date of Booking,Fecha de fin de Reserva
+Time Slot (In Minutes),Duración de cupo (En minutos)
+Break Between Bookings,Tiempo entre Reservas
+Day,Día
+Start Time,Hora de inicio
+End Time,Hora de fin
+Status,Estado
+Open,Abierto
+Close,Cerrado
+Add Bookings,Agregar Reservas
+Book Now,Reservar
+Date,Fecha
+Slot Time,Duración de cupo
+No. of Slots,No. de Cupos
+Booking System,Sistema de Reservas
+Book,Reserva
+"Are you Sure you Want To remove this slot","¿Está seguro que desea eliminar este cupo?"
+"Booking From","Reserva desde"
+"Booking Till","Reserva hasta"
+"Booking Time Expired","Tiempo de reserva caducado"
+"Can not configure booking.","No se puede configurar la reserva."
+View,Ver
+"Select Slot To Book","Cupos para Reservar"
+"Available Slots","Cupos Disponibles"
+"Unavailable Slots","Cupos no Disponibles"
+"Booked Slots","Cupos Reservados"
+Summary,Resumen
+"* Required Fields","* Campos obligatorios"
+"Please enter today's date or future date.","Ingrese la fecha de hoy o una fecha futura."
+"Please enter a value greater than 0","Ingrese un valor mayor que 0"
+"Please enter a numeric value and is greater than 0","Ingrese un valor numérico y sea mayor que 0"
+"Quantity not available for this slot","Cantidad no disponible para este cupo"
+Selected,Seleccionado
+"your need","cantidad solicitada"
+Slot,Cupo
+"Your Need","Cantidad Solicitada"
+"Available :","Disponible :"
+"Booking Id","ID de reserva"
+"Order Ref.","Ref. de Pedido."
+Name,Nombre
+"Customer Email","Email del Cliente"
+"Customer Name","Nombre del Cliente"
+"Payment Method","Método de Pago"
+Subtotal,Subtotal
+January,Enero
+February,Febrero
+March,Marzo
+April,Abril
+May,Mayo
+June,Junio
+July,Julio
+August,Agosto
+September,Septiembre
+October,Octubre
+November,Noviembre
+December,Diciembre
+Mon,Lu
+Tue,Ma
+Wed,Mi
+Thu,Ju
+Fri,Vi
+Sat,Sa
+Sun,Do
+Monday,Lunes
+Tuesday,Martes
+Wednesday,Miércoles
+Thursday,Jueves
+Friday,Viernes
+Saturday,Sábado
+Sunday,Domingo
+"Bookings System","Sistema de Reservas"
+"to","a",module,Webkul_BookingSystem
