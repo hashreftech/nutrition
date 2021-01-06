@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Tridhyatech Team
+ * @copyright Copyright (c) 2019 Tridhyatech (https://www.tridhya.com/)
+ * @package Tridhyatech_Slider
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Tridhyatech_Slider::slider" title="Tridhyatech Slider" module="Tridhyatech_Slider" sortOrder="10" resource="Tridhyatech_Slider::slider" parent="Tridhyatech_Core::view"/>
+        <add id="Tridhyatech_Slider::slider_sliders" title="Manage Sliders" module="Tridhyatech_Slider" sortOrder="10" parent="Tridhyatech_Slider::slider" action="slider/slider" resource="Tridhyatech_Slider::slider_sliders"/>
+		 <add id="Tridhyatech_Slider::settings" title="Slider Configuration" module="Tridhyatech_Slider" sortOrder="10" parent="Tridhyatech_Slider::slider" action="adminhtml/system_config/edit/section/slider" resource="Tridhyatech_Slider::settings"/>
+		</menu>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Tridhyatech Team
+ * @copyright Copyright (c) 2019 Tridhyatech (https://www.tridhya.com/)
+ * @package Tridhyatech_Slider
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
+    <router id="admin">
+        <route id="slider" frontName="slider">
+            <module name="Tridhyatech_Slider" before="Magento_Adminhtml" />
+        </route>
+    </router>
+</config>
