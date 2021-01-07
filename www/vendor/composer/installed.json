@@ -438,17 +438,17 @@
     },
     {
         "name": "aws/aws-sdk-php",
-        "version": "3.171.12",
-        "version_normalized": "3.171.12.0",
+        "version": "3.171.13",
+        "version_normalized": "3.171.13.0",
         "source": {
             "type": "git",
             "url": "https://github.com/aws/aws-sdk-php.git",
-            "reference": "2a575d8336a6005fcd7b8c3d54783ee5ddc3ceac"
+            "reference": "faa2936a85d83e727e18326a0f036f15855f69bd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2a575d8336a6005fcd7b8c3d54783ee5ddc3ceac",
-            "reference": "2a575d8336a6005fcd7b8c3d54783ee5ddc3ceac",
+            "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/faa2936a85d83e727e18326a0f036f15855f69bd",
+            "reference": "faa2936a85d83e727e18326a0f036f15855f69bd",
             "shasum": ""
         },
         "require": {
@@ -484,7 +484,7 @@
             "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages",
             "ext-sockets": "To use client-side monitoring"
         },
-        "time": "2021-01-05T19:12:58+00:00",
+        "time": "2021-01-06T19:14:50+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -841,17 +841,17 @@
     },
     {
         "name": "christian-riesen/base32",
-        "version": "1.5.0",
-        "version_normalized": "1.5.0.0",
+        "version": "1.5.1",
+        "version_normalized": "1.5.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/ChristianRiesen/base32.git",
-            "reference": "808e40ff290a085cc72a39a8b97c09b3cfc72273"
+            "reference": "045f1676849bbb67c7c06d8f7ee91657d911fa41"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/808e40ff290a085cc72a39a8b97c09b3cfc72273",
-            "reference": "808e40ff290a085cc72a39a8b97c09b3cfc72273",
+            "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/045f1676849bbb67c7c06d8f7ee91657d911fa41",
+            "reference": "045f1676849bbb67c7c06d8f7ee91657d911fa41",
             "shasum": ""
         },
         "require": {
@@ -862,7 +862,7 @@
             "phpstan/phpstan": "^0.12",
             "phpunit/phpunit": "^8.5.13 || ^9.5"
         },
-        "time": "2021-01-04T14:32:20+00:00",
+        "time": "2021-01-06T10:21:52+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -6544,17 +6544,17 @@
     },
     {
         "name": "laminas/laminas-validator",
-        "version": "2.13.4",
-        "version_normalized": "2.13.4.0",
+        "version": "2.13.5",
+        "version_normalized": "2.13.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laminas/laminas-validator.git",
-            "reference": "93593684e70b8ed1e870cacd34ca32b0c0ace185"
+            "reference": "d334dddda43af263d6a7e5024fd2b013cb6981f7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/93593684e70b8ed1e870cacd34ca32b0c0ace185",
-            "reference": "93593684e70b8ed1e870cacd34ca32b0c0ace185",
+            "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/d334dddda43af263d6a7e5024fd2b013cb6981f7",
+            "reference": "d334dddda43af263d6a7e5024fd2b013cb6981f7",
             "shasum": ""
         },
         "require": {
@@ -6594,13 +6594,9 @@
             "laminas/laminas-uri": "Laminas\\Uri component, required by the Uri and Sitemap\\Loc validators",
             "psr/http-message": "psr/http-message, required when validating PSR-7 UploadedFileInterface instances via the Upload and UploadFile validators"
         },
-        "time": "2020-03-31T18:57:01+00:00",
+        "time": "2021-01-06T15:05:04+00:00",
         "type": "library",
         "extra": {
-            "branch-alias": {
-                "dev-master": "2.13.x-dev",
-                "dev-develop": "2.14.x-dev"
-            },
             "laminas": {
                 "component": "Laminas\\Validator",
                 "config-provider": "Laminas\\Validator\\ConfigProvider"
@@ -6621,6 +6617,12 @@
         "keywords": [
             "laminas",
             "validator"
+        ],
+        "funding": [
+            {
+                "url": "https://funding.communitybridge.org/projects/laminas-project",
+                "type": "community_bridge"
+            }
         ]
     },
     {
