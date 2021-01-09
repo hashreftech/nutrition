@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="OY_Reserve::css/grid.css"/>
+    </head>
+    <update handle="customer_account"/>
+    <body>
+        <referenceBlock name="manage-reserve">
+            <arguments>
+                <argument name="title" xsi:type="string" translate="true">Mis Reservas</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <uiComponent name="reserve_listing"/>
+        </referenceContainer>
+    </body>
+</page>

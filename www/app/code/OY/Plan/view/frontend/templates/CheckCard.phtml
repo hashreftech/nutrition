@@ -1,0 +1,92 @@
+<?php
+    $customers = $this->getCustomers();
+    $helper = $this->helper('OY\Customer\Helper\Customer');
+    $helperCard = $this->helper('OY\Card\Helper\Data');
+
+?>
+
+<div class="container">
+    <h3 class="check-card-title">Verficar Tarjeta</h3>
+    <br>
+    <form action="<?= $block->getUrl('card/card/checkcard'); ?>" method="post">
+        <div class="row">
+            <div class="col-12 col-sm-3 col-lg-3">
+                <input type="text" name="search_document" value="<?=$this->getSearchDocument()?>" class="form-control" placeholder="Cédula">
+                <br>
+            </div>
+            <div class="col-12 col-sm-3 col-lg-3">
+                <input type="text" name="search_email" value="<?=$this->getSearchEmail()?>" class="form-control" placeholder="Correo Electrónico">
+                <br>
+            </div>
+            <div class="col-12 col-sm-3 col-lg-3">
+                <input type="text" name="search_card_code" value="<?=$this->getSearchCode()?>" class="form-control" placeholder="Código Tarjeta">
+                <br>
+            </div>
+            <div class="col-12 col-sm-3 col-lg-3">
+                <button type="submit" class="btn btn-secondary">Buscar</button>
+                <br>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="table-responsive table-check-card">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Cédula</th>
+            <th scope="col">Nombres y Apellidos</th>
+            <th scope="col">Correo electrónico</th>
+            <th scope="col">Plan</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Desde</th>
+            <th scope="col">Hasta</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if (count($customers) == 0) { ?>
+            <tr>
+                <td colspan="7"> No hay coincidencias.</td>
+            </tr>
+        <?php } ?>
+        <?php foreach ($customers as $customer) { ?>
+        <tr>
+            <td><?=$helper->getCustomerDocument($customer->getId())?></td>
+            <td><?=$customer->getData('firstname').' '.$customer->getData('lastname')?></td>
+            <td><?=$customer->getData('email')?></td>
+            <?php
+            if ($helper->isCustomerPlanForever($customer->getId())) { ?>
+                <td colspan="1"><b>Corporativo (<?=$helper->getCustomerCompany($customer->getId())?>)</b></td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            <?php } else {
+                $plan = $helperCard->getEnablePlanByCustomer($customer->getId());
+                if ($plan != null) {
+                    ?>
+                    <td><b><?= $plan->getPlan() ?></b></td>
+                    <td><b><?= $plan->getData('plan_count') ?></b></td>
+                    <td><b><?= $plan->getFrom() ?></b></td>
+                    <td><b><?= $plan->getTo() ?></b></td>
+                <?php } else {
+                    $plan = $helperCard->getLastPlanByCustomer($customer->getId());
+                    if ($plan != null) {
+                        ?>
+                        <td><?= $plan->getPlan() ?></td>
+                        <td><?= $plan->getData('plan_count') ?></td>
+                        <td><?= $plan->getFrom() ?></td>
+                        <td><?= $plan->getTo() ?></td>
+                    <?php } else { ?>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    <?php } ?>
+                    </tr>
+                <?php }
+            }
+        }
+        ?>
+        </tbody>
+    </table>
+</div>

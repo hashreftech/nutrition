@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="OY_Registry::registry" title="REGISTRY" module="OY_Registry" sortOrder="31" resource="OY_Registry::apiregistry"/>
+        <add id="OY_Registry::registry_manage" title="All Registry" translate="title" module="OY_Registry" sortOrder="10" parent="OY_Registry::registry" action="registry/registry" resource="OY_Registry::manage"/>
+    </menu>
+</config>

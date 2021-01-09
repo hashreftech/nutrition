@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="content">
+        <block class="OY\Card\Block\RequestCard" name="card_card_requestcard" template="OY_Card::RequestCard.phtml" />
+    </referenceContainer>
+    <referenceBlock name="page.main.title" remove="true"/>
+
+    <referenceContainer name="page.wrapper">
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Página de inicio</item>
+                    <item name="label" xsi:type="string">Página de inicio</item>
+                    <item name="link" xsi:type="string">/</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">requestcard</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Pedir Tarjeta</item>
+                    <item name="label" xsi:type="string">Pedir Tarjeta</item>
+                </argument>
+            </action>
+        </referenceBlock>
+    </referenceContainer>
+</page>

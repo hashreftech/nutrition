@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <!--<argument name="data" xsi:type="array">
+        <item name="buttons" xsi:type="array">
+            <item name="vndrAccounting" xsi:type="string">OY\Customer\Block\Customer\Adminhtml\Edit\AccountingButton</item>
+        </item>
+    </argument>-->
+    <htmlContent name="customer_edit_tab_view_content">
+        <block class="Magento\Customer\Block\Adminhtml\Edit\Tab\View" name="customer_edit_tab_view" template="Magento_Customer::tab/view.phtml">
+            <arguments>
+                <argument name="sort_order" xsi:type="number">10</argument>
+                <argument name="tab_label" xsi:type="string" translate="true">Customer View</argument>
+            </arguments>
+            <block class="OY\Customer\Block\Adminhtml\Edit\Tab\View\PersonalInfo" name="personal_info" template="OY_Customer::tab/view/personal_info.phtml"/>
+        </block>
+    </htmlContent>
+    <fieldset name="customer">
+        <field name="made_photo" formElement="input" component="OY_Customer/js/photo">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">made_photo</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <elementTmpl>OY_Customer/photo</elementTmpl>
+            </settings>
+        </field>
+        <field name="photo" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Foto</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+</form>
