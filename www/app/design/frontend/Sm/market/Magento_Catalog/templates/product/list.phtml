@@ -81,6 +81,7 @@ $homeStyle          = $_config->getThemeLayout('home_style');
                             <?php
                             $orgprice = (float)$_product->getPrice();
                             $fnPrice  = (float)$_product->getFinalPrice();
+                            $getSpecialPrice = (float)$_product->getSpecialPrice();
 
                             if ($_config->getAdvanced('show_salelabel')) {
                                 if ($fnPrice < $orgprice) { ?>
@@ -123,6 +124,12 @@ $homeStyle          = $_config->getThemeLayout('home_style');
                                 <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
                                 <?= /* @escapeNotVerified */
                                 $block->getProductPrice($_product) ?>
+                                <?php if(0<$_product->getSpecialPrice())
+                                {   echo "save!";
+                                    echo $orgprice-$getSpecialPrice;
+                                }
+                               
+                                 ?>
                                 <?= $block->getProductDetailsHtml($_product) ?>
 
                                 <div class="product-item-inner">
@@ -134,6 +141,65 @@ $homeStyle          = $_config->getThemeLayout('home_style');
                                                       data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
                                                       action="<?= /* @NoEscape */
                                                       $postParams['action'] ?>" method="post">
+                                                      
+                                                      
+                                                      <?php
+$_objectManager= \Magento\Framework\App\ObjectManager::getInstance();
+$productTypeInstance = $_objectManager->get('Magento\ConfigurableProduct\Model\Product\Type\Configurable');
+$productAttributeOptions = $productTypeInstance->getConfigurableAttributesAsArray($_product);
+if (!empty($productAttributeOptions)) { //check if product has custom options. If it doesn't go to the next product
+    foreach($productAttributeOptions as $productAttributeOption){
+        ?>
+        <p><span><?php echo $productAttributeOption['label']; ?></span></p>
+        <select name="super_attribute[<?php echo $productAttributeOption['attribute_id'] ?>]" data-selector="super_attribute[151]" data-validate="{required:true}" id="attribute151" class="super-attribute-select" aria-required="true">
+            <?php
+            foreach($productAttributeOption['values'] as $configure_option)
+            {
+                ?>
+                <option value="<?php echo $configure_option['value_index']; ?>"><?php echo $configure_option['label'] ?></option>
+                <?php
+            }
+            ?>
+
+        </select>
+        <?php
+    }
+}
+?>
+
+<!-- <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */ echo '1' ?>" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="redtext input-text qty" />  -->
+ <?php 
+
+
+$product_Id = $_product->getId();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$stockInfo = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface')->getStockItem($product_Id);
+$stockqty = (int)$stockInfo->getQty();
+
+$qty = (int)$stockInfo->getMaxSaleQty();
+//echo $qty;
+
+?>
+
+<label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?></span></label>               
+            <select name="qty" id="qty" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" 
+                   class="input-text qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>">
+                   <?php $i = 1 ; ?>
+                    <?php 
+                        
+                            while( $i <= $qty) { ?>
+                                <option value="<?php echo $i; ?>"><?php echo  $i; ?></option>
+                                <?php $i++; 
+                                }?>
+                       
+
+                    </div>
+            </select>
+
+ <br><br>
+   
+                                                      
+                                                      
                                                     <input type="hidden" name="product"
                                                            value="<?= /* @escapeNotVerified */
                                                            $postParams['data']['product'] ?>">
@@ -148,6 +214,14 @@ $homeStyle          = $_config->getThemeLayout('home_style');
                                                         <span><?= /* @escapeNotVerified */
                                                             __('Add to Cart') ?></span>
                                                     </button>
+                                                    <?php
+                                           if($_product->isAvailable())
+                                            
+                                            {
+                                                echo"In stock. Immediate delivery.";
+                                            }
+                                            
+                                            ?>
                                                 </form>
                                             <?php else: ?>
                                                 <?php if ($_product->isAvailable()): ?>
@@ -292,6 +366,63 @@ $homeStyle          = $_config->getThemeLayout('home_style');
                                                 <?php $postParams = $block->getAddToCartPostParams($_product); ?>
                                                 <form data-role="tocart-form" action="<?php /* @escapeNotVerified */
                                                 echo $postParams['action']; ?>" method="post">
+
+
+<?php
+$_objectManager= \Magento\Framework\App\ObjectManager::getInstance();
+$productTypeInstance = $_objectManager->get('Magento\ConfigurableProduct\Model\Product\Type\Configurable');
+$productAttributeOptions = $productTypeInstance->getConfigurableAttributesAsArray($_product);
+if (!empty($productAttributeOptions)) { //check if product has custom options. If it doesn't go to the next product
+    foreach($productAttributeOptions as $productAttributeOption){
+        ?>
+        <p><span><?php echo $productAttributeOption['label']; ?></span></p>
+        <select name="super_attribute[<?php echo $productAttributeOption['attribute_id'] ?>]" data-selector="super_attribute[151]" data-validate="{required:true}" id="attribute151" class="super-attribute-select" aria-required="true">
+            <?php
+            foreach($productAttributeOption['values'] as $configure_option)
+            {
+                ?>
+                <option value="<?php echo $configure_option['value_index']; ?>"><?php echo $configure_option['label'] ?></option>
+                <?php
+            }
+            ?>
+
+        </select>
+        <?php
+    }
+}
+?>
+    <!-- <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */ echo '1' ?>" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="redtext input-text qty" />  -->
+    <?php 
+
+
+$product_Id = $_product->getId();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$stockInfo = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface')->getStockItem($product_Id);
+$stockqty = (int)$stockInfo->getQty();
+
+$MaxSaleQty = (int)$stockInfo->getMaxSaleQty();
+//echo $qty;
+
+?>
+
+    <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?></span></label>               
+            <select name="qty" id="qty" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" 
+                   class="input-text qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>">
+                   <?php $i = 1 ; ?>
+                    <?php 
+                        
+                            while( $i <= $MaxSaleQty) { ?>
+                                <option value="<?php echo $i; ?>"><?php echo  $i; ?></option>
+                                <?php $i++; 
+                                }?>
+                       
+
+                    </div>
+            </select>
+
+
+            <br><br>
+
                                                     <input type="hidden" name="product"
                                                            value="<?php /* @escapeNotVerified */
                                                            echo $postParams['data']['product']; ?>">
@@ -306,6 +437,14 @@ $homeStyle          = $_config->getThemeLayout('home_style');
 														<span><?php /* @escapeNotVerified */
                                                             echo __('Add to Cart') ?></span>
                                                     </button>
+                                                    <?php
+                                                    if($_product->isAvailable())
+                                            
+                                            {
+                                                echo"In stock. Immediate delivery.";
+                                            }
+                                            
+                                            ?>
                                                 </form>
                                             <?php else: ?>
                                                 <?php if ($_product->getIsSalable()): ?>
@@ -371,3 +510,4 @@ $homeStyle          = $_config->getThemeLayout('home_style');
         </script>
     <?php endif; ?>
 <?php endif; ?>
+
