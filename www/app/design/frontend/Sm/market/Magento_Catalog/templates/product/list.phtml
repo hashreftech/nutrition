@@ -124,11 +124,29 @@ $homeStyle          = $_config->getThemeLayout('home_style');
                                 <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
                                 <?= /* @escapeNotVerified */
                                 $block->getProductPrice($_product) ?>
-                                <?php if(0<$_product->getSpecialPrice())
-                                {   echo "save!";
-                                    echo $orgprice-$getSpecialPrice;
-                                }
                                
+                                <?php 
+
+
+$percentage = 0;
+if ($orgprice > $fnPrice)
+ {
+    $percentage = ($orgprice - $fnPrice) * 100 / $orgprice;
+    $saveprice = ($orgprice - $fnPrice); 
+}
+
+if ($percentage) 
+{
+    echo  (int)$percentage ; 
+    echo "%";
+if($saveprice)
+{   
+    echo "save!";
+    echo $saveprice; 
+}
+  
+}
+
                                  ?>
                                 <?= $block->getProductDetailsHtml($_product) ?>
 
@@ -343,6 +361,26 @@ $qty = (int)$stockInfo->getMaxSaleQty();
                                     <?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
                                     <?php /* @escapeNotVerified */
                                     echo $block->getProductPrice($_product) ?>
+                                    <?php 
+$percentage = 0;
+if ($orgprice > $fnPrice)
+ {
+    $percentage = ($orgprice - $fnPrice) * 100 / $orgprice;
+    $saveprice = ($orgprice - $fnPrice); 
+}
+
+if ($percentage) 
+{
+    echo  (int)$percentage ; 
+    echo "%";
+if($saveprice)
+{   
+    echo "save!";
+    echo $saveprice; 
+}
+  
+}
+ ?>
                                     <?php echo $block->getProductDetailsHtml($_product); ?>
 
                                     <div class="product-item-inner">
