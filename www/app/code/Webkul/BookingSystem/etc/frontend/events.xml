@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_BookingSystem
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_product_add_after">
+        <observer name="booking_customprice" instance="Webkul\BookingSystem\Observer\CartProductAddAfter" />
+    </event>
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="booking_afterplaceorder" instance="Webkul\BookingSystem\Observer\AfterPlaceOrder" />
+    </event>
+    <event name="checkout_cart_add_product_complete">
+        <observer name="booking_afteraddproducttocart" instance="Webkul\BookingSystem\Observer\CartProductAddComplete" />
+    </event>
+    <event name="controller_action_predispatch_checkout_cart_index">
+        <observer name="booking_beforeviewcart" instance="Webkul\BookingSystem\Observer\BeforeViewCart" />
+    </event>
+    <event name="controller_action_predispatch_checkout_index_index">
+        <observer name="booking_beforeviewcart" instance="Webkul\BookingSystem\Observer\BeforeViewCart" />
+    </event>
+    <event name="sales_quote_item_set_product">
+        <observer name="booking_sales_quote_item_set_product" instance="Webkul\BookingSystem\Observer\SalesQuoteItemProduct" />
+    </event>
+    <event name="checkout_cart_update_items_before">
+        <observer name="booking_beforeUpdatecartproduct" instance="Webkul\BookingSystem\Observer\BeforeUpdateCart" />
+    </event>
+</config>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_BookingSystem
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */ -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="wk_bs_booking_booked" resource="default" engine="innodb">
+    <column xsi:type="int" name="id" padding="11" unsigned="false" nullable="false" identity="true"/>
+    <column xsi:type="int" name="order_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="order_item_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="item_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="qty" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="product_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="slot_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="parent_slot_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="customer_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="varchar" name="customer_email" nullable="false" length="255"/>
+    <column xsi:type="varchar" name="booking_from" nullable="false" length="255"/>
+    <column xsi:type="varchar" name="booking_too" nullable="false" length="255"/>
+    <column xsi:type="varchar" name="time" nullable="false" length="255"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="id"/>
+    </constraint>
+  </table>
+  <table name="wk_bs_booking_info" resource="default" engine="innodb">
+    <column xsi:type="int" name="id" padding="11" unsigned="false" nullable="false" identity="true"/>
+    <column xsi:type="int" name="product_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="varchar" name="start_date" nullable="false" length="255"/>
+    <column xsi:type="varchar" name="end_date" nullable="false" length="255"/>
+    <column xsi:type="mediumtext" name="info" nullable="false"/>
+    <column xsi:type="int" name="qty" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="type" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="total_slots" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="id"/>
+    </constraint>
+  </table>
+  <table name="wk_bs_booking_slot" resource="default" engine="innodb">
+    <column xsi:type="int" name="id" padding="11" unsigned="false" nullable="false" identity="true"/>
+    <column xsi:type="int" name="product_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="type" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="mediumtext" name="info" nullable="false" disabled="true"/>
+    <column xsi:type="int" name="status" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="id"/>
+    </constraint>
+  </table>
+  <table name="wk_bs_quote_item" resource="default" engine="innodb">
+    <column xsi:type="int" name="id" padding="11" unsigned="false" nullable="false" identity="true"/>
+    <column xsi:type="int" name="item_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="slot_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="parent_slot_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="quote_id" padding="10" unsigned="true" nullable="false" identity="false"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="id"/>
+    </constraint>
+  </table>
+  <table name="wk_bs_booking_option_map" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true"/>
+    <column xsi:type="int" name="product_id" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="from" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <column xsi:type="int" name="till" padding="11" unsigned="false" nullable="false" identity="false"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+</schema>

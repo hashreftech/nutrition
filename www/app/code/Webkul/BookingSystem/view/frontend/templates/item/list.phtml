@@ -1,0 +1,30 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_BookingSystem
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+$helper = $block->getData('bookingHelper');
+$wishlisthelper = $helper->getWishListHelper();
+$_productCollection = $wishlisthelper->getWishlist()->getItemCollection();
+$bookingInfoArray = [];
+foreach ($_productCollection as $product) {
+    $isBooking = $helper->isBookingProduct($product->getProductId());
+    $productUrl = $wishlisthelper->getProductUrl($product);
+    $bookingInfoArray[$productUrl]['booking'] = $isBooking;
+}
+if (!empty($bookingInfoArray)) {
+    $serializedFormData = $helper->getSerializedString(["bookingInfoArray" => $bookingInfoArray]);
+    ?>
+    <script type="text/x-magento-init">
+        {
+            "body": {
+                "Webkul_BookingSystem/js/bookingsystem": <?= /* @noEscape */ $serializedFormData ?>
+            }
+        }
+    </script>
+<?php } ?>
