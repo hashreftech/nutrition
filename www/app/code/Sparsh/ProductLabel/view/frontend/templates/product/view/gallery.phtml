@@ -1,0 +1,184 @@
+<?php
+//get product label helper
+$productLabelHelper = $this->helper(Sparsh\ProductLabel\Helper\ProductLabelHelper::class);
+$_product = $block->getProduct(); ?>
+<?php
+//if there is product label found then display label
+$productLabelType = $productLabelHelper->getProductLabelType($_product);
+if (!empty($productLabelType)) {
+    if ($productLabelType == 'text') {
+        $productLabel = $productLabelHelper->getProductLabel($_product);
+        $productLabelColor = $productLabelHelper->getProductLabelColor($_product);
+        $productLabelBackgroundColor = $productLabelHelper->getProductLabelBackgroundColor($_product);
+        $productLabelShape = $productLabelHelper->getProductLabelShape($_product);
+        if ($productLabel && $productLabelShape) { ?>
+            <span class="sparsh-product-label"
+                <?= !empty($productLabelColor) ? 'data-color=' . /* @noEscape */ $productLabelColor : ''; ?> <?= !empty($productLabelBackgroundColor) ? 'data-background-color=' . /* @noEscape */ $productLabelBackgroundColor : ''; ?> <?= !empty($productLabelShape) ? 'data-shape=' . /* @noEscape */ $productLabelShape : '' ?>>
+                    <?= $block->escapeHtml($productLabel); ?>
+                </span>
+        <?php }
+    } elseif ($productLabelType == 'image') {
+        $productLabelImage = $productLabelHelper->getProductLabelImage($_product);
+        if ($productLabelImage) { ?>
+            <div class="sparsh-product-label-image">
+                <img src="<?= /* @noEscape */ $productLabelHelper->getProductMediaUrl() . $productLabelImage; ?>">
+            </div>
+        <?php }
+    }
+}
+?>
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <div data-role="loader" class="loading-mask">
+        <div class="loader">
+            <img src="<?=
+            $block->escapeUrl($block->getViewFileUrl('images/loader-1.gif')) ?>"
+                 alt="<?= /* @noEscape */ __('Loading...') ?>">
+        </div>
+    </div>
+</div>
+<!--Fix for jumping content. Loader must be the same size as gallery.-->
+<script>
+    var config = {
+            "width": <?= /* @noEscape */ $block->getImageAttribute('product_page_image_medium', 'width') ?>,
+            "thumbheight": <?= /* @noEscape */ $block->getImageAttribute('product_page_image_small', 'height')
+                ?: /* @noEscape */ $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+            "navtype": "<?= /* @noEscape */ $block->getVar("gallery/navtype") ?>",
+            "height": <?= /* @noEscape */ $block->getImageAttribute('product_page_image_medium', 'height') ?>
+        },
+        thumbBarHeight = 0,
+        loader = document.querySelectorAll('[data-gallery-role="gallery-placeholder"] [data-role="loader"]')[0];
+
+    if (config.navtype === 'horizontal') {
+        thumbBarHeight = config.thumbheight;
+    }
+
+    loader.style.paddingBottom = (config.height / config.width * 100) + "%";
+</script>
+<script type="text/x-magento-init">
+        {
+            "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+            "mixins":["magnifier/magnify"],
+            "magnifierOpts": <?= /* @noEscape */
+            $block->getMagnifier() ?>,
+            "data": <?= /* @noEscape */
+            $block->getGalleryImagesJson() ?>,
+            "options": {
+            "nav": "<?= /* @noEscape */
+            $block->getVar("gallery/nav") ?>",
+            <?php if (($block->getVar("gallery/loop"))) : ?>
+                "loop": <?= /* @noEscape */
+                $block->getVar("gallery/loop") ?>,
+            <?php endif; ?>
+            <?php if (($block->getVar("gallery/keyboard"))) : ?>
+                "keyboard": <?= /* @noEscape */
+                $block->getVar("gallery/keyboard") ?>,
+            <?php endif; ?>
+            <?php if (($block->getVar("gallery/arrows"))) : ?>
+                "arrows": <?= /* @noEscape */
+                $block->getVar("gallery/arrows") ?>,
+            <?php endif; ?>
+            <?php if (($block->getVar("gallery/allowfullscreen"))) : ?>
+                "allowfullscreen": <?= /* @noEscape */
+                $block->getVar("gallery/allowfullscreen") ?>,
+            <?php endif; ?>
+            <?php if (($block->getVar("gallery/caption"))) : ?>
+                "showCaption": <?= /* @noEscape */
+                $block->getVar("gallery/caption") ?>,
+            <?php endif; ?>
+            "width": "<?= /* @noEscape */
+            $block->getImageAttribute('product_page_image_medium', 'width') ?>",
+            "thumbwidth": "<?= /* @noEscape */
+            $block->getImageAttribute('product_page_image_small', 'width') ?>",
+            <?php if ($block->getImageAttribute('product_page_image_small', 'height') || $block->getImageAttribute('product_page_image_small', 'width')) : ?>
+                "thumbheight": <?= /* @noEscape */
+                $block->getImageAttribute('product_page_image_small', 'height')
+                ?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+            <?php endif; ?>
+            <?php if (($block->getVar("gallery/thumbmargin"))) : ?>
+                "thumbmargin": <?= /* @noEscape */
+                (int)$block->getVar("gallery/thumbmargin"); ?>,
+            <?php endif; ?>
+            <?php if ($block->getImageAttribute('product_page_image_medium', 'height') || $block->getImageAttribute('product_page_image_medium', 'width')) : ?>
+                "height": <?= /* @noEscape */
+                $block->getImageAttribute('product_page_image_medium', 'height')
+                ?: $block->getImageAttribute('product_page_image_medium', 'width'); ?>,
+            <?php endif; ?>
+            <?php if ($block->getVar("gallery/transition/duration")) : ?>
+                "transitionduration": <?= /* @noEscape */
+                $block->getVar("gallery/transition/duration") ?>,
+            <?php endif; ?>
+            "transition": "<?= /* @noEscape */
+            $block->getVar("gallery/transition/effect") ?>",
+            <?php if (($block->getVar("gallery/navarrows"))) : ?>
+                "navarrows": <?= /* @noEscape */
+                $block->getVar("gallery/navarrows") ?>,
+            <?php endif; ?>
+            "navtype": "<?= /* @noEscape */
+            $block->getVar("gallery/navtype") ?>",
+            "navdir": "<?= /* @noEscape */
+            $block->getVar("gallery/navdir") ?>"
+        },
+        "fullscreen": {
+        "nav": "<?= /* @noEscape */
+        $block->getVar("gallery/fullscreen/nav") ?>",
+        <?php if ($block->getVar("gallery/fullscreen/loop")) : ?>
+            "loop": <?= /* @noEscape */
+            $block->getVar("gallery/fullscreen/loop") ?>,
+        <?php endif; ?>
+        "navdir": "<?= /* @noEscape */
+        $block->getVar("gallery/fullscreen/navdir") ?>",
+        <?php if ($block->getVar("gallery/transition/navarrows")) : ?>
+            "navarrows": <?= /* @noEscape */
+            $block->getVar("gallery/fullscreen/navarrows") ?>,
+        <?php endif; ?>
+        "navtype": "<?= /* @noEscape */
+        $block->getVar("gallery/fullscreen/navtype") ?>",
+        <?php if ($block->getVar("gallery/fullscreen/arrows")) : ?>
+            "arrows": <?= /* @noEscape */
+            $block->getVar("gallery/fullscreen/arrows") ?>,
+        <?php endif; ?>
+        <?php if ($block->getVar("gallery/fullscreen/caption")) : ?>
+            "showCaption": <?= /* @noEscape */
+            $block->getVar("gallery/fullscreen/caption") ?>,
+        <?php endif; ?>
+        <?php if ($block->getVar("gallery/fullscreen/transition/duration")) : ?>
+            "transitionduration": <?= /* @noEscape */
+            $block->getVar("gallery/fullscreen/transition/duration") ?>,
+        <?php endif; ?>
+        "transition": "<?= /* @noEscape */
+        $block->getVar("gallery/fullscreen/transition/effect") ?>"
+    },
+    "breakpoints": <?= /* @noEscape */
+    $block->getBreakpoints() ?>
+    }
+    }
+    }
+
+</script>
+<script type="text/javascript">
+    require(['jquery'],function($) {
+        $(document).ready(function() {
+            //loop through all the labels found
+            $('.sparsh-product-label').each(function(index) {
+                //set default background color & font color
+                if($(this).attr('data-background-color')){
+                    $(this).css("background-color", $(this).attr('data-background-color'));
+                }else{
+                    $(this).css("background-color", '#ff0000');
+                }
+                if($(this).attr('data-color')){
+                    $(this).css("color", $(this).attr('data-color'));
+                }else{
+                    $(this).css("color", '#ffffff');
+                }
+
+                //assign css according to shapes found
+                if($(this).attr('data-shape')){
+                     $(this).addClass($(this).attr('data-shape'));
+                 }
+            });
+        });
+    });
+</script>
+

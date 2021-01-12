@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+  
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Sparsh\ProductLabel\Api\Data\ProductLabelsInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">sparsh_product_label_rules</item>
+                    <item name="identifierField" xsi:type="string">rule_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Sparsh\ProductLabel\Model\RuleConfig">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
+  
+    <virtualType name="sparsh_product_label_grid_data_provider"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">
+                Sparsh\ProductLabel\Model\ResourceModel\ProductLabels\Collection
+            </argument>
+            <argument name="filterPool" xsi:type="object" shared="false">
+                SparshProductLabelsGridFilterPool
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Sparsh\ProductLabel\Model\ResourceModel\ProductLabels\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sparsh_product_label_rules</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Sparsh\ProductLabel\Model\ResourceModel\ProductLabels
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sparsh_product_label_listing_data_source" xsi:type="string">
+                    Sparsh\ProductLabel\Model\ResourceModel\ProductLabels\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Sparsh\ProductLabel\ReferenceImageUpload" type="Sparsh\ProductLabel\Model\ImageUploader">
+    <arguments>
+        <argument name="baseTmpPath" xsi:type="string">sparsh/tmp/product_label_image</argument>
+        <argument name="basePath" xsi:type="string">sparsh/product_label_image</argument>
+        <argument name="allowedExtensions" xsi:type="array">
+            <item name="jpg" xsi:type="string">jpg</item>
+            <item name="jpeg" xsi:type="string">jpeg</item>
+            <item name="gif" xsi:type="string">gif</item>
+            <item name="png" xsi:type="string">png</item>
+        </argument>
+        <argument name="allowedMimeTypes" xsi:type="array">
+            <item name="jpg" xsi:type="string">image/jpg</item>
+            <item name="jpeg" xsi:type="string">image/jpeg</item>
+            <item name="gif" xsi:type="string">image/gif</item>
+            <item name="png" xsi:type="string">image/png</item>
+        </argument> 
+    </arguments>
+</virtualType>
+ 
+<type name="Sparsh\ProductLabel\Controller\Adminhtml\Feature\Image\Upload">
+    <arguments>
+        <argument name="imageUploader" xsi:type="object">Sparsh\ProductLabel\ReferenceImageUpload</argument>
+    </arguments>
+</type>
+</config>

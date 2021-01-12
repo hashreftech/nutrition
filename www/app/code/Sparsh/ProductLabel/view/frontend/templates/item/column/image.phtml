@@ -1,0 +1,59 @@
+<?php
+$item = $block->getItem();
+$product = $item->getProduct();
+$productLabelHelper = $this->helper(Sparsh\ProductLabel\Helper\ProductLabelHelper::class);
+?>
+<?php
+//if there is product label found then display label
+$_product = $product;
+$productLabelType = $productLabelHelper->getProductLabelType($_product);
+if (!empty($productLabelType)) {
+    if ($productLabelType == 'text') {
+        $productLabel = $productLabelHelper->getProductLabel($_product);
+        $productLabelColor = $productLabelHelper->getProductLabelColor($_product);
+        $productLabelBackgroundColor = $productLabelHelper->getProductLabelBackgroundColor($_product);
+        $productLabelShape = $productLabelHelper->getProductLabelShape($_product);
+        if ($productLabel && $productLabelShape) { ?>
+            <span class="sparsh-product-label"
+                <?= !empty($productLabelColor) ? 'data-color=' . /* @noEscape */ $productLabelColor : ''; ?> <?= !empty($productLabelBackgroundColor) ? 'data-background-color=' . /* @noEscape */ $productLabelBackgroundColor : ''; ?> <?= !empty($productLabelShape) ? 'data-shape=' . /* @noEscape */ $productLabelShape : '' ?>>
+                                    <?= $block->escapeHtml($productLabel); ?>
+                                </span>
+        <?php }
+    } elseif ($productLabelType == 'image') {
+        $productLabelImage = $productLabelHelper->getProductLabelImage($_product);
+        if ($productLabelImage) { ?>
+            <div class="sparsh-product-label-image">
+                <img src="<?= /* @noEscape */ $productLabelHelper->getProductMediaUrl() . $productLabelImage; ?>">
+            </div>
+        <?php }
+    }
+}
+?>
+<a class="product-item-photo" tabindex="-1" href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>" title="<?= $block->escapeHtmlAttr($product->getName()) ?>">
+    <?= $block->getImage($product, 'wishlist_thumbnail')->toHtml() ?>
+</a>
+<script type="text/javascript">
+    require(['jquery'],function($) {
+        $(document).ready(function() {
+            //loop through all the labels found
+            $('.sparsh-product-label').each(function(index) {
+                //set default background color & font color
+                if($(this).attr('data-background-color')){
+                    $(this).css("background-color", $(this).attr('data-background-color'));
+                }else{
+                    $(this).css("background-color", '#ff0000');
+                }
+                if($(this).attr('data-color')){
+                    $(this).css("color", $(this).attr('data-color'));
+                }else{
+                    $(this).css("color", '#ffffff');
+                }
+
+                //assign css according to shapes found
+                if($(this).attr('data-shape')){
+                    $(this).addClass($(this).attr('data-shape'));
+                }
+            });
+        });
+    });
+</script>

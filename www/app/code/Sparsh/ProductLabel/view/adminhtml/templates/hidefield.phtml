@@ -1,0 +1,141 @@
+<?php
+$fileUrl = $block->getFileUrl();
+?>
+<script>
+    require([
+        'jquery',
+        'uiRegistry',
+        'jquery/colorpicker/js/colorpicker'
+        ], function ($, uiRegistry) {
+            uiRegistry.get("product_form.product_form.product-details.container_product_label_select.product_label_select", function (element) {
+                var productLabel = uiRegistry.get("product_form.product_form.product-details.container_product_label.product_label");
+                var labelColor = uiRegistry.get("product_form.product_form.product-details.container_product_label_color.product_label_color");
+                var labelBackgroundColor = uiRegistry.get("product_form.product_form.product-details.container_product_label_background_color.product_label_background_color");
+                var labelShape = uiRegistry.get("product_form.product_form.product-details.container_product_label_shape.product_label_shape");
+                var shapeImage = uiRegistry.get("product_form.product_form.product-details.container_product_label_image.product_label_image");
+                /*change event*/
+                $(document).on("click", "div[data-index='product_label_select']", function () {
+                    var value = $(this).find("select");
+                    var data = value.children("option:selected").val();
+                    if(data == 'image'){
+                        productLabel.visible(false);
+                        labelColor.visible(false);
+                        labelBackgroundColor.visible(false);
+                        labelShape.visible(false);
+                        shapeImage.visible(true);
+                        var imageData = jQuery("div[data-index='product_label_image']").find("a");
+                        var media = "<?= /* @noEscape */ $fileUrl; ?>";
+                        var imageName = $(imageData).text();
+                        var fileurl = media+imageName;
+                        $(imageData).attr("href",fileurl);
+                    }else if(data == 'text'){
+                        productLabel.visible(true);
+                        labelColor.visible(true);
+                        labelBackgroundColor.visible(true);
+                        labelShape.visible(true);
+                        shapeImage.visible(false);
+                    }
+                    else if(data == 'none'){
+                        productLabel.visible(false);
+                        labelColor.visible(false);
+                        labelBackgroundColor.visible(false);
+                        labelShape.visible(false);
+                        shapeImage.visible(false);
+                    }
+                });
+                /*change event*/
+                /*load event*/
+                productLabel.visible(false);
+                labelColor.visible(false);
+                labelBackgroundColor.visible(false);
+                labelShape.visible(false);
+                shapeImage.visible(false);
+                if(element.value() == 'image'){
+                    shapeImage.visible(true);
+                }else if(element.value() == 'text'){
+                    productLabel.visible(true);
+                    labelColor.visible(true);
+                    labelBackgroundColor.visible(true);
+                    labelShape.visible(true);
+                }
+                /*load event*/
+            });
+            uiRegistry.get("product_form.product_form.product-details.container_product_label_image.product_label_image", function (element) {
+                var tempIntervalVar = setInterval(function(){
+                    var media = "<?= /* @noEscape */ $fileUrl; ?>";
+                    var imageData = jQuery("div[data-index='product_label_image']").find("a");
+                    var imageName = $(imageData).text();
+                    if(imageName)
+                    {
+                        var fileurl = media+imageName;
+                        $(imageData).attr("href",fileurl);
+                        clearInterval(tempIntervalVar);
+                    }
+                }, 100);
+            });
+            /*code for label color*/
+            uiRegistry.get("product_form.product_form.product-details.container_product_label_color.product_label_color", function (element) {
+                /*on load*/
+                var tempIntervalVartwo = setInterval(function(){
+                    var colorField = jQuery("div[data-index='product_label_color']").find("input");
+                    var colorValue = $(colorField).val();
+                    if(colorValue){
+                        $(colorField).css("backgroundColor",colorValue);
+                        clearInterval(tempIntervalVartwo);
+                    }
+                }, 100);
+                /*on load*/
+                /*on load textbox*/
+                var tempIntervalVarfive = setInterval(function(){
+                    var colorField = jQuery("div[data-index='product_label_color']").find("input");
+                    if(colorField.length > 0){
+                        var colorValue = $(colorField).val();
+                // Attach the color picker
+                $(colorField).ColorPicker({
+                    color: colorValue,
+                    onChange: function (hsb, hex, rgb) {
+                        $(colorField).css("backgroundColor", "#" + hex).val("#" + hex);
+                        $(colorField).trigger("change");
+                    }
+                });
+                $(colorField).css("width","140px");
+                clearInterval(tempIntervalVarfive);
+            }
+        }, 100);
+                /*on load textbox*/
+            });
+            /*code for label color*/
+            /*code for background color*/
+            uiRegistry.get("product_form.product_form.product-details.container_product_label_background_color.product_label_background_color", function (element) {
+             /*on load background color*/
+             var tempIntervalVarthree = setInterval(function(){
+                var colorField = jQuery("div[data-index='product_label_background_color']").find("input");
+                var colorValue = $(colorField).val();
+                if(colorValue ){
+                    $(colorField).css("backgroundColor",colorValue);
+                    clearInterval(tempIntervalVarthree);
+                }
+            }, 100);
+             /*on load background color*/
+             /*on load textbox*/
+             var tempIntervalVarfour = setInterval(function(){
+                var colorField = jQuery("div[data-index='product_label_background_color']").find("input");
+                if(colorField.length > 0){
+                    var colorValue = $(colorField).val();
+                // Attach the color picker
+                $(colorField).ColorPicker({
+                    color: colorValue,
+                    onChange: function (hsb, hex, rgb) {
+                        $(colorField).css("backgroundColor", "#" + hex).val("#" + hex);
+                        $(colorField).trigger("change");
+                    }
+                });
+                $(colorField).css("width","140px");
+                clearInterval(tempIntervalVarfour);
+            }
+        }, 100);
+             /*on load textbox*/
+         });
+            /*code for background color*/
+        });
+    </script>

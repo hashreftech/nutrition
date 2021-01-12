@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sparsh_ProductLabel::sparsh_product_label"
+             title="Product Label Rules"
+             module="Sparsh_ProductLabel"
+             sortOrder="50"
+             resource="Sparsh_ProductLabel::sparsh_product_label"
+             action="sparsh_product_label/index" />
+    </menu>
+</config>

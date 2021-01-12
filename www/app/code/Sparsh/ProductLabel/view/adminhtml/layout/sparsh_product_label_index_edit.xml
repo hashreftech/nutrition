@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/colorpicker/css/colorpicker.css"/>
+        <link src="jquery/colorpicker/js/colorpicker.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="sparsh_product_label_form"/>
+             <block class="Sparsh\ProductLabel\Block\Adminhtml\ProductUrls" name="product.label.field.hide" template="Sparsh_ProductLabel::showfield.phtml" />
+        </referenceContainer>
+    </body>
+</page>
