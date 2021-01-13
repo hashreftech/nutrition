@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="magebees_new_products" class="Magebees\Newproduct\Block\Widget\Newproductwidget" is_email_compatible="true"
+            placeholder_image="Magebees_Newproduct::images/Newproductwidget.png" ttl="86400">
+        <label translate="true">Magebees::New Products Widget</label>
+        <description translate="true">List of Products that are set as New</description>
+		<parameters>
+		 <parameter name="template" xsi:type="select" required="true" visible="true">
+			<label translate="true">Template</label>
+			<options>
+				<option name="default" value="new_grid.phtml" selected="true">
+					<label translate="true">New Products Grid Template</label>
+				</option>
+				<option name="list_default"
+						value="new_default_list.phtml">
+					<label translate="true">New Products Images and Names Template</label>
+				</option>             
+			</options>
+		</parameter>
+		<parameter name="wd_show_heading" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Display heading</label>
+				<description translate="true">Select Yes for display page heading.</description>
+        </parameter>
+		<parameter name="wd_heading" xsi:type="text" visible="true" required="true">
+                <label translate="true">Heading</label>
+				<description translate="true">Here we can set heading.</description>
+				<depends>
+                    <parameter name="wd_show_heading" value="1" />
+                </depends>
+				<value>New Products</value>
+        </parameter>
+		
+		<parameter name="wd_slider" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Add Slider For Product</label>
+				<description translate="true"><![CDATA[Select Yes for display Slider.<br/>
+Note: Works only with New Products Grid Template.]]></description>
+        </parameter>
+		<parameter name="wd_no_of_product" xsi:type="text" visible="true" required="true">
+                <label translate="true">Number of Product to Display</label>
+				<description translate="true">Show number of products in main block</description>
+				<value>10</value>
+        </parameter>
+		<parameter name="wd_products_per_row" xsi:type="select" visible="true"
+                   source_model="Magebees\Newproduct\Model\Rowselect">
+                <label translate="true">Number of items per row in Main Block</label>
+				<description translate="true"><![CDATA[Show number of products per row in main block.<br/>
+Note: Works only with New Products Grid Template.]]></description>
+				<depends>
+                    <parameter name="wd_slider" value="0" />                    
+				</depends>				
+        </parameter>
+		<parameter name="wd_products_per_page" xsi:type="text" visible="true">
+                <label translate="true">Products per Page</label>
+				<description translate="true">Comma-separated.(Default:9,15,30)</description>
+				<depends>
+                    <parameter name="wd_slider" value="0" />                    
+				</depends>	
+			<value>9,15,30</value>
+        </parameter>
+		<parameter name="wd_newproduct" xsi:type="select" visible="true"
+                       source_model="Magebees\Newproduct\Model\Showproduct">
+                <label translate="true">Select New Products Type</label>
+				<description translate="true">You can display all products or display by categories.</description>
+        </parameter>
+		<parameter name="wd_categories" xsi:type="multiselect" visible="true"
+                       source_model="Magebees\Newproduct\Model\Categories" required="true">				   
+                <label translate="true">Categories</label>
+				<depends>
+                    <parameter name="wd_newproduct" value="2" />
+                </depends>
+				
+        </parameter>
+		<parameter name="wd_product_type" xsi:type="select" visible="true"
+                       source_model="Magebees\Newproduct\Model\Producttype">
+                <label translate="true">New Products</label>
+				<description translate="true"><![CDATA[Auto >> Show system generated products.<br>
+					Manually >> Show manually added products.<br>
+					Both >> Show both system generated and manually added products.]]></description>
+        </parameter>
+		
+		<parameter name="wd_default_new" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Use 'New from Date' and 'New to Date'</label>
+				<description translate="true">Applied only if "New Products" field is set to "Auto" or "Both".</description>
+        </parameter>
+		
+		<parameter name="wd_add_days" xsi:type="text" visible="true" required="true">
+                <label translate="true">Product is new threshold</label>
+				<description translate="true"><![CDATA[Used Product Creation Date.<br>
+					Default days for new products: 10 days.<br>]]></description>
+				<depends>
+                    <parameter name="wd_default_new" value="0" />
+                </depends>
+				<value>10</value>				
+        </parameter>
+		<parameter name="wd_sort_by" xsi:type="select" visible="true"
+                       source_model="Magebees\Newproduct\Model\Sortby">
+                <label translate="true">Sort By</label>
+				<description translate="true">Set attribute that is initially used to sort the new products list.</description>
+        </parameter>
+		<parameter name="wd_sort_order" xsi:type="select" visible="true"
+                       source_model="Magebees\Newproduct\Model\Sortorder">
+                <label translate="true">Sort Order</label>				
+        </parameter>
+		<parameter name="wd_price" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Display Product Price</label>
+				<description translate="true"><![CDATA[Select Yes for display Product Price on frontend.<br/>
+Note: Works only with New Products Grid Template.]]></description>
+        </parameter>
+		<parameter name="wd_description" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Display Short Description</label>
+				
+				<description translate="true"><![CDATA[Select Yes for display Short Description on frontend.<br/>
+Note: Works only with New Products Grid Template.]]></description>
+				<depends>
+                    <parameter name="wd_slider" value="0" />                    
+				</depends>
+        </parameter>
+		<parameter name="wd_compare" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Display Add to Compare</label>
+				<description translate="true"><![CDATA[Select Yes for display the Add to Compare Link on frontend.<br/>
+Note: Works only with New Products Grid Template.]]></description>
+        </parameter>
+		<parameter name="wd_wishlist" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Display Add to Wishlist</label>
+				<description translate="true"><![CDATA[Select Yes for display the Add to Wishlist Link on frontend.<br/>
+Note: Works only with New Products Grid Template.]]></description>
+        </parameter>
+		<parameter name="wd_cart" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Display Add to Cart</label>
+				<description translate="true"><![CDATA[Select Yes for display the Add to cart button on frontend.<br/>
+Note: Works only with New Products Grid Template.]]></description>
+        </parameter>
+		<parameter name="wd_out_stock" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Display Out of Stock Product</label>
+				<description translate="true">Select Yes for display the out of stock items on frontend.</description>
+        </parameter>
+		
+		<parameter name="wd_autoscroll" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Auto scroll products</label>
+				<description translate="true"><![CDATA[Select Yes for auto scroll new products.<br/>
+Note: Works only with New Products Grid Template.]]></description>
+				<depends>
+                    <parameter name="wd_slider" value="1" />
+                </depends>
+        </parameter>	
+		<parameter name="wd_ajaxscroll_page" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Auto Load Next Page</label>				
+				<description translate="true"><![CDATA[Select Yes for auto load next page content.<br/>Note: This option depends on Ajax Infinite Scroll Pro Extension.<br/>
+Note: Works only with New Products Grid Template.]]>
+					 </description>
+			<depends>
+                    <parameter name="wd_slider" value="0" />                    
+                </depends>
+        </parameter>
+		<parameter name="wd_navarrow" xsi:type="select" visible="true"
+                       source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Show navigation arrow</label>
+				<description translate="true"><![CDATA[Select Yes for show navigation arrow for slider.<br/>
+Note: Works only with New Products Grid Template.]]></description>
+				<depends>
+                    <parameter name="wd_slider" value="1" />
+                    
+                </depends>
+        </parameter>		
+		 </parameters>
+        <containers>
+            <container name="sidebar.main">
+                <template name="default" value="list_default" />
+            </container>
+            <container name="content">
+                <template name="grid" value="default" />            
+            </container>
+            <container name="sidebar.additional">
+                <template name="default" value="list_default" />
+            </container>
+        </containers>
+    </widget>
+</widgets>

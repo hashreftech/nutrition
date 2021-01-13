@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://www.magezon.com/license.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_PageBuilder
+ * @copyright Copyright (C) 2019 Magezon (https://www.magezon.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Magento\Framework\Filter\Template">
+		<plugin name="magezonbuilder" type="\Magezon\PageBuilder\Plugin\Filter\Template" />
+	</type>
+	<type name="Magezon\Builder\Model\CompositeConfigProvider">
+		<arguments>
+			<argument name="configProviders" xsi:type="array">
+				<item name="default" xsi:type="object">Magezon\PageBuilder\Model\DefaultConfigProvider</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Magezon\Builder\Data\Elements">
+		<arguments>
+			<argument name="elements" xsi:type="array">
+				<item name="accordion" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Accordion</item>
+					<item name="class" xsi:type="string">Magezon\PageBuilder\Data\Element\Accordion</item>
+					<item name="element" xsi:type="string">Magezon_PageBuilder/js/builder/element/accordion</item>
+					<item name="block" xsi:type="string">Magezon\PageBuilder\Block\Element\Accordion</item>
+					<item name="template" xsi:type="string">Magezon_PageBuilder::element/accordion.phtml</item>
+					<item name="sortOrder" xsi:type="number">100</item>
+					<item name="icon" xsi:type="string">fas mgz-fa-list</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">#47ae68</item>
+					</item>
+					<item name="allowed_types" xsi:type="string">accordion_section</item>
+					<item name="children" xsi:type="string">accordion_section</item>
+					<item name="childrenCount" xsi:type="string">2</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="description" xsi:type="string">Collapsible content panels</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/accordions</item>
+					<item name="is_collection" xsi:type="boolean">true</item>
+				</item>
+				<item name="accordion_section" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Section</item>
+					<item name="class" xsi:type="string">Magezon\PageBuilder\Data\Element\AccordionSection</item>
+					<item name="template" xsi:type="string">Magezon_Builder::element/list.phtml</item>
+					<item name="icon" xsi:type="string">fas mgz-fa-anchor</item>
+					<item name="excluded_types" xsi:type="string">accordion_section</item>
+					<item name="modalVisible" xsi:type="boolean">false</item>
+					<item name="is_collection" xsi:type="boolean">true</item>
+				</item>
+				<item name="icon" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Icon</item>
+					<item name="class" xsi:type="string">Magezon\PageBuilder\Data\Element\Icon</item>
+					<item name="block" xsi:type="string">Magezon\PageBuilder\Block\Element\Icon</item>
+					<item name="templateUrl" xsi:type="string">Magezon_PageBuilder/js/templates/builder/element/icon.html</item>
+					<item name="template" xsi:type="string">Magezon_PageBuilder::element/icon.phtml</item>
+					<item name="sortOrder" xsi:type="number">130</item>
+					<item name="icon" xsi:type="string">mgz-icon mgz-icon-favorite</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">#3590fc</item>
+						<item name="font-size" xsi:type="string">26px</item>
+						<item name="color" xsi:type="string">#FFF</item>
+					</item>
+					<item name="group" xsi:type="string">content</item>
+					<item name="description" xsi:type="string">Eye catching icons from libraries</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/icon</item>
+				</item>
+				<item name="product_slider" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Product Slider</item>
+					<item name="class" xsi:type="string">Magezon\PageBuilder\Data\Element\ProductSlider</item>
+					<item name="block" xsi:type="string">Magezon\PageBuilder\Block\Element\ProductSlider</item>
+					<item name="template" xsi:type="string">Magezon_PageBuilder::element/product_slider.phtml</item>
+					<item name="sortOrder" xsi:type="number">580</item>
+					<item name="description" xsi:type="string">Display products in a slider</item>
+					<item name="icon" xsi:type="string">fab mgz-fa-magento</item>
+					<item name="livePreview" xsi:type="boolean">false</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#f26322</item>
+						<item name="font-size" xsi:type="string">32px</item>
+					</item>
+					<item name="group" xsi:type="string">magento</item>
+					<item name="builder_description" xsi:type="string">{{ 'Source: ' + element.source  + (element.title ? ', Title: ' + element.title : '') }}</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/product-slider</item>
+				</item>
+				<item name="product_grid" xsi:type="array">
+					<item name="name" xsi:type="string" translate="true">Product Grid</item>
+					<item name="class" xsi:type="string">Magezon\PageBuilder\Data\Element\ProductGrid</item>
+					<item name="block" xsi:type="string">Magezon\PageBuilder\Block\Element\ProductGrid</item>
+					<item name="template" xsi:type="string">Magezon_PageBuilder::element/product_grid.phtml</item>
+					<item name="sortOrder" xsi:type="number">590</item>
+					<item name="livePreview" xsi:type="boolean">false</item>
+					<item name="description" xsi:type="string">Display products in a grid</item>
+					<item name="icon" xsi:type="string">fab mgz-fa-magento</item>
+					<item name="icon_styles" xsi:type="array">
+						<item name="background-color" xsi:type="string">transparent</item>
+						<item name="color" xsi:type="string">#f26322</item>
+						<item name="font-size" xsi:type="string">32px</item>
+					</item>
+					<item name="group" xsi:type="string">magento</item>
+					<item name="builder_description" xsi:type="string">{{ 'Source: ' + element.source  + (element.title ? ', Title: ' + element.title : '') }}</item>
+					<item name="demo_link" xsi:type="string">http://192.168.1.107/magezon/pagebuilder/product-grid</item>
+				</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

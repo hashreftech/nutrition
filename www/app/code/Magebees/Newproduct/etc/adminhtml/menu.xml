@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+ <menu>	
+	<add id="Magebees_Newproduct::grid" title="MageBees New Products"  action="newproduct/manage" module="Magebees_Newproduct" sortOrder="40" parent="Magento_Catalog::inventory" resource="Magebees_Newproduct::newproduct"/>
+	
+ </menu>
+</config>
+
