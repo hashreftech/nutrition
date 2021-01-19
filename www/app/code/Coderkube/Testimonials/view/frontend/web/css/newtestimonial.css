@@ -1,0 +1,128 @@
+/**
+ * Coderkube
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Coderkube
+ * @package     Coderkube_Testimonial
+ * @copyright   Copyright (c) 2017 Coderkube
+ */
+/* testimonials from css */
+
+/* sidebar slider */
+   .owl-prev,.owl-next {
+    position: absolute;
+    top: 50%;
+    font-size: 25px;
+    height: 25px;
+    margin-top: -12.5px;
+    font-weight: lighter;
+}
+
+.owl-prev{
+    left:-30px;
+}
+
+.owl-next{
+    right:-30px;
+}
+
+
+@media (max-width:1150px){
+  
+.owl-prev{
+    left:-15px;
+}
+
+.owl-next{
+    right:-15px;
+}
+    
+}
+
+.owl-theme .img{
+    display: inline-block;
+    width: 20%;
+}
+
+.owl-theme .message{
+    display: inline-block;
+    width: 79%;
+}
+
+.owl-theme .img img{
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* end sidebar */
+
+.fieldset {
+    border: 1px solid #ddd;
+    background: #fefefe;
+    padding: 22px 25px 12px 33px;
+    margin: 28px 0;
+}
+
+.form-list label {
+    margin: 0 0 5px;
+    font-weight: normal;
+    font-size: 15px;
+    float: left;
+    color: #111;
+    position: relative;
+    z-index: 0;
+}
+.form-list .input-box {
+    display: block;
+    clear: both;
+}
+
+.form-list input.input-text, .form-list select, .form-list textarea, .discount .input-text {
+    font-size: 15px;
+    padding: 7px 0;
+    background: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    border-color: #aaa #ccc #ccc #ccc;
+    padding: 6px 4px;
+}
+.required {
+    font-size: 12px;
+    color: red;
+    padding-left: 0px;
+}
+.submit-button-testimonial:hover{
+  background-color: #000;
+  color: #fff;
+    border: medium none;
+}
+.submit-button-testimonial {
+  background-color: #888;
+  color: #fff;
+  margin-top: 15px;
+   border-radius: 4px;
+   border: medium none;
+}
+.new-testimonial .input-box {
+  margin-bottom: 10px;
+}
+
+#demos .owl-nav
+{
+  display: none;
+}
+
+@media (max-width: 480px) {
+.new-testimonial .fieldset {
+  width: auto;
+}
+}
