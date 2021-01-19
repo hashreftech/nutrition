@@ -1,4 +1,12 @@
 <?php use Magento\Framework\App\Action\Action; 
+
+
+$productLabelHelper = $this->helper(Sparsh\ProductLabel\Helper\ProductLabelHelper::class);
+//$_product1 = $block->getProduct();
+
+
+
+
 $image_url=$block->getViewFileUrl('Magebees_Newproduct::images/ajax_loader.gif');
 $unique_slider_key = $block->getUniqueSliderKey();
 $np_slider_id="magebees-new-slider-".$unique_slider_key;
@@ -11,7 +19,8 @@ $np_content_id="cwsNewProducts-".$unique_slider_key;
 			<div class="title"><h3><?php echo __($this->getHeading()) ;?></h3></div>
 		<?php endif; ?>
 		<?php
-			$_products = $this->getProductCollection();			
+			$_products = $this->getProductCollection();	
+			//print_r(get_class_methods($_products));		
 			$_helper = $this->helper('Magento\Catalog\Helper\Output');
 		?>
 		<?php 
@@ -50,6 +59,25 @@ $np_content_id="cwsNewProducts-".$unique_slider_key;
 							<?php $_productNameStripped = $block->stripTags($_product->getName(), null, true); ?>
 							<strong class="product name product-item-name"> <a class="product-item-link" href="<?php echo $_product->getProductUrl() ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?></a></strong>
 							<?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
+							<?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+
+
+<?php
+							$productLabelType = $productLabelHelper->getProductLabelType($_product);
+							if (!empty($productLabelType)) 
+							{
+								if($productLabelType == 'text') 
+								{
+									$productLabel = $productLabelHelper->getProductLabel($_product);$productLabelColor = $productLabelHelper->getProductLabelColor($_product);
+									$productLabelBackgroundColor = $productLabelHelper->getProductLabelBackgroundColor($_product);
+								$productLabelShape = $productLabelHelper->getProductLabelShape($_product);
+								if ($productLabel && $productLabelShape) 
+								{ ?>
+								<span class="sparsh-product-label"<?php echo !empty($productLabelColor) ? 'data-color=' . $productLabelColor : ''; ?><?php echo !empty($productLabelBackgroundColor) ? 'data-background-color=' . $productLabelBackgroundColor : ''; ?><?php echo !empty($productLabelShape) ? 'data-shape=' . $productLabelShape : '' ?>><?php echo $block->escapeHtml($productLabel); ?></span><?php }} 
+								elseif ($productLabelType == 'image') {$productLabelImage = $productLabelHelper->getProductLabelImage($_product);if ($productLabelImage) { ?><div class="sparsh-product-label-image"><img src="<?php echo $productLabelHelper->getProductMediaUrl() . $productLabelImage; ?>"></div><?php }}}
+
+?>
+
 							<?php if($this->getProductsPrice()): ?>
 								<?php echo $block->getProductPrice($_product) ?>
 							<?php endif; ?>
