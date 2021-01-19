@@ -1,4 +1,34 @@
-<div class="header-container header-style-23">
+<div class="header-container custom-header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-content">
+                <div class="slogan">
+                Nutrition Shoppe products, highest quality!
+                </div>
+                <div class="customer-links">
+                    <?php
+                    $login_customer = $block->getLayout()->createBlock('Magento\Customer\Block\Account\Customer');
+                    ?>
+
+
+                    <?php if ($login_customer->customerLoggedIn()) { ?>
+                        <div class="title-loggedin"><?php echo __('Your Dashboard') ?></div>
+                        <?php echo $block->getChildHtml('toplinks-header'); ?>
+                    <?php } else { ?>
+                        <ul class="top-links">
+                            <li>
+                                <a href="<?php echo $this->getUrl('customer/account/login') ?>"><?php echo __('Login') ?></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $this->getUrl('customer/account/create') ?>"><?php echo __('Register') ?></a>
+                            </li>
+                        </ul>
+                    <?php } ?>
+                </div>
+            </div>
+           
+        </div>
+    </div>
     <div class="header-top">
         <div class="container">
             <div class="header-top-content clearfix">
@@ -13,35 +43,9 @@
                         </div>
                     </div>
 
-                    <div class="customer-links">
-                        <?php
-                        $login_customer = $block->getLayout()->createBlock('Magento\Customer\Block\Account\Customer');
-                        ?>
+                    
 
-
-                        <?php if ($login_customer->customerLoggedIn()) { ?>
-                            <div class="title-loggedin"><?php echo __('Your Dashboard') ?></div>
-                            <?php echo $block->getChildHtml('toplinks-header'); ?>
-                        <?php } else { ?>
-                            <ul class="top-links">
-                                <li>
-                                    <a href="<?php echo $this->getUrl('customer/account/login') ?>"><?php echo __('Login') ?></a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo $this->getUrl('customer/account/create') ?>"><?php echo __('Register') ?></a>
-                                </li>
-                            </ul>
-                        <?php } ?>
-                    </div>
-
-                    <div class="setting-header">
-                        <div class="setting-title"><?php echo __('Setting') ?></div>
-
-                        <div class="dropdown-setting">
-                            <?php echo $block->getChildHtml('language-header'); ?>
-                            <?php echo $block->getChildHtml('currency-header'); ?>
-                        </div>
-                    </div>
+                  
 
                     <?php echo $block->getChildHtml('search-header-pro'); ?>
                 </div>
