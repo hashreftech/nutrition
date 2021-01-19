@@ -1,0 +1,64 @@
+<!--@subject New testimonial has been posted! @-->
+<!--@vars {
+"var data.name":"Testimonial Name "
+"var data.email":"Testimonial Email"
+"var data.image":"Testimonial Image "
+"var data.message":"Testimonial content"
+} @-->
+{{template config_path="design/email/header_template"}}
+<table> 
+	<tr class="testimonial-intro"> 
+		<td>
+			<p class="greeting">Hello admin,</p>
+		</td> 
+	</tr> 
+	<tr class="testimonial-intro"> 
+		<td>
+			<p class="greeting">{{var data.name}} has been posted new testimonial.</p>
+		</td> 
+	</tr> 
+	<tr class="testimonial-intro"> 
+		<td>
+			<p class="greeting">Testimonial Detail:</p>
+		</td> 
+	</tr> 
+	<tr class="testimonial-information"> 
+		<td>
+			<table class="testimonial-detail" border='1'> 
+				<tr> 
+					<td class="testimonial-lbl" style='padding: 10px;'>
+						Testimonial Name 
+					</td> 
+					<td class="testimonial-details" style='padding: 10px;'>
+						{{var data.name}} 
+					</td> 
+				</tr>
+				<tr> 
+					<td class="testimonial-lbl" style='padding: 10px;'>
+						Testimonial Email 
+					</td> 
+					<td class="testimonial-details" style='padding: 10px;'>
+						{{var data.email}}
+					</td> 
+				</tr>
+				<tr> 
+					<td class="testimonial-lbl" style='padding: 10px;'>
+						Testimonial Image 
+					</td> 
+					<td class="testimonial-details" style='padding: 10px;'>
+						<img src={{var data.image}} width="200">
+					</td> 
+				</tr>
+				<tr> 
+					<td class="testimonial-lbl" style='padding: 10px;'>
+						Testimonial content 
+					</td> 
+					<td class="testimonial-details" style='padding: 10px;'>
+						{{var data.message}} 
+					</td> 
+				</tr>
+			</table>
+		</td> 
+	</tr>
+</table>
+{{template config_path="design/email/footer_template"}}

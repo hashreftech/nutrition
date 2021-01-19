@@ -1,0 +1,161 @@
+<?php
+use Magento\Framework\App\TemplateTypesInterface;
+
+?>
+
+<form action="<?php /* @escapeNotVerified */ echo $block->getSaveUrl() ?>" method="post" id="ck_testimonial_edit_form" enctype="multipart/form-data">
+    <?php echo $block->getBlockHtml('formkey')?>
+    <div class="no-display">
+        <input type="hidden" id="change_flag_element" name="_change_type_flag" value="" />
+        <input type="hidden" id="save_as_flag" name="_save_as_flag" value="<?php /* @escapeNotVerified */ echo $block->getSaveAsFlag() ?>" />
+    </div>
+    <?php /* @escapeNotVerified */ echo $block->getForm() ?>
+</form>
+<form action="<?php /* @escapeNotVerified */ echo $block->getPreviewUrl() ?>" method="post" id="ck_testimonial_preview_form" target="_blank">
+    <?php echo $block->getBlockHtml('formkey')?>
+    
+</form>
+<?php
+ $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$productMetadata = $objectManager->get('Magento\Framework\App\ProductMetadataInterface');
+$currentMagentoVersion = $productMetadata->getVersion();
+$newMagentoVersion = '2.3.0';
+
+if($currentMagentoVersion >= $newMagentoVersion){ 
+    $tiny = 'tinymce4';
+}else{    
+    $tiny = 'tinymce';
+}?>
+<script>
+require([
+    'jquery',
+   <?php echo "'$tiny'";?>,
+    'Magento_Ui/js/modal/prompt',
+    'Magento_Ui/js/modal/confirm',
+    'mage/mage',
+    'prototype'
+], function(jQuery, tinyMCE, prompt, confirm){
+
+//<![CDATA[
+    jQuery('#ck_testimonial_edit_form').mage('form').mage('validation');
+    
+    templateControl = {
+
+        unconvertedText: '',
+        typeChange: false,
+        id: 'text',
+
+        events: {
+            'click [data-role=testimonial-save]' : 'save',
+            'click [data-role=testimonial-save-as]': 'saveAs',
+            'click [data-role=testimonial-delete]': 'deleteTemplate'
+        },
+
+        init: function () {
+            if ($('convert_button_back')) {
+                $('convert_button_back').hide();
+            }
+
+            this.bindEvents();
+        },
+
+        bindEvents: function(){
+            var events = this.events,
+                eventName,
+                selector,
+                callback,
+                key;
+
+            for( key in events ){
+                callback    = this[events[key]];
+                key         = key.split(' ');
+
+                eventName   = key[0];
+                selector    = key.slice(1).join(' ');
+
+                jQuery(selector).on(eventName, jQuery.proxy(callback, this) );
+            }
+        },
+
+        save: function() {
+            if (this.typeChange) {
+                $('change_flag_element').value = '1';
+            }
+            if(this.isEditor()) {
+                tinyMCE.triggerSave();
+            }
+          
+            jQuery('#ck_testimonial_edit_form').triggerHandler('save');
+            return false;
+        },
+
+        saveAs: function() {
+            var self = this;
+
+            if (this.typeChange) {
+                $('change_flag_element').value = '1';
+            }
+
+            if($F('code').blank()) {
+
+                prompt({
+                    content: '<?php /* @escapeNotVerified */ echo __('Please enter a new template name.') ?>',
+                    value: templateControl.templateName + '<?php /* @escapeNotVerified */ echo __(' Copy') ?>',
+                    actions: {
+                        confirm: function(value) {
+                            $('code').value = value;
+                            self._saveAs();
+
+                            return false;
+                        },
+                        cancel: function(){
+                            $('code').value = '';
+                           
+                            jQuery('#ck_testimonial_edit_form').triggerHandler('save');
+                            self._saveAs();
+
+                            return false;
+                        }
+                    }
+                });
+            }
+        },
+
+        _saveAs: function() {
+            $('save_as_flag').value = '1';
+
+            if(this.isEditor()) {
+                tinyMCE.triggerSave();
+            }
+           
+            jQuery('#ck_testimonial_edit_form').triggerHandler('save');
+            return false;
+        },
+
+
+        deleteTemplate: function() {
+            confirm({
+                content: "<?php /* @escapeNotVerified */ echo __('Are you sure you want to delete this template?') ?>",
+                actions: {
+                    confirm: function() {
+                        window.location.href = '<?php /* @escapeNotVerified */ echo $block->getDeleteUrl() ?>';
+                    }
+                }
+            });
+        },
+
+        isEditor: function() {
+            return (typeof tinyMceEditors != 'undefined' && tinyMceEditors.get(this.id) != undefined)
+        },
+
+        getEditor: function() {
+            return tinyMceEditors.get(this.id);
+        }
+    };
+
+    templateControl.init();
+    
+//]]>
+
+});
+</script>

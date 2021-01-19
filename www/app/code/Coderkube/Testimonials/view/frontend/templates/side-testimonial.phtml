@@ -1,0 +1,122 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getViewFileUrl('Coderkube_Testimonials::css/owl.carousel.css')?>">
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getViewFileUrl('Coderkube_Testimonials::css/owl.theme.default.css')?>">
+
+
+<?php 
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+ 
+	$total_display = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general3/total_testimonial_display');
+	$display_image = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general2/display_image');
+	$display_rating = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general2/display_rating');	
+	$display_name = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general2/display_name');
+	$display_date = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general2/display_date');
+
+	if($total_display == ""){
+		$total_display=5;
+	}
+	
+	$testimonial = $objectManager->create('Coderkube\Testimonials\Model\ResourceModel\Testimonial\Collection');
+	$testimonial->load();
+	$testimonial->addFilter('status', 1);
+	$testimonial->setPageSize($total_display);
+	$testimonial->setCurPage(1);
+
+	$TestimonialsData=$testimonial->getData();
+
+	$block= $objectManager->create('Coderkube\Testimonials\Block\Testimonial');
+	$MediaUrl=$block->getMediaUrl();
+?>
+
+
+<section id="demos" class="slider-testimonial">
+ <div class="row1">
+        <div class="large-121 columns1">
+          <div class="owl-carousel owl-theme">
+          <?php foreach ($TestimonialsData as $testimonial) {
+           ?>
+            <div class="item">
+						<?php if($display_image){ ?>
+							<div class="img testimonial-slider-image">
+								<?php if($testimonial["image"] != ''){ ?>
+									<img src='<?php  echo $MediaUrl."ck/testimonial/".$testimonial["image"];?>' alt='<?php echo $testimonial["name"];   ?>' style="width:100px;height:100px" />
+								<?php }else{ ?>
+										<div class="testimonial-slider-no-image"><i class="fa fa-user"></i></div>
+								<?php } ?>
+							</div>
+						<?php } ?>
+						<div class="message">
+							<?php   echo $testimonial["content"];  ?>
+						</div>
+						<?php if($display_name){ ?>
+							<div class="testimonial-name">
+								<h4>- <?php echo $testimonial["name"]; ?></h4>
+							</div>
+						<?php } ?>
+						<?php if($display_date){ ?>
+							<div class="testimonial-date">
+									   <?php echo date("M d, Y", strtotime($testimonial["created_at"])); ?>
+							</div>
+						<?php } ?>
+						<?php if($display_rating){ ?>
+								<?php 
+										
+										$rate=$testimonial["rate"];
+										
+										if($testimonial["rate"] == ''){
+											$rate=0;
+										}
+										else
+										{
+											$rate=$testimonial["rate"];
+										}
+								?>
+								<div class="testimonial-rate">  
+								 <div class="count-<?php echo $rate ?>  rating star-rating">									
+									<?php for($i = 1 ; $i<=$rate ; $i++){ ?>
+										
+										<i class="fa fa-star selected-star" aria-hidden="true"></i>
+										
+									<?php } ?>
+									<?php for($i = 1 ; $i<=(5-$rate) ; $i++){ ?>
+										
+										<i class="fa fa-star unselected-star" aria-hidden="true"></i>
+										
+									<?php } ?>
+								 </div>
+								</div>
+							
+						<?php } ?>
+            
+            </div>
+            <?php } ?>
+          </div>
+        </div>
+      </div>
+</section>
+
+<script>
+    require([
+        'jquery',
+        'Coderkube_Testimonials/js/owl.carousel',
+    ], function ($) {
+        jQuery(document).ready(function () {
+             var owl = $('.owl-carousel');
+              owl.owlCarousel({
+                margin: 10,
+                nav: true,
+                loop: true,
+                responsive: {
+                  0: {
+                    items: 1
+                  },
+                  600: {
+                    items: 1
+                  },
+                  1000: {
+                    items: 1
+                  }
+                }
+              });
+        });
+    });
+</script>

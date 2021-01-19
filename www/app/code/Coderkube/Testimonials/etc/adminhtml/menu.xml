@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">  
+ <menu>
+        <add id="Coderkube_Testimonials::coderkube_testimonial_first"
+             title="CK Testimonial"
+             module="Coderkube_Testimonials"
+             sortOrder="80"
+             resource="Magento_Backend::content"
+            />   
+        <add id="Coderkube_Testimonials::coderkube_testimonial_second" 
+            title="Manage Testimonial" 
+            module="Coderkube_Testimonials" 
+            sortOrder="70" 
+            parent="Coderkube_Testimonials::coderkube_testimonial_first" 
+            resource="Magento_Backend::content"
+              action="testimonial/testimonial"
+            /> 
+        <add id="Coderkube_Testimonials::coderkube_testimonial_third" 
+            title="Testimonial Setting" 
+            module="Coderkube_Testimonials" 
+            sortOrder="70" 
+            parent="Coderkube_Testimonials::coderkube_testimonial_first" 
+            resource="Magento_Backend::content"
+              action="adminhtml/system_config/edit/section/testimonial"
+            /> 
+    </menu>
+</config>

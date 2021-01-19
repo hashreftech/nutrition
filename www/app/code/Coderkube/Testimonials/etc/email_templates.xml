@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd"> 
+	<template id="testimonial_general_customer_template" label="Testimonial Customer Email template" file="customer_emailtemplate.html" type="html" module="Coderkube_Testimonials" area="frontend"/>
+	<template id="testimonial_general_admin_template" label="Testimonial Admin Email template" file="admin_emailtemplate.html" type="html" module="Coderkube_Testimonials" area="frontend"/>
+</config>

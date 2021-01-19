@@ -1,0 +1,105 @@
+<?php 
+	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$display_rating = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general1/display_rating'); 
+	$display_website = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general1/display_website');
+	$display_cname = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general1/display_cname'); 
+	
+	$required_name = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general4/name'); 
+	$required_email = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general4/email'); 
+	$required_cname = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general4/cname'); 
+	$required_website = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general4/website'); 
+	$required_rating = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general4/rating'); 
+?>
+
+
+<h1 class="page-title">
+    <span class="base" data-ui-id="page-title-wrapper">New Testimonial</span>    
+</h1>
+<form action="<?php echo $this->getBaseUrl().'testimonial/index/savetestimonial' ?>" method="post" enctype="multipart/form-data" class="new-testimonial"  data-mage-init='{"validation": {}}'>
+<div class="fieldset">
+	<div class="form-list">
+		<div class="wide">
+                <div class="input-box">
+                    <label for="name" >Name 
+						<em class="required">*</em>
+					</label>
+                    <div class="input-box">
+                       <input name="name" id="name" title="Name" value="" class="input-text required-entry" type="text">
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label for="email" >Email 
+						<em class="required">*</em>
+					</label>
+                    <div class="input-box">
+                        <input name="email" id="email" title="Email" value="" class="input-text required-entry validate-email" type="email" >
+                    </div>
+                </div>                                                   
+                <div class="input-box">
+                    <label for="image">Profile image</label>
+                    <div class="input-box">
+                        <input name="image" id="image" title="Image" type="file">
+                    </div>
+                </div>
+				<?php if($display_cname){ ?>
+					<div class="input-box">
+						<label for="cname" >Company Name
+						<?php if($required_cname){ ?>
+							<em class="required">*</em>
+						<?php } ?>
+						</label>
+						<div class="input-box">
+						   <input name="cname" id="cname" title="Company Name" value="" class="input-text  <?php if($required_cname){ ?> required-entry <?php } ?>" type="text">
+						</div>
+					</div>
+				<?php } ?>
+				<?php if($display_website){ ?>
+					<div class="input-box">
+						<label for="website" >Website
+						<?php if($required_website){ ?>
+							<em class="required">*</em>
+						<?php } ?>
+					   </label>
+						<div class="input-box">
+						   <input name="website" id="website" title="Website" value="" class="input-text validate-url <?php if($required_website){ ?> required-entry <?php } ?>" type="text">
+						</div>
+					</div>
+				<?php } ?>
+                <div class="input-box">
+                    <label for="message">Message <em class="required">*</em></label>
+                    <div class="input-box">
+                        <textarea name="message" id="message" title="Message" class="required-entry input-text" cols="5" rows="3"></textarea>
+                    </div>
+                </div>	
+				
+				
+					<div class="input-box">
+						<label for="image">Rating star
+							<em class="required">*</em>
+						</label>
+						
+						<div class="input-box">
+						<select class="rate required-entry" name="rate" >
+							<option value="">Select rating</option>
+							<option value="1">1 star</option>
+							<option value="2">2 star</option>
+							<option value="3">3 star</option>
+							<option value="4">4 star</option>
+							<option value="5">5 star</option>
+						</select>
+						
+				 
+						</div>
+					</div>
+				
+				
+				
+                <div class="input-box">
+                    <div class="input-box">
+                        <button type="submit" class="submit-button-testimonial">Submit</button>
+                    </div>
+                </div>
+            </div>
+	</div>	
+</div>
+</form>

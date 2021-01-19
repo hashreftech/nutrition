@@ -1,0 +1,94 @@
+<?php 
+    $testimonial=$this->getTestimonials();
+
+    $TestimonialsData=$testimonial->getData();
+?>
+<div class="testimonials-list">
+    
+    <div class="page-title">
+
+        <div class="submit-testimonial">
+                <a class="button" href="<?php echo $this->getBaseUrl().'testimonial/index/newtestimonial' ?>">
+                    <span><span>Submit Your Testimonial</span></span>
+                </a>
+        </div>
+    </div>
+
+    <div class="testimonials">
+    <?php if(count($TestimonialsData) > 0){ ?> 
+    <?php foreach ($TestimonialsData as $testimonial) { ?>
+            <div class="testimonial">
+                <div class="testimonial-image" style="width: 110px">
+					<?php   if($testimonial["image"] != ""){    ?>
+						<img src='<?php echo $this->getMediaUrl()."ck/testimonial/".$testimonial["image"];  ?>' alt='<?php    echo $testimonial["name"];    ?>' /> 
+					<?php
+					} 
+					else{ ?>
+						<div class="testimonial-no-image"><i class="fa fa-user"></i></div>
+						
+					<?php }
+					?>
+				</div>
+                <div class="container" style="width: auto; margin-left: 110px">
+                    <div class="content-wrapper">
+                        <div class="message-wrapper">
+                            <div class="message">
+                                 <div class="testimonial-date">
+                                   <?php echo date("M d, Y", strtotime($testimonial["created_at"])); ?>
+                                </div>
+                                <div class="testimonial-data"><?php   echo $testimonial["content"];  ?>                                    
+                                    <span class="author-info"><?php    echo " - ".$testimonial["name"]    ?></span>
+                                </div>
+								<?php 
+									$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+									$display_rating = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('testimonial/general1/display_rating'); 
+									 
+								?>
+								
+								<?php 
+										
+										$rate=$testimonial["rate"];
+										
+										if($testimonial["rate"] == ''){
+											$rate=0;
+										}
+										else
+										{
+											$rate=$testimonial["rate"];
+										}
+								?>
+									<div class="testimonial-rate">  
+									 <div class="count-<?php echo $rate ?>  rating star-rating">									
+										<?php for($i = 1 ; $i<=$rate ; $i++){ ?>
+											
+											<i class="fa fa-star selected-star" aria-hidden="true"></i>
+											
+										<?php } ?>
+										<?php for($i = 1 ; $i<=(5-$rate) ; $i++){ ?>
+											
+											<i class="fa fa-star unselected-star" aria-hidden="true"></i>
+											
+										<?php } ?>
+									 </div>
+                                    </div>
+									
+							
+                            </div> <!--message div over -->
+                        </div>                         
+                    </div>
+                </div>
+            </div>
+    <?php } ?>
+    <?php }else{ ?>
+    <div class="no-found">
+    <?php   echo "No testimonial found"; ?>
+    </div>
+       <?php } ?>
+    </div>
+</div>
+
+<?php if($this->getPagerHtml()){ ?>
+    <?php echo $this->getPagerHtml(); ?>
+<?php } ?>
+
+
