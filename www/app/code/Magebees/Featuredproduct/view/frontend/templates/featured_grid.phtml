@@ -1,6 +1,7 @@
 <?php use Magento\Framework\App\Action\Action; 
 
 $productLabelHelper = $this->helper(Sparsh\ProductLabel\Helper\ProductLabelHelper::class);
+$_config            = $this->helper('Sm\Market\Helper\Data');
 $image_url=$block->getViewFileUrl('Magebees_Featuredproduct::images/ajax_loader.gif');
 $unique_slider_key = $block->getUniqueSliderKey();
 $fp_slider_id="magebees-featured-slider-".$unique_slider_key;
@@ -47,6 +48,40 @@ $fp_content_id="cwsFeaturedProducts-".$unique_slider_key;
 					<div class="product-item-info" data-container="product-grid">
 						<?php $productImage = $block->getImage($_product, $image);?>
 						<a href="<?php echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1"><?php echo $productImage->toHtml(); ?></a>
+
+
+                           <!--LABEL PRODUCT-->
+						 <?php
+                            $orgprice = (float)$_product->getPrice();
+                            $fnPrice  = (float)$_product->getFinalPrice();
+                            $getSpecialPrice = (float)$_product->getSpecialPrice();
+
+                            if ($_config->getAdvanced('show_salelabel')) {
+                                if ($fnPrice < $orgprice) { ?>
+                                    <div class="label-product label-sale">
+									<span class="sale-product-icon">
+										<?php echo __('Sale'); ?>
+									</span>
+                                    </div>
+                                <?php }
+                            }
+                            ?>
+
+                            <?php
+                            $now      = date("Y-m-d");
+                            $newsFrom = substr($_product->getNewsFromDate(), 0, 10);
+                            $newsTo   = substr($_product->getNewsToDate(), 0, 10);
+
+
+                            if (($newsTo != '' || $newsFrom != '') && $_config->getAdvanced('show_newlabel')) {
+                                if (($newsTo != '' && $newsFrom != '' && $now >= $newsFrom && $now <= $newsTo) || ($newsTo == '' && $now >= $newsFrom) || ($newsFrom == '' && $now <= $newsTo)) { ?>
+                                    <div class="label-product label-new">
+                                        <span class="new-product-icon"><?php echo __('New'); ?></span>
+                                    </div>
+                                <?php }
+                            } ?>
+                            <!--END LABEL PRODUCT-->
+
 						<div class="product details product-item-details">
 							<div style="padding: 0 2px;"><?php echo $block->getProductDetailsHtml($_product); ?></div>
 							<?php $_productNameStripped = $block->stripTags($_product->getName(), null, true); ?>
@@ -75,6 +110,34 @@ $fp_content_id="cwsFeaturedProducts-".$unique_slider_key;
 							<?php if($this->getProductsPrice()): ?>
 								<?php echo $block->getProductPrice($_product) ?>
 							<?php endif; ?>
+
+
+
+							<?php 
+
+
+								$percentage = 0;
+								if ($orgprice > $fnPrice)
+								{
+									$percentage = ($orgprice - $fnPrice) * 100 / $orgprice;
+									$saveprice = ($orgprice - $fnPrice); 
+								}
+
+								if ($percentage) 
+								{
+									echo  (int)$percentage ; 
+									echo "%";
+								if($saveprice)
+								{   
+									echo "save!";
+									echo $saveprice; 
+								}
+
+								}
+
+
+								?>
+
 							<div class="product-item-inner">
 								<div class="product actions product-item-actions"<?php echo strpos($pos, $viewMode . '-actions') ? $position : ''; ?>>
 									<?php if($this->getAddToCart()): ?>
@@ -89,6 +152,15 @@ $fp_content_id="cwsFeaturedProducts-".$unique_slider_key;
 												<?php if (($_product->isSaleable())&&($this->getAddToCart())):?>
 													<button type="submit" title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>" class="action tocart primary"> <span><?php echo __('Add to Cart') ?></span> </button>
 												<?php endif; ?>
+												<?php
+                                                    if($_product->isAvailable())
+                                            
+                                            {
+                                                echo"In stock. Immediate delivery.";
+                                            }
+                                            
+                                            ?>
+
 											</form>
 										<?php else: ?>
 											<?php if ($_product->getIsSalable()): ?>
