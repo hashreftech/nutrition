@@ -4,7 +4,7 @@ $productLabelHelper = $this->helper(Sparsh\ProductLabel\Helper\ProductLabelHelpe
 $_product = $block->getProduct(); ?>
 <?php
 //if there is product label found then display label
-$productLabelType = $productLabelHelper->getProductLabelType($_product);
+//$productLabelType = $productLabelHelper->getProductLabelType($_product);
 if (!empty($productLabelType)) {
     if ($productLabelType == 'text') {
         $productLabel = $productLabelHelper->getProductLabel($_product);
