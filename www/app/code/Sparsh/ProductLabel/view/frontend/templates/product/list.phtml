@@ -113,7 +113,18 @@ $productLabelHelper = $this->helper(Sparsh\ProductLabel\Helper\ProductLabelHelpe
                             <!--END LABEL PRODUCT-->
 
                             <div class="product details product-item-details">
-                                <small>Brand Name</small>
+                                <small><?php $_getMyAttr = $_product->getResource()->getAttribute('Brand_Name');
+
+// Get Value
+if($_getMyAttr){ ?>
+
+    <a href="<?= /* @escapeNotVerified */
+    $_product->getProductUrl() ?>" 
+       ><?php echo $branname = $_getMyAttr->getFrontend()->getValue($_product);
+  ?>   </a>
+
+
+<?php }?></small>
                                 <?php
                                 $_productNameStripped = $block->stripTags($_product->getName(), null, true);
                                 ?>
@@ -140,6 +151,64 @@ $productLabelHelper = $this->helper(Sparsh\ProductLabel\Helper\ProductLabelHelpe
                                         </div>
                                     <?php endif; ?>
                                
+                                <div class="short-description">
+                                    <p><?php         echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ; ?></p>
+                                </div>
+<!-- product icons -->
+
+<?php 
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+ $storeurl=$storeManager->getStore()->getBaseUrl();
+
+$_getMyAttr = $_product->getResource()->getAttribute('product_icon');
+
+
+  $attrTestValue = $_getMyAttr->getFrontend()->getValue($_product);
+  $icon= explode( ',' , $attrTestValue ) ;
+
+  foreach($icon as $icon_label)
+  {?> 
+  <!-- icon class  -->
+  <a  href="
+ <?php   $icon_url=$storeurl."".$icon_label;
+ 
+ echo $iconurl = str_replace(' ', '', $icon_url);  ?>.html" class="<?php echo $icon_label;?>" title="<?php echo $icon_label;?>"  ><?php  echo $icon_label;?></a>
+    
+    <?php  } 
+
+
+?>
+
+
+
+<!-- Offer label -->
+<?php 
+$productLabelType = $productLabelHelper->getProductLabelType($_product);
+if (!empty($productLabelType)) {
+                       if ($productLabelType == 'text') {
+                           $productLabel = $productLabelHelper->getProductLabel($_product);
+                           $productLabelShape = $productLabelHelper->getProductLabelShape($_product);
+                           if ($productLabel && $productLabelShape) { ?>
+                           <!-- offer label -->
+                               <span class="">
+                                   <?= $block->escapeHtml($productLabel); ?> 
+                                 
+                               </span>
+                           <?php }
+                       } elseif ($productLabelType == 'image') {
+                           $productLabelImage = $productLabelHelper->getProductLabelImage($_product);
+                           if ($productLabelImage) { ?>
+                           <!-- offer image label -->
+                               <div class="">
+                                   <img src="<?= /* @noEscape */ $productLabelHelper->getProductMediaUrl() . $productLabelImage; ?>">
+                               </div>
+                           <?php }
+                       }
+                   }
+
+?>                                
                             </div>
 
                             <div class="right-card-block">
@@ -160,7 +229,7 @@ if ($orgprice > $fnPrice)
 
 if ($percentage) 
 {
-    echo '<div class="percentage-block"><span class="discount_amount">'.$percentage.'</span><span class="price_percentage">%</span></div>' ; 
+    echo '<div class="percentage-block"><span class="discount_amount">'.(int)$percentage.'</span><span class="price_percentage">%</span></div>' ; 
     // echo "";
 if($saveprice)
 {   
@@ -171,28 +240,8 @@ if($saveprice)
 }
 // (int)
 
-$productLabelType = $productLabelHelper->getProductLabelType($_product);
- if (!empty($productLabelType)) {
-                        if ($productLabelType == 'text') {
-                            $productLabel = $productLabelHelper->getProductLabel($_product);
-                            $productLabelColor = $productLabelHelper->getProductLabelColor($_product);
-                            $productLabelBackgroundColor = $productLabelHelper->getProductLabelBackgroundColor($_product);
-                            $productLabelShape = $productLabelHelper->getProductLabelShape($_product);
-                            if ($productLabel && $productLabelShape) { ?>
-                                <span class="sparsh-product-label"
-                                    <?= !empty($productLabelColor) ? 'data-color=' . /* @noEscape */ $productLabelColor : ''; ?> <?= !empty($productLabelBackgroundColor) ? 'data-background-color=' . /* @noEscape */ $productLabelBackgroundColor : ''; ?> <?= !empty($productLabelShape) ? 'data-shape=' . /* @noEscape */ $productLabelShape : '' ?>>
-                                    <?= $block->escapeHtml($productLabel); ?>
-                                </span>
-                            <?php }
-                        } elseif ($productLabelType == 'image') {
-                            $productLabelImage = $productLabelHelper->getProductLabelImage($_product);
-                            if ($productLabelImage) { ?>
-                                <div class="sparsh-product-label-image">
-                                    <img src="<?= /* @noEscape */ $productLabelHelper->getProductMediaUrl() . $productLabelImage; ?>">
-                                </div>
-                            <?php }
-                        }
-                    }
+
+
 
                                  ?>
                                     
@@ -207,8 +256,8 @@ $productLabelType = $productLabelHelper->getProductLabelType($_product);
                                                       action="<?= /* @NoEscape */
                                                       $postParams['action'] ?>" method="post">
                                                       
-                                                      
-                                                      <?php
+  <!-- attribute value dropdown  -->
+                                                      <?php                                                  
 $_objectManager= \Magento\Framework\App\ObjectManager::getInstance();
 $productTypeInstance = $_objectManager->get('Magento\ConfigurableProduct\Model\Product\Type\Configurable');
 $productAttributeOptions = $productTypeInstance->getConfigurableAttributesAsArray($_product);
@@ -216,7 +265,7 @@ if (!empty($productAttributeOptions)) { //check if product has custom options. I
     foreach($productAttributeOptions as $productAttributeOption){
         ?>
         <p><span><?php echo $productAttributeOption['label']; ?></span></p>
-        <add-to-links name="super_attribute[<?php echo $productAttributeOption['attribute_id'] ?>]" data-selector="super_attribute[151]" data-validate="{required:true}" id="attribute151" class="super-attribute-select" aria-required="true">
+        <select name="super_attribute[<?php echo $productAttributeOption['attribute_id'] ?>]" data-selector="super_attribute[151]" data-validate="{required:true}" id="attribute151" class="super-attribute-select" aria-required="true">
             <?php
             foreach($productAttributeOption['values'] as $configure_option)
             {
@@ -230,6 +279,7 @@ if (!empty($productAttributeOptions)) { //check if product has custom options. I
         <?php
     }
 }
+
 ?>
 
 <!-- <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */ echo '1' ?>" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="redtext input-text qty" />  -->
@@ -357,6 +407,22 @@ $qty = (int)$stockInfo->getMaxSaleQty();
 
                                 </div>
 
+                                <small><?php $_getMyAttr = $_product->getResource()->getAttribute('Brand_Name');
+
+// Get Value
+if($_getMyAttr){ ?>
+
+    <a href="<?= /* @escapeNotVerified */
+    $_product->getProductUrl() ?>" 
+       ><?php echo $branname = $_getMyAttr->getFrontend()->getValue($_product);
+  ?>   </a>
+
+
+<?php }?></small>
+
+
+
+
                                 <div class="product details product-item-details box-info-list">
                                     <?php
                                     $_productNameStripped = $block->stripTags($_product->getName(), null, true);
@@ -393,6 +459,11 @@ $qty = (int)$stockInfo->getMaxSaleQty();
                                     <div class="price-block">
                                     <?php /* @escapeNotVerified */
                                     echo $block->getProductPrice($_product) ?>
+                                    
+                                    
+                                    
+                                    
+                                    
                                     <?php 
 $percentage = 0;
 if ($orgprice > $fnPrice)
@@ -413,34 +484,74 @@ if($saveprice)
   
 }
 
-$productLabelType = $productLabelHelper->getProductLabelType($_product);
- if (!empty($productLabelType)) {
-                        if ($productLabelType == 'text') {
-                            $productLabel = $productLabelHelper->getProductLabel($_product);
-                            $productLabelColor = $productLabelHelper->getProductLabelColor($_product);
-                            $productLabelBackgroundColor = $productLabelHelper->getProductLabelBackgroundColor($_product);
-                            $productLabelShape = $productLabelHelper->getProductLabelShape($_product);
-                            if ($productLabel && $productLabelShape) { ?>
-                                <span class="sparsh-product-label"
-                                    <?= !empty($productLabelColor) ? 'data-color=' . /* @noEscape */ $productLabelColor : ''; ?> <?= !empty($productLabelBackgroundColor) ? 'data-background-color=' . /* @noEscape */ $productLabelBackgroundColor : ''; ?> <?= !empty($productLabelShape) ? 'data-shape=' . /* @noEscape */ $productLabelShape : '' ?>>
-                                    <?= $block->escapeHtml($productLabel); ?>
-                                </span>
-                            <?php }
-                        } elseif ($productLabelType == 'image') {
-                            $productLabelImage = $productLabelHelper->getProductLabelImage($_product);
-                            if ($productLabelImage) { ?>
-                                <div class="sparsh-product-label-image">
-                                    <img src="<?= /* @noEscape */ $productLabelHelper->getProductMediaUrl() . $productLabelImage; ?>">
-                                </div>
-                            <?php }
-                        }
-                    }
 
 
  ?>
                                     <?php echo $block->getProductDetailsHtml($_product); ?>
                                     </div>
                                 <div class="bottom-action">
+
+<!-- product icons -->
+
+<?php 
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+ $storeurl=$storeManager->getStore()->getBaseUrl();
+
+$_getMyAttr = $_product->getResource()->getAttribute('product_icon');
+
+
+  $attrTestValue = $_getMyAttr->getFrontend()->getValue($_product);
+  $icon= explode( ',' , $attrTestValue ) ;
+
+  foreach($icon as $icon_label)
+  {?> 
+  <!-- icon class  -->
+  <a  href="
+ <?php   $icon_url=$storeurl."".$icon_label;
+ 
+ echo $iconurl = str_replace(' ', '', $icon_url);  ?>.html" class="<?php echo $icon_label;?>" title="<?php echo $icon_label;?>"  ><?php  echo $icon_label;?></a>
+    
+    <?php  } 
+
+
+?>
+
+
+
+<!-- Offer label -->
+<?php 
+$productLabelType = $productLabelHelper->getProductLabelType($_product);
+if (!empty($productLabelType)) {
+                       if ($productLabelType == 'text') {
+                           $productLabel = $productLabelHelper->getProductLabel($_product);
+                           $productLabelShape = $productLabelHelper->getProductLabelShape($_product);
+                           if ($productLabel && $productLabelShape) { ?>
+                           <!-- offer label -->
+                               <span class="">
+                                   <?= $block->escapeHtml($productLabel); ?> 
+                                 
+                               </span>
+                           <?php }
+                       } elseif ($productLabelType == 'image') {
+                           $productLabelImage = $productLabelHelper->getProductLabelImage($_product);
+                           if ($productLabelImage) { ?>
+                           <!-- offer image label -->
+                               <div class="">
+                                   <img src="<?= /* @noEscape */ $productLabelHelper->getProductMediaUrl() . $productLabelImage; ?>">
+                               </div>
+                           <?php }
+                       }
+                   }
+
+?>                                
+
+
+
+
+
+                                    <div class="bottom-action">
                                         <?php if ($_config->getAdvanced('show_addtocart_button')) { ?>
                                             <?php if ($_product->isSaleable()): ?>
                                                 <?php $postParams = $block->getAddToCartPostParams($_product); ?>
@@ -471,7 +582,6 @@ if (!empty($productAttributeOptions)) { //check if product has custom options. I
     }
 }
 ?>
-    <!-- <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */ echo '1' ?>" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="redtext input-text qty" />  -->
     <?php 
 
 
