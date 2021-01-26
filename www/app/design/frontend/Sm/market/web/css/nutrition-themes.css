@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "Uni Neue";
+  src: local("UniNeueBlack-Italic"),
+    url("UniNeueBlack-Italic.woff2") format("woff2"),
+    url("UniNeueBlack-Italic.woff") format("woff"),
+    url("UniNeueBlack-Italic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 body {
   font-family: Roboto, sans-serif !important;
 }
@@ -70,6 +81,7 @@ body {
   > a {
   font-style: italic;
   border-right: 1px solid #f1f1f1;
+  font-family: "Uni Neue";
 }
 .top-content {
   display: flex;
@@ -108,7 +120,7 @@ body {
 #nutrition-footer.footer-style-5 .footer-top-services .services-header li {
   text-align: center;
   /* float: left; */
-  /* width: 24.33%; */
+  /* width: 24.33%;*/
   flex: 0 0 24.33%;
   padding: 15px;
   border: none;
@@ -132,7 +144,7 @@ body {
   h4 {
   font-size: 2rem;
   color: #333;
-  font-style: italic;
+  font-family: "Uni Neue";
   margin-bottom: 10px;
 }
 #nutrition-footer.footer-style-5
@@ -179,7 +191,7 @@ body {
   font-weight: 700;
   font-size: 16px;
   color: #333;
-  font-style: italic;
+  font-family: "Uni Neue";
 }
 #nutrition-footer.footer-style-5
   .footer-block
@@ -212,7 +224,7 @@ body {
 .nutrition-newsletter h2 {
   font-weight: 700;
   color: #333;
-  font-style: italic;
+  font-family: "Uni Neue";
 }
 
 .newsletter-content {
@@ -258,9 +270,9 @@ body {
 .payment-method ul {
   display: flex;
   align-items: center;
-  /* text-align: right; */
+  text-align: right;
   justify-content: flex-end;
-  /* justify-items: right; */
+  justify-items: right;
 }
 
 .payment-method {
@@ -281,4 +293,294 @@ body {
   border-radius: 3px;
   transition: all 0.2s ease 0s;
   background: #fff !important;
+}
+
+/* Sidebar CSS */
+.sidebar-main .filter-options-item {
+  border: 1px solid #ccc;
+  padding: 15px;
+  background: #fff;
+  margin-bottom: 1rem;
+}
+.sidebar-main .block .block-content.filter-content {
+  /* border-top: #ccc solid 1px; */
+  background: none;
+  border: none;
+  padding: 0;
+}
+.sidebar-main
+  .block
+  .block-content.filter-content
+  .filter-options-content
+  .items
+  li
+  a::before {
+  border-radius: 0;
+  height: 19px;
+  width: 19px;
+  border: 1px solid #000;
+  background: #fff;
+}
+.sidebar-main .block .block-content.filter-content .filter-options-content {
+  padding-left: 0;
+}
+.sidebar-main
+  .block
+  .block-content.filter-content
+  .filter-options-content
+  .items
+  li
+  a {
+  padding-left: 28px;
+}
+.sidebar-main .block .block-content.filter-content .filter-options-title {
+  font-weight: 700;
+  color: #000;
+  border-bottom: 1px solid #000;
+  display: inline-block;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+.sidebar-main
+  .block
+  .block-content.filter-content
+  .filter-options-content
+  .items
+  li {
+  margin-bottom: 15px;
+}
+
+/* Product card list */
+.category-product.products-list .item .item-inner {
+  display: flex;
+  border: 1px solid #f1f1f1;
+  padding: 15px;
+}
+.category-product.products-list .product-item-details {
+  text-align: left;
+  position: relative;
+  flex: 0 0 55%;
+  padding: 0 20px;
+}
+.category-product.products-list .item .item-inner .box-info-list {
+  margin-left: 0;
+}
+/* product card grid */
+
+.category-product.products-grid .product-item-info {
+  transition: all 0.2s ease 0s;
+  border: 1px solid #f1f1f1;
+  list-style: none;
+  padding: 10px;
+}
+.category-product.products-grid .product-item-info .image-grid {
+  position: relative;
+}
+.category-product.products-grid .product-item-details {
+  text-align: left;
+  position: relative;
+  margin-bottom: 8px;
+  padding: 0;
+}
+.price-block .price-box .old-price .price {
+  color: #ccc;
+  font-size: 1.2em;
+  text-decoration: line-through;
+  margin-left: 5px;
+}
+.price-block .price-box .price {
+  color: #000000;
+  font-size: 1.35em;
+  line-height: 1em;
+  font-family: "Uni Neue";
+  font-style: italic;
+}
+.category-product .product-image-photo {
+  margin: 0 !important;
+}
+.category-product.products-list .right-card-block {
+  flex: 0 0 24%;
+  border-left: 1px solid #f1f1f1;
+  padding: 15px;
+}
+.price-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.price-block .price-box .special-price {
+  margin-right: 0;
+}
+
+.percentage-block {
+  font-size: 1.1em;
+  height: 1.5em;
+  padding: 0 10px;
+  background: #e2001a;
+  font-family: "Uni Neue";
+  color: #fff;
+  line-height: 1.4em;
+  border-radius: 3px;
+  margin-left: 2px;
+  font-weight: 700;
+  font-style: italic;
+  font-family: "Open Sans";
+}
+.save-amount {
+  text-align: center;
+  color: #e2001a;
+  line-height: 1.1;
+}
+.save-amount .price_save {
+  display: block;
+  font-weight: 600;
+}
+.save-amount .price_saved_final {
+  letter-spacing: 1px;
+}
+.products-grid .right-card-block .product-item-actions {
+  padding: 0 5px;
+  width: 100%;
+}
+.right-card-block #qty {
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  color: black;
+  font-weight: 700;
+  outline: 0;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.product-card.products-grid
+  .right-card-block
+  .product-item-actions
+  .actions-primary
+  .tocart,
+.product-card.products-list .right-card-block .tocart {
+  width: 100%;
+  background-color: #00b22d;
+  color: #fff !important;
+  font-size: 1.5rem !important;
+  border: 1px solid #00b22d;
+  font-family: "Uni Neue";
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  -webkit-box-shadow: 0 5px 0 0 #2c942f;
+  -moz-box-shadow: 0 5px 0 0 #2c942f;
+  box-shadow: 0 5px 0 0 #2c942f;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  padding-top: 10px;
+  height: auto !important;
+  line-height: 3;
+  border-radius: 5px;
+  font-weight: 700;
+  border: none !important;
+}
+.product-8-style
+  .product-card.products-grid
+  .right-card-block
+  .product-item-actions
+  .actions-primary
+  .tocart:hover {
+  background-color: rgb(0 178 45 / 86%) !important;
+}
+.products-grid
+  .right-card-block
+  .product-item-actions
+  .actions-primary
+  .tocart::before {
+  content: "\f290";
+  display: inline-block;
+  width: 17px;
+  height: 15px;
+  background: none;
+  position: relative;
+  top: 0px;
+  margin-right: 3px;
+  transition: all 0.2s ease 0s;
+  font-family: "FontAwesome";
+}
+.right-card-block .product-item-actions .actions-primary {
+  width: 100%;
+}
+.in-stock {
+  padding-top: 10px;
+  text-align: center;
+}
+.in-stock:before {
+  content: "\f00c";
+  font-family: "FontAwesome";
+  margin-right: 9px;
+  color: #00b22d;
+}
+.product-item-name .product-item-link {
+  color: #000;
+  font-weight: 700;
+  font-size: 0.9em;
+  line-height: 1em;
+}
+.breadcrumbs {
+  padding: 15px 0 15px;
+  margin-bottom: 0;
+  background: #f1f1f1;
+}
+.breadcrumbs .items .item:first-child {
+  padding-left: 39px;
+  border: none !important;
+  color: #999;
+}
+.breadcrumbs .items .item {
+  border: none !important;
+}
+.breadcrumbs .items .item:before,
+.breadcrumbs .items .item:after {
+  border: none !important;
+  width: 0;
+  height: 0;
+  transform: rotate(0);
+}
+.breadcrumbs .item:last-child {
+  padding-left: 0 !important;
+}
+.toolbar.toolbar-products {
+  display: flex;
+  justify-content: space-between;
+}
+.toolbar .toolbar-sorter {
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+.toolbar .toolbar-sorter .sorter-label {
+  line-height: 18px !important;
+}
+.toolbar .toolbar-sorter select {
+  height: auto;
+  border: none;
+  padding: 0;
+}
+.col-right-main .page-title {
+  font-size: 3.2em;
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+  font-family: "Uni Neue";
+  margin-bottom: 15px;
+}
+.page-title:before {
+  display: none;
+}
+.category-description h2 {
+  font-family: "Uni Neue";
+  color: rgb(255, 85, 0);
+  margin-bottom: 15px;
+}
+.category-description p {
+  color: #333;
+  font-size: 15px;
 }
