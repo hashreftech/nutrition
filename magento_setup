@@ -1,0 +1,180 @@
+ 
+ 
+ **************************   Magento installation / apache   ***************************************
+
+
+ 
+				 apt-get install apache2
+				 systemctl enable apache2.service
+				 systemctl start apache2.service
+				 systemctl status apache2.service
+
+
+
+***************   mysql installation *********************************
+
+Mysql Database 5.7 version 
+
+
+				Link:https://www.fosstechnix.com/install-mysql5-on-ubuntu/ (OR)
+				https://computingforgeeks.com/how-to-install-mysql-on-ubuntu-focal/
+				Note:Don't need mysql secure installation
+
+				 systemctl status mysql
+				 mysql -u root -p
+ 
+ ********************* php installation ***************************
+ 
+  apt install php7.4-fpm php7.4-common php7.4-mysql php7.4-gmp        php7.4-curl 
+  apt install php7.4-intl php7.4-mbstring php7.4-xmlrpc php7.4-gd php7.4-xml php7.4-cli php7.4-zip php7.4-bcmath php7.4-soap php7.4-intl
+ 
+ **************** Phpmyadmin *******************************
+  
+				   apt-get install phpmyadmin
+				   
+				    open the folder from terminal  = sudo gedit /etc/apache2/apache2.conf 
+				 
+				 (then, add line in)
+				 
+				  Include /etc/phpmyadmin/apache.conf
+				  
+				  systemctl reload apache2.service
+				 
+				  systemctl status apache2.service
+ 
+ 
+  ***************************  Elastic Search installation *******************************
+  
+  Elastic Search Link = https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html
+ 
+				  wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+				  
+				   apt-get install apt-transport-https
+				  
+				  echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list
+				  
+				   service elasticsearch start
+				  
+				   service elasticsearch status
+  
+ 
+
+******************** Configure apache server magento [Create virtual host] ****************************
+
+place this file in /etc/apache2/sites-available/magento.conf
+
+ gedit /etc/apache2/sites-available/magento.conf
+
+then paste(CTRL+V)
+
+
+				<VirtualHost *:80>
+					  ServerAdmin admin@local-magento.com
+					  DocumentRoot /var/www/html/magento/
+					  ServerName local-magento.com
+					  ServerAlias www.local-magento.com
+
+				 <Directory /var/www/html/magento/>
+					     Options Indexes FollowSymLinks MultiViews
+					     AllowOverride All
+					     Order allow,deny
+					     allow from all
+				</Directory>
+
+					  ErrorLog ${APACHE_LOG_DIR}/error.log
+					  CustomLog ${APACHE_LOG_DIR}/access.log combined
+				</VirtualHost>
+
+
+ gedit /etc/hosts/
+
+
+(add this)
+
+ 
+				127.0.0.1	localhost
+				127.0.1.1	hashref-MAi5882SWT
+				after,
+				127.0.1.1       local-magento.com   (CTRL+S)
+
+******************** magento admin create ***************************
+
+ bin/magento setup:install --base-url=https://local.hashref.in --db-host=localhost --db-name=nutrition_dev --db-user=root --db-password=12345 --admin-firstname=Krishnamoorthi --admin-lastname=S --admin-email=jaikrishnamoorthi@gmail.com --admin-user=root --admin-password=12345S@ --language=en_US --currency=INR --timezone=Asia/Kolkata --use-rewrites=1
+ 
+ 
+ 
+ ******************** magento setup comments **********************
+
+
+				 bin/magento module:enable --all 
+				 bin/magento se:up 
+				 bin/magento setup:di:compile
+				 bin/magento s:s:d -f
+				 
+				 
+
+
+********************* magento disable modules list  *************************** 
+ 
+ 
+  bin/magento module:disable   Magento_TwoFactorAuth 
+                               Magento_Paypal
+				Magento_PaypalGraphQl
+				Magento_TwoFactorAuth
+				Amazon_Core
+				Amazon_Login
+				Amazon_Payment
+				Dotdigitalgroup_Email
+				Dotdigitalgroup_Chat
+				Klarna_Core
+				Klarna_Ordermanagement
+				Klarna_Kp
+				Klarna_Onsitemessaging
+				Klarna_KpGraphQl
+				MercadoPago_Core
+				OY_Catalog
+				OY_Customer
+				OY_Plan
+				OY_Registry
+				OY_Reserve
+				OY_Sales
+				PayPal_Braintree
+				PayPal_BraintreeGraphQl
+				Vertex_Tax
+				Vertex_AddressValidationApi
+				Vertex_AddressValidation
+				Webkul_BookingSystem
+				Yotpo_Yotpo 
+
+******** module uninstall **************
+
+				bin/magento module:uninstall
+
+********  reindex *****************
+
+				 bin/magento indexer:status
+				 bin/magento indexer:reindex
+				 bin/magento indexer:reset
+
+********************** wbcom pincode checker module install ***********************
+
+		                bin/magento setup:upgrade
+				 bin/magento setup:di:compile
+				 bin/magento setup:static-content:deploy -f
+				 bin/magento cache:flush
+				 composer require wbcomdesigns/module-core:dev-master
+
+
+
+				 			 
+***************************add this line di.xml file ****************************				 			 
+				 			 
+				 
+        <arguments>
+            <argument name="classWhitelist" xsi:type="array">
+                <item name="0" xsi:type="string">Magento\Framework\Data\OptionSourceInterface</item>
+                <item name="1" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProviderInterface</item>
+                <item name="2" xsi:type="string">Magento\Framework\View\Element\UiComponent\ContextInterface</item>
+            </argument>
+        </arguments>
+    </type>			 
