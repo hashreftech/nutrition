@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2019 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="firebear" translate="label" sortOrder="200">
+            <label>Firebear Studio</label>
+        </tab>
+        <section id="firebear_importexport" translate="label" type="text" sortOrder="100" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Import/Export</label>
+            <tab>firebear</tab>
+            <resource>Firebear_ImportExport::config_importexport</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+                <field id="create_attributes" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Create attribute values on the fly</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        Enable to create attributes values during import automatically. To create new attributes, you should use custom column name structure (for more information see module documentation).
+                        ]]>
+                    </comment>
+                </field>
+                <field id="supplier_code" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Select Supplier Code</label>
+                    <source_model>Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\System\SupplierAttribute</source_model>
+                    <comment>
+                        <![CDATA[
+                        Select supplier code to disable products as per supplier name
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

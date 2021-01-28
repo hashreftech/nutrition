@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <firebear_importexport>
+            <general>
+                <create_attributes>1</create_attributes>
+                <debug>1</debug>
+            </general>
+            <ftp>
+                <port>21</port>
+            </ftp>
+            <page_size>
+                <attribute>5000</attribute>
+            </page_size>
+            <event>
+                <available>catalog_product_save_after,sales_order_save_after,checkout_submit_all_after</available>
+            </event>
+        </firebear_importexport>
+    </default>
+</config>
