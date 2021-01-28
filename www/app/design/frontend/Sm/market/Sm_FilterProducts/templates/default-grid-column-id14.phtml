@@ -47,6 +47,7 @@ $_helper            = $this->helper('Magento\Catalog\Helper\Output');
         <?php } ?>
 
         <?php
+        
         if ($this->_getConfig('product_source') == 'countdown_products') {
             $dateTo = $this->_getConfig('date_to', '');
             ?>
@@ -70,7 +71,8 @@ $_helper            = $this->helper('Magento\Catalog\Helper\Output');
             </div>
         <?php } ?>
 
-        <div class="owl-carousel block-content block-content-products">
+       <!--  <div class="owl-carousel block-content block-content-products"> -->
+        <div class="block-content block-content-products">
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
                 <div class="deals-items">
@@ -118,6 +120,34 @@ $_helper            = $this->helper('Magento\Catalog\Helper\Output');
                                 <?php /* @escapeNotVerified */
                                 echo $block->getProductPrice($_product) ?>
                                 <?php echo $block->getProductDetailsHtml($_product); ?>
+
+                                <?php  
+
+                                    $orgprice = (float)$_product->getPrice();
+                                    $fnPrice  = (float)$_product->getFinalPrice();
+                                    $getSpecialPrice = (float)$_product->getSpecialPrice();
+
+                                    $percentage = 0;
+                                    if ($orgprice > $fnPrice)
+                                    {
+                                        $percentage = ($orgprice - $fnPrice) * 100 / $orgprice;
+                                        $saveprice = ($orgprice - $fnPrice); 
+                                    }
+    
+                                    if ($percentage) 
+                                    {
+                                        echo  (int)$percentage ; 
+                                        echo "%";
+                                    if($saveprice)
+                                    {   
+                                        echo "save!";
+                                        echo $saveprice; 
+                                    }
+                                    
+                                    }
+    
+
+                                ?>
 
 
                                 <div class="bottom-action">
