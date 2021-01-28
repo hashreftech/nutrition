@@ -282,7 +282,6 @@ if (!empty($productAttributeOptions)) { //check if product has custom options. I
 
 ?>
 
-<!-- <input type="number" name="qty" id="qty" maxlength="12" value="<?php /* @escapeNotVerified */ echo '1' ?>" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="redtext input-text qty" />  -->
  <?php 
 
 
@@ -296,7 +295,7 @@ $qty = (int)$stockInfo->getMaxSaleQty();
 
 ?>
 
-          
+   <p>Qty</p>       
             <select name="qty" id="qty" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" 
                    class="input-text qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>">
                    <?php $i = 1 ; ?>
@@ -474,7 +473,7 @@ if ($orgprice > $fnPrice)
 
 if ($percentage) 
 {
-    echo '<div class="percentage-block"><span class="discount_amount">'.$percentage.'</span><span class="price_percentage">%</span></div>' ; 
+    echo '<div class="percentage-block"><span class="discount_amount">'.(int)$percentage.'</span><span class="price_percentage">%</span></div>' ; 
     // echo "";
 if($saveprice)
 {   
