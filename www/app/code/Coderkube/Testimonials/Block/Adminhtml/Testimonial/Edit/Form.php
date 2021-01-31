@@ -47,6 +47,19 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         } else {
             $img="ck/testimonial/".$model->getImage();
         }
+
+        $fieldset->addField(
+            'Title',
+            'text',
+            [
+                'name' => 'company_name',
+                'label' => __('Title'),
+                'title' => __('Title'),
+                'required' => true,
+                'value' => $model->getCompanyName()
+            ]
+        );
+
         $fieldset->addField(
             'Name',
             'text',
@@ -71,26 +84,17 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             ]
         );
 
-        $fieldset->addField(
-            'Company Name',
-            'text',
-            [
-                'name' => 'company_name',
-                'label' => __('Company Name'),
-                'title' => __('Company Name'),
-                'value' => $model->getCompanyName()
-            ]
-        );
-        $fieldset->addField(
-            'Website',
-            'text',
-            [
-                'name' => 'website',
-                'label' => __('Website'),
-                'title' => __('Website'),
-                'value' => $model->getWebsite()
-            ]
-        );
+        
+        // $fieldset->addField(
+        //     'Website',
+        //     'text',
+        //     [
+        //         'name' => 'website',
+        //         'label' => __('Website'),
+        //         'title' => __('Website'),
+        //         'value' => $model->getWebsite()
+        //     ]
+        // );
         $fieldset->addField(
             'Content',
             'textarea',

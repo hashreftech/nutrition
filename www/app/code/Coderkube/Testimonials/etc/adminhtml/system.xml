@@ -36,12 +36,12 @@
 			<group id="general1" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Testimonial Display Configuration</label>
               
-				<field id="display_website" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+				<!-- <field id="display_website" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
 					<label>Display Website field </label>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-				</field>
+				</field> -->
 				<field id="display_cname" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
-					<label>Display Company Name field</label>
+					<label>Display Title field</label>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
 				</field>
 				
@@ -86,13 +86,13 @@
 				
 				
 				<field id="cname" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
-					<label>Company Name required</label>
+					<label>Title required</label>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
 				</field>
-				<field id="website" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+				<!-- <field id="website" translate="label comment" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
 					<label>Website required</label>
 					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-				</field>
+				</field> -->
 			
 				
             </group>
