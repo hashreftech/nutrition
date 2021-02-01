@@ -271,7 +271,8 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'name'     => 'disable_iblocks',
                 'options'  => $model->getAvailableStatuses(),
                 'disabled' => $isElementDisabled,
-                'note'     => __('Item Blocks: Header Block, Left Block, Right Block, Footer Block')
+               // 'note'     => __('Item Blocks: Header Block, Left Block, Right Block, Footer Block')
+                'note'     => __('Item Blocks: Header Block, Right Block, Footer Block')
             ]
             );
 

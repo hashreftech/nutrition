@@ -508,10 +508,10 @@ class Editor extends \Magento\Framework\App\Helper\AbstractHelper
             ]
             ]);
 
-        $this->addField("label3", [
-                'label' => __('Left Block'),
-                'type'  => 'fieldset'
-            ]);
+        // $this->addField("label3", [
+        //         'label' => __('Left Block'),
+        //         'type'  => 'fieldset'
+        //     ]);
 
         $this->addField("show_left_sidebar", [
                 'label'  => __('Enabled'),
