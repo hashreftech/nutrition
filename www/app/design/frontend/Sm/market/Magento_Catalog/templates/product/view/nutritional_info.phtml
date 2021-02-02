@@ -1,0 +1,8 @@
+<?php $_helper = $this->helper(Magento\Catalog\Helper\Output::class); ?>
+<?php $_product = $block->getProduct(); ?>
+<?php
+$data = $this->getProduct()->getAttributeText('timer');
+if($data == 'Yes'): 
+ echo("hi");
+?>
+<?php endif;?>

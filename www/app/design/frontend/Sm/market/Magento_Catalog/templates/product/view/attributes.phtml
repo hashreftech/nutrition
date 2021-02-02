@@ -1,0 +1,122 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+    $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+    $_product = $block->getProduct();
+
+    $youtube_embed_code='youtube_embed_code'; 
+    $vimeo_embed_code='vimeo_embed_code';       
+    $image_src='image_src';       
+    $image_blog_text='image_blog_text';
+    $image_blog_url='image_blog_url';
+    $image_content='image_content';
+
+?>
+
+<?php 
+ $res1 = $this->getProduct()->getAttributeText('related_info_tab');
+ $res2 = $this->getProduct()->getAttributeText('vimeo');
+ $res3 = $this->getProduct()->getAttributeText('youtube');
+
+if($res1 == 'Yes'): ?>
+<?php if ($_additional = $block->getAdditionalData()) :?>
+    <div class="additional-attributes-wrapper table-wrapper">
+        <table class="data table additional-attributes" id="product-attribute-specs-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('More Information')) ?></caption>
+            <tbody>
+            <?php foreach ($_additional as $_data) :?>
+                
+                <?php
+                if($res3 == 'Yes'):
+                 if($youtube_embed_code==$_data['label']) 
+            {
+                $test1= explode(",",$_data['value']);
+                foreach($test1 as $data1)
+                {
+                    echo '
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/'.preg_replace('/\s+/','',$data1).'" frameborder="0"></iframe>
+    </div>';
+                }
+            }
+        endif;
+
+        if($res2 == 'Yes'):
+            if($vimeo_embed_code==$_data['label']) 
+       {
+           $test= explode(",",$_data['value']);
+               foreach($test as $datas)
+                    {
+                        echo '
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/'.preg_replace('/\s+/','',$datas).'" frameborder="0"></iframe>
+        </div>';
+                    }
+            }   
+        endif;
+
+             if($image_src == $_data['label']) 
+            {
+                $test2= explode(",",$_data['value']);
+                foreach($test2 as $data2)
+                {//$string = preg_replace('/\s+/','',$data2);
+                    echo '<img src="https://local.hashref.in/hsn_images/'.preg_replace('/\s+/','',$data2).'">';
+                }
+            }
+
+            if($image_blog_text == $_data['label']) 
+            {
+                $test3= explode(",",$_data['value']);
+                foreach($test3 as $data3)
+                {?>
+                     <!-- <tr>
+                    <td><?php echo $data3; ?></td>
+                </tr>  -->
+
+             <?php   }
+            }
+            if($image_blog_url == $_data['label']) 
+            {
+                $test4= explode(",",$_data['value']);
+
+                foreach(array_combine($test3,$test4) as $key=>$value) {?>
+
+                    <tr>
+                    <td><a href="<?php echo $value;?>"> <?php echo $key;?></a></td>
+                </tr> 
+                <?php
+                }
+            }
+                if($image_content == $_data['label'])
+                { 
+                    $test5= explode(",",$_data['value']);
+
+
+                foreach($test5 as $data5)
+                {?>
+                     <tr>
+                    <td><?php echo $data5;?></td>
+                </tr> 
+
+             <?php   }
+            }
+                       
+            ?>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif;?>
+<?php endif; ?>

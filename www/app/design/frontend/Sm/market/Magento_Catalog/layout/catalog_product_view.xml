@@ -35,6 +35,29 @@
                    ifconfig="market/product_detail/show_social_button"/>
         </referenceContainer>
 
+         <referenceBlock name="product.info.details">
+
+            <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.attributes" as="additional" template="Magento_Catalog::product/view/attributes.phtml" group="detailed_info">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">RELATED INFO</argument>
+                        <argument name="sort_order" xsi:type="string">20</argument>
+                    </arguments>
+            </block>
+
+
+            <block class="Magento\Catalog\Block\Product\View" name="nutritional_info.tab" template="Magento_Catalog::product/view/nutritional_info.phtml" group="detailed_info" >
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">NUTRITIONAL INFO</argument>
+                    </arguments>
+            </block>
+ 
+            <block class="Magento\Catalog\Block\Product\View" name="external_lab_analysis.tab" template="Magento_Catalog::product/view/external_lab_analysis.phtml" group="detailed_info" >
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">EXTERNAL LAB.ANALYSIS</argument>
+                    </arguments>
+            </block>
+             </referenceBlock>
+
         <referenceContainer name="page.bottom.container">
             <container name="div.container.detail" htmlTag="div" htmlClass="container">
                 <block class="Magento\Catalog\Block\Product\ProductList\Related" name="catalog.product.related.theme"
