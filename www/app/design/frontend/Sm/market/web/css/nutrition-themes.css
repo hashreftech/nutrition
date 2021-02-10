@@ -13,7 +13,7 @@ body {
   font-family: Roboto, sans-serif !important;
 }
 .container {
-  max-width: calc(100% - 6vw) !important;
+  /* max-width: calc(100% - 6vw) !important; */
   width: 100% !important;
 }
 .top-bar {
@@ -424,7 +424,6 @@ body {
   margin-left: 2px;
   font-weight: 700;
   font-style: italic;
-  font-family: "Open Sans";
 }
 .save-amount {
   text-align: center;
@@ -452,12 +451,13 @@ body {
   padding: 5px;
   margin-bottom: 10px;
 }
-.product-card.products-grid
-  .right-card-block
+.actions-primary .tocart,
+.tocart,
+.products-grid
+  .nutrition-product-card
   .product-item-actions
   .actions-primary
-  .tocart,
-.product-card.products-list .right-card-block .tocart {
+  .tocart {
   width: 100%;
   background-color: #00b22d;
   color: #fff !important;
@@ -486,14 +486,38 @@ body {
   .right-card-block
   .product-item-actions
   .actions-primary
+  .tocart:hover,
+.products-grid
+  .nutrition-product-card
+  .product-item-actions
+  .actions-primary
   .tocart:hover {
+  background-color: rgb(0 178 45 / 86%) !important;
+}
+.product-3-style
+  .products-grid
+  .nutrition-product-card
+  .product-item-actions:hover
+  .actions-primary
+  .tocart:hover,
+.products-grid
+  .nutrition-product-card
+  .product-item-info:hover
+  .product-item-actions
+  .actions-primary
+  .tocart {
   background-color: rgb(0 178 45 / 86%) !important;
 }
 .products-grid
   .right-card-block
   .product-item-actions
   .actions-primary
-  .tocart::before {
+  .tocart::before,
+.products-grid
+  .nutrition-product-card
+  .product-item-actions
+  .actions-primary
+  button::before {
   content: "\f290";
   display: inline-block;
   width: 17px;
@@ -583,4 +607,195 @@ body {
 .category-description p {
   color: #333;
   font-size: 15px;
+}
+.navigation > ul::before {
+  background: none;
+  display: none;
+}
+.navigation {
+  max-width: calc(100% - 6vw) !important;
+  width: 100% !important;
+}
+.block.ves-megamenu .navigation .level0 > a,
+.block.ves-megamenu .navigation .content-type-parentcart .level1 > a {
+  font-size: 12px;
+  text-transform: uppercase;
+  display: block;
+  padding: 0 15px;
+  font-family: "Uni Neue";
+  color: #333;
+  border-right: 1px solid #eee;
+}
+.navigation ul li.parent > a::after {
+  display: none;
+}
+
+.ves-megamenu .navigation .level0 > a i {
+  font-size: 20px;
+  line-height: 19px;
+  vertical-align: middle;
+  margin-left: 9px;
+  font-weight: bold;
+}
+.ves-megamenu {
+  margin-bottom: 0;
+}
+.ves-megamenu .navigation ul li.parent > a:after {
+  display: none;
+}
+#category-tabs .mgz-tabs-nav a {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #ddd;
+  margin-right: 36px;
+  text-transform: uppercase;
+  color: #999;
+  font-family: "Roboto";
+}
+
+#category-tabs .mgz-tabs-nav .mgz-active a {
+  border-bottom: 2px solid #ff4202;
+  color: #333;
+  font-weight: 600;
+}
+#category-tabs .mgz-single-image-wrapper {
+  display: block;
+}
+#category-tabs .magezon-builder img {
+  height: auto;
+  width: 100%;
+}
+
+#deal-section-heading-big h2 {
+  font-size: 2.8rem;
+  font-family: "Uni Neue";
+  color: #333;
+}
+
+#deal-section-heading-big .mgz-element-inner {
+  margin-bottom: 0;
+}
+#deal-section-heading-small h5 {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Open Sans";
+  color: #999;
+}
+/* horizontal product card */
+.h-product-card .block-content-products {
+  display: flex;
+}
+
+.deals-items {
+  flex: 0 0 49.333%;
+  max-width: 49.333%;
+  padding: 0 15px;
+}
+
+.h-product-card .product-item {
+  border: 1px solid #ccc;
+  width: 100% !important;
+  padding: 15px !important;
+}
+
+.h-product-card .item-inner {
+  display: flex;
+}
+
+.h-product-card .product-image-wrapper {
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.h-product-card img.product-image-photo {
+  position: inherit;
+  height: auto;
+  display: inline-block;
+  width: 100% !important;
+}
+.h-product-card .box-image {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+.products-grid.h-product-card .product-item-details {
+  padding: 0 20px 0;
+  text-align: left !important;
+}
+.h-product-card .product-name {
+  max-width: 250px;
+}
+.h-product-card .product-name a {
+  color: #ff6000;
+  font-weight: 300;
+  font-size: 2.5rem;
+  line-height: 2;
+  font-family: "Uni Neue";
+}
+
+.h-product-card .price-block {
+  justify-content: inherit;
+  padding: 10px 0;
+}
+.h-product-card .price-box {
+  margin-right: 10px;
+}
+
+.h-product-card .percentage-block {
+  margin-right: 10px;
+}
+
+.h-product-card .deals-description {
+  color: #333;
+  font-size: 14px;
+  line-height: 17px;
+}
+.home-page-23 .mgz-container {
+  width: 100% !important;
+  max-width: calc(100% - 6vw) !important;
+}
+
+#banner-floor .mgz-single-image-wrapper {
+  display: block;
+}
+#banner-floor .mgz-single-image-wrapper img {
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .products-grid .product-item-info {
+    border: 1px solid #ff6000;
+    padding: 10px;
+  }
+  .mage-new-slider .nutrition-product-card .product-item-info {
+    border: 1px solid #ccc;
+  }
+  /* .nutrition-product-card .owl-item {
+    margin-right: 0 !important;
+  } */
+  .products-grid .nutrition-product-card .product-item-details {
+    padding: 8px 0 !important;
+    text-align: left;
+  }
+
+  .nutrition-product-card .tocart {
+    display: none;
+  }
+  .products-grid
+    .nutrition-product-card
+    .product-item-info:hover
+    .product-item-actions
+    .actions-primary
+    .tocart {
+    display: inline-block;
+  }
+  .products-grid .product-item-actions,
+  .product-item-actions .actions-primary {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .column.main .mage-featured-slider .product-item,
+  .column.main .mage-new-slider .product-item {
+    padding: 0 !important;
+  }
 }

@@ -37,16 +37,17 @@ $_helper            = $this->helper('Magento\Catalog\Helper\Output');
     $tag_id = "sm_filterproducts_" . time() . rand() . "";
     ?>
 
-    <div id="<?php echo $tag_id; ?>" class="block sm-deals products-grid">
+    <div id="<?php echo $tag_id; ?>" class="block sm-deals products-grid h-product-card">
 
 
         <?php if (!empty($this->_getConfig('title_module'))) { ?>
             <div class="title-home">
                 <h2><span><?php echo $this->_getConfig('title_module'); ?></span></h2>
             </div>
-        <?php } ?>
+        <?php } ?> 
 
         <?php
+        
         if ($this->_getConfig('product_source') == 'countdown_products') {
             $dateTo = $this->_getConfig('date_to', '');
             ?>
@@ -70,7 +71,8 @@ $_helper            = $this->helper('Magento\Catalog\Helper\Output');
             </div>
         <?php } ?>
 
-        <div class="owl-carousel block-content block-content-products">
+       <!--  <div class="owl-carousel block-content block-content-products"> -->
+        <div class="block-content block-content-products">
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
                 <div class="deals-items">
@@ -114,10 +116,42 @@ $_helper            = $this->helper('Magento\Catalog\Helper\Output');
                                     echo substr($short_text, 0, 147) . '...';
                                     ?>
                                 </div>
-
+                                <div class="price-block">
                                 <?php /* @escapeNotVerified */
                                 echo $block->getProductPrice($_product) ?>
                                 <?php echo $block->getProductDetailsHtml($_product); ?>
+
+                                <?php  
+
+                                    $orgprice = (float)$_product->getPrice();
+                                    $fnPrice  = (float)$_product->getFinalPrice();
+                                    $getSpecialPrice = (float)$_product->getSpecialPrice();
+
+                                    $percentage = 0;
+                                    if ($orgprice > $fnPrice)
+                                    {
+                                        $percentage = ($orgprice - $fnPrice) * 100 / $orgprice;
+                                        $saveprice = ($orgprice - $fnPrice); 
+                                    }
+    
+                                    if ($percentage) 
+                                    {
+                                        
+                                        echo  '<div class="percentage-block"><span class="discount_amount">'.(int)$percentage.'</span><span class="price_percentage">%</span></div>' ; 
+                                        // echo "%";
+                                    if($saveprice)
+                                    {   
+                                        
+                                        echo '<div class="save-amount"><span class="price_save">Save!</span> <span class="price_saved_final">'.$saveprice.'</span></div>'; 
+                                        // echo "save!";
+                                    }
+                                    
+                                    }
+    
+
+                                ?>
+                        </div>
+                               
 
 
                                 <div class="bottom-action">

@@ -35,7 +35,7 @@ $fp_content_id="cwsFeaturedProducts-".$unique_slider_key;
 		<?php else: ?>
 			<div class="<?php if(!$this->getAjaxscrollPage()) {?>auto_load_featured<?php }?> products wrapper <?php echo $viewMode; ?> products-<?php echo $viewMode; ?> grid<?php echo $this->getProductsPerRow(); ?>">
 		<?php endif; ?>
-			<ol class="products list items product-items">
+			<ol class="products list items product-items nutrition-product-card">
 				<?php
 					$iterator = 1;
 					
@@ -106,7 +106,7 @@ $fp_content_id="cwsFeaturedProducts-".$unique_slider_key;
 
                     ?>
 
-
+<div class="price-block">
 							<?php if($this->getProductsPrice()): ?>
 								<?php echo $block->getProductPrice($_product) ?>
 							<?php endif; ?>
@@ -125,19 +125,19 @@ $fp_content_id="cwsFeaturedProducts-".$unique_slider_key;
 
 								if ($percentage) 
 								{
-									echo  (int)$percentage ; 
-									echo "%";
+									echo  '<div class="percentage-block"><span class="discount_amount">'.(int)$percentage.'</span><span class="price_percentage">%</span></div>' ; 
+									// echo "%";
 								if($saveprice)
 								{   
-									echo "save!";
-									echo $saveprice; 
+									echo '<div class="save-amount"><span class="price_save">Save!</span> <span class="price_saved_final">'.$saveprice.'</span></div>'; 
+									// echo "save!";
 								}
 
 								}
 
 
 								?>
-
+</div>
 							<div class="product-item-inner">
 								<div class="product actions product-item-actions"<?php echo strpos($pos, $viewMode . '-actions') ? $position : ''; ?>>
 									<?php if($this->getAddToCart()): ?>
@@ -156,7 +156,7 @@ $fp_content_id="cwsFeaturedProducts-".$unique_slider_key;
                                                     if($_product->isAvailable())
                                             
                                             {
-                                                echo"In stock. Immediate delivery.";
+                                                echo"<div class='in-stock'>In stock. Immediate delivery.</div>";
                                             }
                                             
                                             ?>
