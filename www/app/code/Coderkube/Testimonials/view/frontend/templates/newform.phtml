@@ -13,12 +13,25 @@
 
 
 <h1 class="page-title">
-    <span class="base" data-ui-id="page-title-wrapper">New Testimonial</span>    
+    <span class="base" data-ui-id="page-title-wrapper">YOU OPINION MATTERS TO US!</span>    
 </h1>
 <form action="<?php echo $this->getBaseUrl().'testimonial/index/savetestimonial' ?>" method="post" enctype="multipart/form-data" class="new-testimonial"  data-mage-init='{"validation": {}}'>
 <div class="fieldset">
 	<div class="form-list">
 		<div class="wide">
+
+		     <?php if($display_cname){ ?>
+					<div class="input-box">
+						<label for="cname" >Title
+						<?php if($required_cname){ ?>
+							<em class="required">*</em>
+						<?php } ?>
+						</label>
+						<div class="input-box">
+						<input name="cname" id="cname" title="Title" value="" class="input-text  <?php if($required_cname){ ?> required-entry <?php } ?>" type="text">
+						</div>
+					</div>
+				<?php } ?>
                 <div class="input-box">
                     <label for="name" >Name 
 						<em class="required">*</em>
@@ -41,19 +54,8 @@
                         <input name="image" id="image" title="Image" type="file">
                     </div>
                 </div>
-				<?php if($display_cname){ ?>
-					<div class="input-box">
-						<label for="cname" >Company Name
-						<?php if($required_cname){ ?>
-							<em class="required">*</em>
-						<?php } ?>
-						</label>
-						<div class="input-box">
-						   <input name="cname" id="cname" title="Company Name" value="" class="input-text  <?php if($required_cname){ ?> required-entry <?php } ?>" type="text">
-						</div>
-					</div>
-				<?php } ?>
-				<?php if($display_website){ ?>
+				
+				<!-- <?php if($display_website){ ?>
 					<div class="input-box">
 						<label for="website" >Website
 						<?php if($required_website){ ?>
@@ -64,15 +66,8 @@
 						   <input name="website" id="website" title="Website" value="" class="input-text validate-url <?php if($required_website){ ?> required-entry <?php } ?>" type="text">
 						</div>
 					</div>
-				<?php } ?>
-                <div class="input-box">
-                    <label for="message">Message <em class="required">*</em></label>
-                    <div class="input-box">
-                        <textarea name="message" id="message" title="Message" class="required-entry input-text" cols="5" rows="3"></textarea>
-                    </div>
-                </div>	
-				
-				
+				<?php } ?> -->
+                	
 					<div class="input-box">
 						<label for="image">Rating star
 							<em class="required">*</em>
@@ -80,17 +75,22 @@
 						
 						<div class="input-box">
 						<select class="rate required-entry" name="rate" >
-							<option value="">Select rating</option>
-							<option value="1">1 star</option>
-							<option value="2">2 star</option>
-							<option value="3">3 star</option>
-							<option value="4">4 star</option>
-							<option value="5">5 star</option>
+							<!-- <option value="">Select rating</option> -->
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
 						</select>
-						
-				 
 						</div>
 					</div>
+
+				<div class="input-box">
+                    <label for="message">Message <em class="required">*</em></label>
+                    <div class="input-box">
+                        <textarea name="message" id="message" title="Message" class="required-entry input-text" cols="5" rows="3"></textarea>
+                    </div>
+                </div>
 				
 				
 				

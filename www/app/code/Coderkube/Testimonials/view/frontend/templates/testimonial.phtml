@@ -2,6 +2,7 @@
     $testimonial=$this->getTestimonials();
 
     $TestimonialsData=$testimonial->getData();
+    //print_r($TestimonialsData);
 ?>
 <div class="testimonials-list">
     
@@ -36,7 +37,9 @@
                                  <div class="testimonial-date">
                                    <?php echo date("M d, Y", strtotime($testimonial["created_at"])); ?>
                                 </div>
-                                <div class="testimonial-data"><?php   echo $testimonial["content"];  ?>                                    
+                                <div class="testimonial-data">
+                                    <h2><?php   echo $testimonial["company_name"];  ?></h2>
+                                    <?php   echo $testimonial["content"];  ?>                                    
                                     <span class="author-info"><?php    echo " - ".$testimonial["name"]    ?></span>
                                 </div>
 								<?php 

@@ -680,6 +680,8 @@
             <argument name="classWhitelist" xsi:type="array">
                 <item name="0" xsi:type="string">Magento\Framework\Data\OptionSourceInterface</item>
                 <item name="1" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProviderInterface</item>
+                      <item name="2" xsi:type="string">Magento\Framework\View\Element\UiComponent\ContextInterface</item>
+
             </argument>
         </arguments>
     </type>

@@ -1,0 +1,51 @@
+<?php
+$baseurl = $block->getBaseUrl();
+$registry = $block->getCurrentProduct();
+$sku = $registry->getSku();
+$colors = $this->getColors();
+?>
+<!-- <div class="pincode-container" style="background-color: <?=$colors['form_back'];?>; !important;"> -->
+    <!-- <form name="pincode-form" id="pincode-form" enctype="multipart/form-data" action="#"
+          method="post">
+        <input name="form_key" type="hidden" value="<?php echo $block->getFormKey();?>">
+        <input type="hidden" id="baseurl" value="<?= $block->getBaseUrl();?>">
+        <div class="zipcode-main-content">
+            <input type="hidden" name="sku" value="<?= $sku;?>">
+            <input type="text" id="wbcom-zipcode" name="zipcode" class="required-entry" placeholder="<?php echo __('Enter pincode/zipcode.'); ?>" required="required" style="background-color: <?=$colors['inner_color'];?>; !important;" />
+            <input type="submit" title="<?php echo __('Check Availability'); ?>" id="zipcode-check" class="action primary" value="<?php echo __('Check Availability'); ?>" style="background-color: <?=$colors['btn_color'];?>; !important;" />
+        </div>
+        <div class="zipcode-info">
+            <p class="pincode-note"><?= 'Check your delivery for this product.';?></p>
+        </div>
+    </form> -->
+<!-- </div> -->
+
+<!-- codes start for validating and sending ajax request -->
+<script type="text/javascript">
+    require([ 'jquery', 'jquery/ui'], function($){
+
+        $("#pincode-form").on("submit", function(e) {
+            var baseurl = $('#baseurl').val();
+            var customUrl = "wbcompin/pincode/check";
+            var url = baseurl+customUrl;
+            e.preventDefault();
+            var form = $(this);
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(),
+                success: function(data)
+                {
+                    if(data.response == 'false'){
+                        $('#pincode-note').remove();
+                        $('.zipcode-info').html('<p class="pincode-note pincode-error">'+data.message+'</p>');
+                    }else{
+                        $('#pincode-note').remove();
+                        $('.zipcode-info').html('<p class="pincode-note pincode-correct">'+data.message+'</p>');
+                    }
+                }
+            });
+        });
+
+    });
+</script>

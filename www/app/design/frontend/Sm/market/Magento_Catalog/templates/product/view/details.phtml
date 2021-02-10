@@ -12,139 +12,53 @@ $show_custom_tab   = $_config->getProductDetail('show_custom_tab');
 $custom_tab_name   = $_config->getProductDetail('custom_tab_name');
 $customtab_content = $_config->getProductDetail('customtab_content');
 ?>
-<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')): ?>
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
+    <?php $newOrderTabbing = array('product.info.description','nutritional_info.tab','product.attributes','external_lab_analysis.tab','reviews.tab',); //custom add ?>
     <div class="product info detailed">
         <?php $layout = $block->getLayout(); ?>
-        <div class="product data items <?php echo $tabStyle . '-style' ?>"
-             data-mage-init='{"tabs":{"openedState":"active"}}'>
-            <?php if ($tabStyle == "default" || $tabStyle == "vertical") { ?>
-                <ul class="resp-tabs-list">
-                    <?php foreach ($detailedInfoGroup as $name): ?>
-                        <?php
-                        $html = $layout->renderElement($name);
-                        if (!trim($html)) {
-                            continue;
-                        }
-                        $alias = $layout->getElementAlias($name);
-                        $label = $block->getChildData($alias, 'title');
-                        ?>
-                        <li class="data item title"
-                            aria-labeledby="tab-label-<?= /* @escapeNotVerified */
-                            $alias ?>-title"
-                            data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */
-                        $alias ?>">
-                            <a class="data switch"
-                               tabindex="-1"
-                               data-toggle="switch"
-                               href="#<?= /* @escapeNotVerified */
-                               $alias ?>"
-                               id="tab-label-<?= /* @escapeNotVerified */
-                               $alias ?>-title">
-                                <?= /* @escapeNotVerified */
-                                $label ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                    <?php if ($show_custom_tab) { ?>
-                        <li id="tab-label-customtab" class="data item title" aria-labeledby="tab-label-customtab-title"
-                            data-role="collapsible" role="tab" data-collapsible="true"
-                            aria-controls="product.info.customtab" aria-selected="false" aria-expanded="true"
-                            tabindex="0">
-                            <a class="data switch"
-                               tabindex="-1"
-                               data-toggle="switch"
-                               href="#<?= /* @escapeNotVerified */
-                               $alias ?>"
-                               id="tab-label-<?= /* @escapeNotVerified */
-                               $alias ?>-title">
-                                <?php echo $custom_tab_name ?>
-                            </a>
-                        </li>
-                    <?php } ?>
-                </ul>
-
-                <div class="resp-tabs-container">
-                    <?php foreach ($detailedInfoGroup as $name): ?>
-                        <?php
-                        $html = $layout->renderElement($name);
-                        if (!trim($html)) {
-                            continue;
-                        }
-                        $alias = $layout->getElementAlias($name);
-                        $label = $block->getChildData($alias, 'title');
-                        ?>
-
-                        <div class="data item content resp-tab-content" id="<?= /* @escapeNotVerified */
-                        $alias ?>" data-role="content">
-                            <?= /* @escapeNotVerified */
-                            $html ?>
-                        </div>
-                    <?php endforeach; ?>
-                    <?php if ($show_custom_tab) { ?>
-                        <div class="data item content resp-tab-content" id="customtab" data-role="content">
-                            <?php
-                            echo $customtab_content;
-                            ?>
-                        </div>
-                    <?php } ?>
-                </div>
-            <?php } else { ?>
-                <?php foreach ($detailedInfoGroup as $name): ?>
-                    <?php
+        <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <?php foreach ($newOrderTabbing as $name):?>
+                <?php
                     $html = $layout->renderElement($name);
                     if (!trim($html)) {
                         continue;
                     }
                     $alias = $layout->getElementAlias($name);
                     $label = $block->getChildData($alias, 'title');
-                    ?>
-                    <h2 class="data item title resp-accordion"
-                        aria-labeledby="tab-label-<?= /* @escapeNotVerified */
-                        $alias ?>-title"
-                        data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */
-                    $alias ?>">
-                        <a class="data switch"
-                           tabindex="-1"
-                           data-toggle="switch"
-                           href="#<?= /* @escapeNotVerified */
-                           $alias ?>"
-                           id="tab-label-<?= /* @escapeNotVerified */
-                           $alias ?>-title">
-                            <?= /* @escapeNotVerified */
-                            $label ?>
-                        </a>
-                    </h2>
-
-                    <div class="data item content resp-tab-content" id="<?= /* @escapeNotVerified */
-                    $alias ?>" data-role="content">
-                        <?= /* @escapeNotVerified */
-                        $html ?>
-                    </div>
-                <?php endforeach; ?>
-                <?php if ($show_custom_tab) { ?>
-                    <h2 id="tab-label-customtab" class="data item title resp-accordion"
-                        aria-labeledby="tab-label-customtab-title" data-role="collapsible" role="tab"
-                        data-collapsible="true" aria-controls="product.info.customtab" aria-selected="false"
-                        aria-expanded="true" tabindex="0">
-                        <a class="data switch"
-                           tabindex="-1"
-                           data-toggle="switch"
-                           href="#<?= /* @escapeNotVerified */
-                           $alias ?>"
-                           id="tab-label-<?= /* @escapeNotVerified */
-                           $alias ?>-title">
-                            <?php echo $custom_tab_name ?>
-                        </a>
-                    </h2>
-                    <div class="data item content resp-tab-content" id="customtab" data-role="content">
-                        <?php
-                        echo $customtab_content;
-                        ?>
-                    </div>
-                <?php } ?>
-            <?php } ?>
-
-
+                ?>
+                <div class="data item title"
+                     aria-labeledby="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title"
+                     data-role="collapsible" id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>">
+                    <a class="data switch"
+                       tabindex="-1"
+                       data-toggle="switch"
+                       href="#<?php /* @escapeNotVerified */ echo $alias; ?>"
+                       id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title">
+                        <?php /* @escapeNotVerified */ echo $label; ?>
+                    </a>
+                </div>
+                <div class="data item content" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content">
+                    <?php /* @escapeNotVerified */ echo $html; ?>
+                </div>
+            <?php endforeach;?>
         </div>
     </div>
 <?php endif; ?>

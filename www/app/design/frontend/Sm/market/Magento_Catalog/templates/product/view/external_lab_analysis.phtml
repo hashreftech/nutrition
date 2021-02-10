@@ -1,0 +1,41 @@
+<?php
+    $product = $block->getProduct();
+    $lab_analysis_image='lab_analysis_image';       
+    $lab_analysis_text='lab_analysis_text';
+    $image_blog_url='lab_analysis_url';
+   $res1 = $this->getProduct()->getAttributeText('external_lab_analysis_tab');
+    if($res1 == 'Yes'): 
+$myattribute1 = $product->getResource()->getAttribute('lab_analysis_image')->getFrontend()->getValue($product);
+$myattribute2 = $product->getResource()->getAttribute('lab_analysis_text')->getFrontend()->getValue($product);
+$myattribute3 = $product->getResource()->getAttribute('lab_analysis_url')->getFrontend()->getValue($product);
+
+
+$test1= explode(",",$myattribute1);
+$test2= explode(",",$myattribute2);
+$test3= explode(",",$myattribute3);
+$size1=count($test1);
+$size2=count($test2);
+$size3=count($test3);
+
+if(($size1==$size2)==$size3)
+{
+  foreach(array_combine($test1,$test3) as $key=>$value) {?>
+
+  <td><a href="<?php echo $value;?>"> <?php  echo '<img src="https://local.hashref.in/hsn_images/'.preg_replace('/\s+/','',$key).'">';?> </a></td>
+          
+              <?php }     ?>
+               <?php
+               foreach(array_combine($test2,$test3) as $key=>$value) {?>
+
+<td><a href="<?php echo $value;?>"> <?php echo $key;?></a></td>
+
+
+<?php } }
+else{
+
+  echo("Oops!...your lab_analysis_image,lab_analysis_text ,lab_analysis_url data's are mismatching");
+
+}
+
+?>
+<?php endif;?>
