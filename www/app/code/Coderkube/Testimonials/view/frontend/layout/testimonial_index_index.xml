@@ -10,5 +10,22 @@
         <referenceContainer name="content">
             <block class="Coderkube\Testimonials\Block\Testimonial" name="testimonial" template="Coderkube_Testimonials::testimonial.phtml" />
         </referenceContainer>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string" translate="true">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Home</item>
+                    <item name="label" xsi:type="string" translate="true">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string" translate="true"> Our Customer's Reviews and Opinions about us - HSNstore.coms</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true"> Our Customer's Reviews and Opinions about us - HSNstore.com</item>
+                    <item name="label" xsi:type="string" translate="true"> Our Customer's Reviews and Opinions about us - HSNstore.com</item>
+                </argument>
+            </action>
+        </referenceBlock>
     </body>
 </page>

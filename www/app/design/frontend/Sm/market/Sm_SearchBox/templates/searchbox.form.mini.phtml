@@ -41,12 +41,12 @@ $more_text = $this->_getConfig('more_text', 'More++');
         echo $helperSearch->getResultUrl() ?>" method="get">
             <div class="field searchbox">
                 <div class="control">
-                    <select class="cat searchbox-cat" name="cat">
+                    <!-- <select class="cat searchbox-cat" name="cat">
                         <option value=""><?php echo __('All Categories') ?></option>
                         <?php foreach ($cat_list as $cat) { ?>
                             <option value="<?php echo $cat['value']; ?>" <?php echo(($this->getRequest()->getParam('cat') && ($this->getRequest()->getParam('cat') == $cat['value'])) ? "selected" : ''); ?> ><?php echo $cat['label']; ?></option>
                         <?php } ?>
-                    </select>
+                    </select> -->
 
                     <input id="searchbox"
                            data-mage-init='{"quickSearch":{
