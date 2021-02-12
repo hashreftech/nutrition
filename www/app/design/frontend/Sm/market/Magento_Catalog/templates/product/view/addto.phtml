@@ -45,3 +45,107 @@ $_config               = $this->helper('Sm\Market\Helper\Data');
 
 
 </script>
+
+<?php
+
+if($product_brand = $this->getProduct()->getAttributeText('product_brand')):
+echo $this->getLayout()
+->createBlock('Magento\Cms\Block\Block')
+->setBlockId($product_brand)
+->toHtml();
+endif;
+?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+ $storeurl=$storeManager->getStore()->getBaseUrl();
+ ?>
+<a href="#description">view more details</a>
+<div class="ytp-cued-thumbnail-overlay-image" id="description" ><a href="#description">video details</a>
+</div>
+
+<?php
+$date = $_product->getData('expire_date');
+if($date): 
+$servings = $this->getProduct()->getAttributeText('servings'); 
+$newDate = date("d-m-Y", strtotime($date));
+?>
+<h4>Best Before:<?php echo $newDate;?> | Servings:<?php echo $servings?>  </h4>
+
+<?php
+endif;
+$_getMyAttr = $this->getProduct()->getAttributeText('product_icon');
+if($_getMyAttr)
+{
+$icon= explode( ',' , $_getMyAttr) ;
+
+foreach($icon as $icon_label)
+{?> 
+<!-- icon class  -->
+<a  href="
+<?php   $icon_url=$storeurl."".$icon_label;
+
+echo $iconurl = str_replace(' ', '', $icon_url);  ?>.html" class="<?php echo $icon_label;?>" title="<?php echo $icon_label;?>"  ><?php  echo $icon_label;?></a>
+  
+  <?php  } 
+
+}
+$productId = $this->getProduct()->getAttributeText('product_id');
+$productFactory = $objectManager->create('\Magento\Catalog\Model\ProductFactory');                            
+$product        = $productFactory->create()->load($productId);
+$attribute      = $product->getResource()->getAttribute('image');
+$imageUrl       = $attribute->getFrontend()->getUrl($product);
+$_product_url = $product->getProductUrl( $productId);
+$myattribute1 = $_product->getResource()->getAttribute('short_desc_image_text')->getFrontend()->getValue($_product);
+if($myattribute1):
+?>
+<a href="<?php echo $myattribute1;?>"> <?php echo $myattribute1;?></a>
+<a href="<?php echo $_product_url;?>"> <?php echo '<img src="'.$imageUrl.'" />';?></a>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+<?php endif;?>
+<script>
+
+function isElementInViewport (el) {
+      //special bonus for those using jQuery
+      if (typeof jQuery === "function" && el instanceof jQuery) {
+        el = el[0];
+      }
+      var rect = el.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+      );
+    }
+
+
+    // click-to-scroll behavior
+    $("a").click(function (e) {
+      e.preventDefault();
+      var section = this.href;
+      var sectionClean = section.substring(section.indexOf("#"));
+      $("html, body").animate({
+        scrollTop: $(sectionClean).offset().top
+      }, 1000, function () {
+        window.location.hash = sectionClean;
+      });
+    });
+    
+    // listen for the scroll event
+    $(document).on("scroll", function() {
+      //console.log("onscroll event fired...");
+      // check if the anchor elements are visible
+      $(".common").each(function (idx, el) {
+        if ( isElementInViewport(el) ) {
+          // update the URL hash
+          if (window.history.pushState) {
+            var urlHash = "#" + $(el).attr("id");
+			window.history.pushState(null, null, urlHash);
+          }
+        }
+      });
+    });
+
+
+</script>

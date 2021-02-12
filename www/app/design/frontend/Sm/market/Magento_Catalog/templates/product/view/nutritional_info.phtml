@@ -1,8 +1,66 @@
-<?php $_helper = $this->helper(Magento\Catalog\Helper\Output::class); ?>
-<?php $_product = $block->getProduct(); ?>
-<?php
-$data = $this->getProduct()->getAttributeText('timer');
-if($data == 'Yes'): 
- echo("hi");
+<?php 
+//$_product = $block->getProduct();
+
+$_product = $block->getProduct();
+$name=$_product->getName();
+$color=array();
+$size=array();
+foreach ($_product->getOptions() as $o) {
+    if ($o->getTitle() != 'Color') { // or another title of option
+        continue;
+    }
+    foreach ($o->getValues() as $value) {
+        foreach($value->getData() as $key => $x)
+        {
+            if($key=='title')
+            $color[]= $x;
+        }
+       
+        
+    }
+}
+foreach ($_product->getOptions() as $os) {
+    if ($os->getTitle() != 'Size') { // or another title of option
+        continue;
+    }
+    foreach ($os->getValues() as $valu) {
+        foreach($valu->getData() as $ke => $y)
+        {
+            if($ke=='title')
+            $size[]= $y;
+        }
+       
+        
+    }
+}
+$count1=count($size);
+$count2=count($color);
 ?>
-<?php endif;?>
+
+<select id="mySelect" onchange="myFunction()">
+<?php
+for($i=0;$i<$count1;$i++)
+{
+    for($j=0;$j<$count2;$j++)
+    { ?>
+          
+      <option value="<?php echo $name.''.$size[$i].''.$color[$j];?>"><?php echo $name.''.$size[$i].''.$color[$j];?></option>
+      
+     <?php }
+}?>
+</select>
+<p id="demo"></p>
+<script>
+function myFunction() {
+  var x = document.getElementById("mySelect").value;
+  
+  document.getElementById("demo").innerHTML = "You selected: " + x;
+}
+</script>
+<?php 
+echo $this->getLayout()
+->createBlock('Magento\Cms\Block\Block')
+->setBlockId('Universal ac dc Power PupplySBlue')
+->toHtml();
+?>
+

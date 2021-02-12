@@ -14,24 +14,33 @@
     <div class="box-tocart">
         <div class="fieldset">
             <?php if ($block->shouldRenderQuantity()): ?>
+                <?php 
+
+
+$product_Id = $_product->getId();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$stockInfo = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface')->getStockItem($product_Id);
+$stockqty = (int)$stockInfo->getQty();
+
+$qty = (int)$stockInfo->getMaxSaleQty();?>
+ 
+
                 <div class="field qty">
                     <label class="label" for="qty"><span><?php /* @escapeNotVerified */
                             echo __('Qty') ?></span></label>
                     <div class="control control-qty-cart">
-                        <input type="number"
-                               name="qty"
-                               id="qty"
-                               maxlength="12"
-                               value="<?php /* @escapeNotVerified */
-                               echo $block->getProductDefaultQty() * 1 ?>"
-                               title="<?php /* @escapeNotVerified */
-                               echo __('Qty') ?>" class="qty-default input-text qty"
-                               data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
-                        />
+                    <select name="qty" id="qty" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" 
+            class="qty-default qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>">
+                   <?php $i = 1 ; ?>
+                    <?php while( $i <= $qty) { ?>
+                  <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php $i++; }?>                   
+
+            </select>
 
                         <div class="control-qty">
-                            <span class="quantity-controls quantity-plus"></span>
-                            <span class="quantity-controls quantity-minus"></span>
+                            <!-- <span class="quantity-controls quantity-plus"></span>
+                            <span class="quantity-controls quantity-minus"></span> -->
 
                             <script type="text/javascript">
                                 require([

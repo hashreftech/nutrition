@@ -18,13 +18,9 @@
 $data = $this->getProduct()->getAttributeText('timer');
 if($data == 'Yes'): ?>
 <?php 
-$offer_text = $this->getProduct()->getAttributeText('offer_text');
-if($offer_text != ''):
-foreach($offer_text as $offer_label)
-{
- echo($offer_label);
-}
-?>
+if($offer_text = $_product->getData('timer_offer_text')):
+    ?>
+    <h1 style="color: #1979c3"><?php echo $offer_text; ?></h1>
  <?php  
 
 $orgprice = (float)$_product->getPrice();
@@ -49,11 +45,10 @@ if($saveprice)
 }
 
 }
-
-
 ?>
 <?php endif;?>
 <?php endif;?>
+
 
 <div class="product-add-form">
     <form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"

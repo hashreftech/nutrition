@@ -2,7 +2,15 @@
 //get product label helper
 $productLabelHelper = $this->helper(Sparsh\ProductLabel\Helper\ProductLabelHelper::class);
 $_product = $block->getProduct(); ?>
+
 <?php
+$url= $block->getBaseurl();
+$value = $this->getProduct()->getAttributeText('product_title_link');
+?>
+  <td><a href="<?php echo $url.''.$value;?>.html"> <?php echo $value;?></a></td>
+
+<?php
+
 //if there is product label found then display label
 //$productLabelType = $productLabelHelper->getProductLabelType($_product);
 if (!empty($productLabelType)) {
