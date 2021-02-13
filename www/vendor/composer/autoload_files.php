@@ -478,5 +478,6 @@ return array(
     '43a898c2b52882ecca1f7b0558d3af2c' => $vendorDir . '/magento/composer-root-update-plugin/registration.php',
     'eda65932675b68b5aee4503e0762d64d' => $vendorDir . '/magento/magento2-functional-testing-framework/src/Magento/FunctionalTestingFramework/_bootstrap.php',
     'bfcd7b977e821ec6d1fec907ec0c0af8' => $vendorDir . '/mageplaza/magento-2-spanish-language-pack/registration.php',
+    '644cf49e14121a692ee31f75984d1f32' => $vendorDir . '/wbcomdesigns/module-core/registration.php',
     'b4cf39431a4b949eea8aa69ebb3d39da' => $baseDir . '/app/etc/NonComposerComponentRegistration.php',
 );

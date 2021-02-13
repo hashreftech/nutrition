@@ -14,7 +14,8 @@
     "require": {
         "magento/composer-root-update-plugin": "~1.0",
         "magento/product-community-edition": "2.4.1",
-        "mageplaza/magento-2-spanish-language-pack": "dev-master"
+        "mageplaza/magento-2-spanish-language-pack": "dev-master",
+        "wbcomdesigns/module-core": "dev-master"
     },
     "autoload": {
         "exclude-from-classmap": [

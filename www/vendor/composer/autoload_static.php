@@ -479,6 +479,7 @@ class ComposerStaticInit5e7ed16e24c76667a6659dcce41bd9d5
         '43a898c2b52882ecca1f7b0558d3af2c' => __DIR__ . '/..' . '/magento/composer-root-update-plugin/registration.php',
         'eda65932675b68b5aee4503e0762d64d' => __DIR__ . '/..' . '/magento/magento2-functional-testing-framework/src/Magento/FunctionalTestingFramework/_bootstrap.php',
         'bfcd7b977e821ec6d1fec907ec0c0af8' => __DIR__ . '/..' . '/mageplaza/magento-2-spanish-language-pack/registration.php',
+        '644cf49e14121a692ee31f75984d1f32' => __DIR__ . '/..' . '/wbcomdesigns/module-core/registration.php',
         'b4cf39431a4b949eea8aa69ebb3d39da' => __DIR__ . '/../..' . '/app/etc/NonComposerComponentRegistration.php',
     );
 
@@ -509,6 +510,7 @@ class ComposerStaticInit5e7ed16e24c76667a6659dcce41bd9d5
         array (
             'Webmozart\\Assert\\' => 17,
             'Webimpress\\SafeWriter\\' => 22,
+            'Wbcom\\Core\\' => 11,
         ),
         'V' => 
         array (
@@ -1075,6 +1077,10 @@ class ComposerStaticInit5e7ed16e24c76667a6659dcce41bd9d5
         'Webimpress\\SafeWriter\\' => 
         array (
             0 => __DIR__ . '/..' . '/webimpress/safe-writer/src',
+        ),
+        'Wbcom\\Core\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/wbcomdesigns/module-core',
         ),
         'Vertex\\Tax\\' => 
         array (

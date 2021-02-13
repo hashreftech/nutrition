@@ -25821,6 +25821,46 @@
         ]
     },
     {
+        "name": "wbcomdesigns/module-core",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/wbcomdesigns/wbcom-core-module-magento.git",
+            "reference": "add357be20c86c70312cb7aacfac970968875ed1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/wbcomdesigns/wbcom-core-module-magento/zipball/add357be20c86c70312cb7aacfac970968875ed1",
+            "reference": "add357be20c86c70312cb7aacfac970968875ed1",
+            "shasum": ""
+        },
+        "time": "2019-12-20T06:00:12+00:00",
+        "type": "magento2-module",
+        "installation-source": "source",
+        "autoload": {
+            "files": [
+                "registration.php"
+            ],
+            "psr-4": {
+                "Wbcom\\Core\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Wbcom",
+                "email": "support@wbcomdesigns.com",
+                "homepage": "https://zerodesk.wbcomdesigns.com",
+                "role": "Support"
+            }
+        ],
+        "description": "core module to manage all other modules related to wbcom"
+    },
+    {
         "name": "webimpress/safe-writer",
         "version": "2.1.0",
         "version_normalized": "2.1.0.0",
@@ -25883,12 +25923,12 @@
         "version_normalized": "1.9.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/webmozart/assert.git",
+            "url": "https://github.com/webmozarts/assert.git",
             "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+            "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
             "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
             "shasum": ""
         },

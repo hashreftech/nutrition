@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4a16aafd5a58530f4d3b92fc32fa7ea",
+    "content-hash": "385e778ec2c2da3b98bdebb8235c3b61",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -19231,6 +19231,44 @@
             "description": "Tools for communicating with Vertex Cloud and Vertex O-Series"
         },
         {
+            "name": "wbcomdesigns/module-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wbcomdesigns/wbcom-core-module-magento.git",
+                "reference": "add357be20c86c70312cb7aacfac970968875ed1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wbcomdesigns/wbcom-core-module-magento/zipball/add357be20c86c70312cb7aacfac970968875ed1",
+                "reference": "add357be20c86c70312cb7aacfac970968875ed1",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Wbcom\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Wbcom",
+                    "email": "support@wbcomdesigns.com",
+                    "homepage": "https://zerodesk.wbcomdesigns.com",
+                    "role": "Support"
+                }
+            ],
+            "description": "core module to manage all other modules related to wbcom",
+            "time": "2019-12-20T06:00:12+00:00"
+        },
+        {
             "name": "webimpress/safe-writer",
             "version": "2.1.0",
             "source": {
@@ -25066,7 +25104,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "mageplaza/magento-2-spanish-language-pack": 20
+        "mageplaza/magento-2-spanish-language-pack": 20,
+        "wbcomdesigns/module-core": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

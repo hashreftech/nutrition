@@ -15,6 +15,7 @@ return array(
     'Yotpo\\Yotpo\\' => array($vendorDir . '/yotpo/magento2-module-yotpo-reviews'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Webimpress\\SafeWriter\\' => array($vendorDir . '/webimpress/safe-writer/src'),
+    'Wbcom\\Core\\' => array($vendorDir . '/wbcomdesigns/module-core'),
     'Vertex\\Tax\\' => array($vendorDir . '/vertex/module-tax'),
     'Vertex\\AddressValidation\\' => array($vendorDir . '/vertex/module-address-validation'),
     'Vertex\\AddressValidationApi\\' => array($vendorDir . '/vertex/module-address-validation-api'),
