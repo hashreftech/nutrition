@@ -10,11 +10,15 @@
 }
 
 body {
-  font-family: Roboto, sans-serif !important;
+  font-family: "Open Sans", sans-serif !important;
 }
+
 .container {
   /* max-width: calc(100% - 6vw) !important; */
   width: 100% !important;
+}
+.header-container .container {
+  max-width: calc(100% - 6vw) !important;
 }
 .top-bar {
   overflow: hidden;
@@ -760,6 +764,68 @@ body {
 }
 #banner-floor .mgz-single-image-wrapper img {
   width: 100%;
+}
+.review-floor {
+  border-top: 1px solid #f1f1f1;
+}
+
+.review-floor p {
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.review-floor i.fas.fa-star {
+  color: #ff6000;
+}
+
+a.mgz-btn {
+  /* margin-top: 20px; */
+  /* margin-bottom: 10px; */
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-family: "Uni Neue";
+  background: transparent;
+  border: 1px solid #999;
+  color: #999;
+  padding: 6px 12px !important;
+}
+.home-description h2 {
+  font-family: "Uni Neue";
+  color: #333;
+  margin-bottom: 13px;
+}
+.home-description p {
+  font-size: 14px;
+  line-height: 25px;
+}
+.home-description p {
+  font-size: 14px;
+  line-height: 25px;
+}
+
+.home-description li {
+  margin-bottom: 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.home-description li:before {
+  content: "\f00c";
+  font-family: "FontAwesome";
+  margin-right: 10px;
+  color: #00b22d;
+}
+
+.home-description li a {
+  text-decoration: underline;
+}
+
+.home-description ul {
+  padding: 10px 25px;
+}
+.footer-wrapper .container {
+  max-width: calc(100% - 6vw) !important;
 }
 @media screen and (min-width: 768px) {
   .products-grid .product-item-info {
