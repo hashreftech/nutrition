@@ -9,8 +9,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <move element="page.main.title" destination="product.info.main" before="-"/>
-        <move element="product.info.overview" destination="product.info.main" before="product.info"/>
-
+         <move element="product.info.overview" destination="product.info.main" before="product.info"/>
         <referenceBlock name="catalog.product.related" remove="true"/>
         <referenceBlock name="product.info.upsell" remove="true"/>
 

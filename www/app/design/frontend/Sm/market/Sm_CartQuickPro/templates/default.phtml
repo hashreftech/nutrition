@@ -55,7 +55,7 @@ $countdown_number = (int)$this->_getConfig('countdown_number') > 0 ? $this->_get
         </div>
         <div class="smcqp-actions">
             <a class="smcqp-continue <?php echo $countdown_number ? 'spcqp-count' : '' ?>"
-               data-count="<?php echo $countdown_number; ?>" href="#" title="<?php echo __('Continue'); ?>">
+               data-count="<?php echo $countdown_number; ?>"  href="#" title="<?php echo __('Continue'); ?>">
                 <?php echo __('Continue'); ?>
             </a>
             <a class="smcqp-btn smcqp-view-cart " href="<?php echo $this->getUrl('checkout/cart/'); ?>"
@@ -67,9 +67,9 @@ $countdown_number = (int)$this->_getConfig('countdown_number') > 0 ? $this->_get
                title="<?php echo __('Compare Products'); ?>">
                 <?php echo __('Compare Products'); ?>
             </a>
-            <a class="smcqp-btn smcqp-view-wishlist " href="<?php echo $this->getUrl('wishlist/'); ?>"
-               title="<?php echo __('My Wishlist'); ?>">
-                <?php echo __('My Wishlist'); ?>
+            <a class="smcqp-btn smcqp-view-wishlist "  onClick="window.location.reload();" href="<?php //echo $this->getUrl('wishlist/'); ?>"
+               title="<?php echo __('Save for later'); ?>">
+                <?php echo __('Save for later '); ?>
             </a>
         </div>
     </div>

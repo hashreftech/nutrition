@@ -440,7 +440,7 @@ define([
 						}
 						_self._closeBoxComfim(_time);
 					}, 1000);
-					
+					location.reload();
 				}else{
 					_self._closeModalSelf();
 				}
@@ -501,7 +501,7 @@ define([
 				clearTimeout(_time);
 				_time = setTimeout(function() {
 					_self.setHeightIframe(ifr);
-				}, 500);
+				}, 5000);
 			},
 			
 		});
