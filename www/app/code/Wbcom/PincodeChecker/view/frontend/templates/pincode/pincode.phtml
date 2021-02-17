@@ -4,8 +4,8 @@ $registry = $block->getCurrentProduct();
 $sku = $registry->getSku();
 $colors = $this->getColors();
 ?>
-<!-- <div class="pincode-container" style="background-color: <?=$colors['form_back'];?>; !important;"> -->
-    <!-- <form name="pincode-form" id="pincode-form" enctype="multipart/form-data" action="#"
+<div class="pincode-container" style="background-color: <?=$colors['form_back'];?>; !important;">
+    <form name="pincode-form" id="pincode-form" enctype="multipart/form-data" action="#"
           method="post">
         <input name="form_key" type="hidden" value="<?php echo $block->getFormKey();?>">
         <input type="hidden" id="baseurl" value="<?= $block->getBaseUrl();?>">
@@ -17,8 +17,8 @@ $colors = $this->getColors();
         <div class="zipcode-info">
             <p class="pincode-note"><?= 'Check your delivery for this product.';?></p>
         </div>
-    </form> -->
-<!-- </div> -->
+    </form>
+</div>
 
 <!-- codes start for validating and sending ajax request -->
 <script type="text/javascript">

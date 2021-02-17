@@ -9,6 +9,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <move element="page.main.title" destination="product.info.main" before="-"/>
+        <move element="product.info.overview" destination="product.info.main" before="product.info"/>
 
         <referenceBlock name="catalog.product.related" remove="true"/>
         <referenceBlock name="product.info.upsell" remove="true"/>
@@ -31,7 +32,7 @@
 
         <referenceContainer name="product.info.main">
             <block class="Magento\Framework\View\Element\Template" name="social.button.detail"
-                   after="product.info.overview" template="Magento_Theme::html/social-button.phtml"
+                   after="wbcom.pincode.product.view" template="Magento_Theme::html/social-button.phtml"
                    ifconfig="market/product_detail/show_social_button"/>
         </referenceContainer>
 
