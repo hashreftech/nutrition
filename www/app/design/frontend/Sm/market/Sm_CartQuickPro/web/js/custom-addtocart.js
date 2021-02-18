@@ -440,7 +440,7 @@ define([
 						}
 						_self._closeBoxComfim(_time);
 					}, 1000);
-					location.reload();
+					// location.reload();
 				}else{
 					_self._closeModalSelf();
 				}
