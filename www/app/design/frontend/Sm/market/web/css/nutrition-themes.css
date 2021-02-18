@@ -210,11 +210,7 @@ body {
 #nutrition-footer .footer-block {
   border-right: 1px dashed #333;
 }
-#nutrition-footer .col-xl-2 {
-  -ms-flex: 0 0 16.666667%;
-  flex: 0 0 19.666667%;
-  max-width: 19.666667%;
-}
+
 #nutrition-footer .contact-footer .footer-block {
   border-right: none;
 }
@@ -827,22 +823,40 @@ a.mgz-btn {
 .footer-wrapper .container {
   max-width: calc(100% - 6vw) !important;
 }
-@media screen and (min-width: 768px) {
-  .products-grid .product-item-info {
-    border: 1px solid #ff6000;
-    padding: 10px;
-  }
-  .mage-new-slider .nutrition-product-card .product-item-info {
-    border: 1px solid #ccc;
-  }
-  /* .nutrition-product-card .owl-item {
-    margin-right: 0 !important;
-  } */
-  .products-grid .nutrition-product-card .product-item-details {
-    padding: 8px 0 !important;
-    text-align: left;
-  }
+.products-grid .product-item-info {
+  border: 1px solid #ff6000;
+  padding: 10px;
+}
+.mage-new-slider .nutrition-product-card .product-item-info {
+  border: 1px solid #ccc;
+}
+/* .nutrition-product-card .owl-item {
+  margin-right: 0 !important;
+} */
+.products-grid .nutrition-product-card .product-item-details {
+  padding: 8px 0 !important;
+  text-align: left;
+}
 
+.column.main .mage-featured-slider .product-item,
+.column.main .mage-new-slider .product-item {
+  padding: 0 !important;
+}
+.products-grid .product-item-actions {
+  width: 100%;
+}
+.product-item-actions .actions-primary {
+  width: 100%;
+}
+.minicart-header .minicart-wrapper .action.showcart::after {
+  opacity: 1 !important;
+}
+@media screen and (min-width: 768px) {
+  #nutrition-footer .col-xl-2 {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 19.666667%;
+    max-width: 19.666667%;
+  }
   .nutrition-product-card .tocart {
     display: none;
   }
@@ -859,9 +873,119 @@ a.mgz-btn {
     display: inline-block;
     width: 100%;
   }
+  .nutrition-newsletter.mobile-newsletter {
+    display: none;
+  }
+  .minicart-header.mobile-minicart {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  .h-product-card .block-content-products {
+    flex-wrap: wrap;
+  }
+  .h-product-card .deals-items {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .h-product-card .item-inner {
+    align-items: center;
+  }
+  .h-product-card .product-name {
+    max-width: 160px;
+  }
+  .top-bar {
+    display: none;
+  }
+  .custom-header .search-wrapper {
+    position: inherit;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .header-top-content {
+    flex-wrap: wrap;
+  }
+  .minicart-header {
+    position: inherit !important;
+  }
+  .custom-header .header-top .header-top-right {
+    align-items: center;
+  }
+  .logo-content {
+    text-align: right;
+  }
+  .header-top-content .logo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .minicart-header.desktop-minicart {
+    display: none;
+  }
+  .logo-header img {
+    max-width: 240px;
+  }
+  .nav-mobile-container .btn-mobile .button-mobile i {
+    background: transparent;
 
-  .column.main .mage-featured-slider .product-item,
-  .column.main .mage-new-slider .product-item {
-    padding: 0 !important;
+    font-size: 34px;
+
+    line-height: 37px;
+    color: #ccc;
+  }
+  #nutrition-footer.footer-style-5 .footer-top-services .services-header {
+    flex-wrap: wrap;
+  }
+  #nutrition-footer.footer-style-5 .footer-top-services .services-header li {
+    flex: 49.333%;
+  }
+  #nutrition-footer .footer-block {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 13px;
+    padding-bottom: 11px;
+  }
+  .nutrition-newsletter.desktop-newsletter {
+    display: none;
+  }
+  .footer-style-5 .footer-top {
+    padding-top: 0 !important;
+  }
+  .nutrition-newsletter.mobile-newsletter {
+    text-align: center;
+    padding: 15px 0px;
+  }
+  .foot-top-content {
+    border-bottom: none;
+    padding: 9px 0 0;
+    margin-bottom: 0;
+    align-items: center;
+  }
+  .footer-block-content {
+    display: none;
+  }
+  .footer-block.active .footer-block-content {
+    display: block;
+  }
+  .footer-block-title {
+    margin-bottom: 0 !important;
+  }
+  .footer-block-title:after {
+    content: "\f107";
+    position: absolute;
+    right: 20px;
+    color: #333;
+    top: 0;
+    font-family: "FontAwesome";
+    font-size: 2rem;
+    line-height: 15px;
+  }
+  #nutrition-footer.footer-style-5
+    .footer-block
+    .footer-block-content
+    .links-footer
+    li
+    a {
+    color: #333;
   }
 }
