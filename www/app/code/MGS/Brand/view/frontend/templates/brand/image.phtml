@@ -1,0 +1,18 @@
+<?php
+if ($block->getConfig('view_page_settings/image_width') != '') {
+    $width = $block->getConfig('view_page_settings/image_width');
+} else {
+    $width = 240;
+}
+if ($block->getConfig('view_page_settings/image_height') != '') {
+    $height = $block->getConfig('view_page_settings/image_height');
+} else {
+    $height = 180;
+}
+$brand = $block->getCurrentBrand();
+$img = '';
+if ($img = $brand->getImageUrl()) { ?>
+    <div class="brand-image">
+        <img width="<?php echo $width; ?>" height="<?php echo $height; ?>" src="<?php echo $img; ?>" alt="<?php echo $brand->getName(); ?>" class="image"/>
+    </div>
+<?php } ?>

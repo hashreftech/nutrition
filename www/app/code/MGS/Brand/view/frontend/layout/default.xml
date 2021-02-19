@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MGS_Brand::css/mgs_brand.css" media="all"/>
+        <css src="MGS_Brand::css/owl.carousel.css" media="all"/>
+        <css src="MGS_Brand::css/owl.theme.css" media="all"/>
+        <css src="MGS_Brand::css/owl.transitions.css" media="all"/>
+    </head>
+    <body>
+        <referenceContainer name="sidebar.additional">
+            <block class="MGS\Brand\Block\Brand\Sidebar" name="brand.sidebar" template="MGS_Brand::brand/sidebar.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

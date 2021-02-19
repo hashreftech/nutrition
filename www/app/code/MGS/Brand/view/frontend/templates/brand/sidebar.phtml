@@ -1,0 +1,52 @@
+<?php $helper = $this->helper('MGS\Brand\Helper\Data'); ?>
+<?php if ($block->getConfig('general_settings/enabled')): ?>
+    <?php if ($block->getConfig('sidebar_settings/enabled')): ?>
+        <?php
+        $collection = $block->getCollection();
+        if ($this->getConfig('sidebar_settings/small_image_width') != '') {
+            $width = $this->getConfig('sidebar_settings/small_image_width');
+        } else {
+            $width = 30;
+        }
+        if ($this->getConfig('sidebar_settings/small_image_height') != '') {
+            $height = $this->getConfig('sidebar_settings/small_image_height');
+        } else {
+            $height = 24;
+        }
+        ?>
+        <?php if ($collection->count()): ?>
+            <div class="block block-brand">
+                <div class="block-title">
+                    <strong id="block-brand-heading"><?php echo __('Brands') ?></strong>
+                </div>
+                <div class="block-content">
+                    <ul class="brand-list">
+                        <?php foreach ($collection as $brand): ?>
+                            <li class="item">
+                                <div class="brand-link">
+                                    <a title="<?php echo $brand->getName(); ?>"
+                                       href="<?php echo $brand->getUrl(); ?>">
+                                        <img style="height: <?php echo $height; ?>px" class="brand-small-image"
+                                             alt="<?php echo $brand->getName(); ?>"
+                                             src="<?php echo $brand->getSmallImageUrl(); ?>">
+                                        <?php if ($this->getConfig('sidebar_settings/show_brand_name')): ?>
+                                            <a title="<?php echo $brand->getName(); ?>" href="<?php echo $brand->getUrl(); ?>">
+                                                <?php echo $brand->getName(); ?>
+                                                <?php if ($this->getConfig('sidebar_settings/show_product_count')): ?>
+                                                    <span><?php echo __('(%1)', $block->getProductCount($brand)); ?></span>
+                                                <?php endif; ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    </a>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <div class="view-all">
+                        <a title="<?php echo __('View All'); ?>" href="<?php echo $helper->getBrandUrl(); ?>"><?php echo __('View All'); ?></a>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

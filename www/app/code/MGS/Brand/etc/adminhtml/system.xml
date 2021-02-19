@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <section id="brand" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="0">
+            <class>separator-top</class>
+            <label>Shop By Brand</label>
+            <tab>mgs</tab>
+            <resource>MGS_Brand::config_brand</resource>
+            <group id="general_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="0">
+                <label>General Settings</label>
+                <field id="enabled" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="route" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Route</label>
+                </field>
+            </group>
+            <group id="list_page_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                <label>List Page Settings</label>
+                <field id="title" type="text" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Page Title</label>
+                </field>
+                <field id="template" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Page Template</label>
+                    <source_model>MGS\Brand\Model\System\Config\Template</source_model>
+                </field>
+				<field id="per_page" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="25">
+                    <label>Brands per page Values</label>
+					<comment>Comma-separated.</comment>
+                </field>
+                <field id="small_image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>Small Image Width</label>
+                </field>
+                <field id="small_image_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>Small Image Height</label>
+                </field>
+                <field id="show_brand_name" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                    <label>Show Brand Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_product_count" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="51">
+                    <label>Show Product Count</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_brand_name">1</field>
+                    </depends>
+                </field>
+                <field id="show_featured_brands" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="55">
+                    <label>Show Featured Brands</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="meta_keywords" type="textarea" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">
+                    <label>Meta Keywords</label>
+                </field>
+                <field id="meta_description" type="textarea" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="70">
+                    <label>Meta Description</label>
+                </field>
+                <field id="description" type="textarea" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="80">
+                    <label>Description</label>
+                </field>
+            </group>
+            <group id="view_page_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                <label>View Page Settings</label>
+                <field id="template" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Page Template</label>
+                    <source_model>MGS\Brand\Model\System\Config\Template</source_model>
+                </field>
+                <field id="image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Image Width</label>
+                </field>
+                <field id="image_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>Image Height</label>
+                </field>
+            </group>
+            <group id="product_page_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                <label>Product Page Settings</label>
+                <field id="show_brand" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Show Brand</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="small_image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Small Image Width</label>
+                    <depends>
+                        <field id="show_brand">1</field>
+                    </depends>
+                </field>
+                <field id="small_image_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>Small Image Height</label>
+                    <depends>
+                        <field id="show_brand">1</field>
+                    </depends>
+                </field>
+                <field id="show_related_products_by_brand" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>Show Related Products By Brand</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title_related_products" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                    <label>Title For Related Products By Brand</label>
+                    <depends>
+                        <field id="show_related_products_by_brand">1</field>
+                    </depends>
+                </field>
+                <field id="limit_related_products" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">
+                    <label>Number Of Related Products By Brand Will Display</label>
+                    <depends>
+                        <field id="show_related_products_by_brand">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="sidebar_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                <label>Sidebar Settings</label>
+                <field id="enabled" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_brand_name" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Show Brand Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_product_count" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>Show Product Count</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_brand_name">1</field>
+                    </depends>
+                </field>
+                <field id="small_image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>Small Image Width</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="small_image_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                    <label>Small Image Height</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="number_of_brands" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">
+                    <label>Default Number Of Brands Will Display</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

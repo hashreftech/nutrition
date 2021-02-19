@@ -1,0 +1,105 @@
+<?php
+$params = $this->getRequest()->getParams();
+$helper = $this->helper('MGS\Brand\Helper\Data');
+$collection = $block->getCollection();
+if ($this->getConfig('list_page_settings/small_image_width') != '') {
+    $width = $this->getConfig('list_page_settings/small_image_width');
+} else {
+    $width = 240;
+}
+if ($this->getConfig('list_page_settings/small_image_height') != '') {
+    $height = $this->getConfig('list_page_settings/small_image_height');
+} else {
+    $height = 180;
+}
+?>
+<div class="shop-by-brand">
+    <?php if ($helper->getConfig('list_page_settings/description') != ''): ?>
+        <div class="description">
+            <?php echo $helper->getConfig('list_page_settings/description'); ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($helper->getConfig('list_page_settings/show_featured_brands')): ?>
+        <?php echo $block->getChildHtml('brand_list_featured'); ?>
+    <?php endif; ?>
+    <?php echo $block->getChildHtml('brand_search'); ?>
+    <?php echo $block->getChildHtml('brand_filter_by_character'); ?>
+    <div class="all-brands">
+        <?php $flagDigit = false; ?>
+        <?php if ($collection->count()): ?>
+            <div class="content">
+                <ul class="brand-list">
+                    <?php foreach ($collection as $brand): ?>
+                        <?php if (isset($params['char']) && $params['char'] != '' && $params['char'] == '0-9') : ?>
+                            <?php $letter = strtoupper(substr($brand->getName(), 0, 1)); ?>
+                            <?php if (ctype_digit($letter)): ?>
+                                <?php $flagDigit = true; ?>
+                                <li class="item">
+									<div class="brand-content">
+										<div class="brand-image">
+											<a title="<?php echo $brand->getName(); ?>"
+											   href="<?php echo $brand->getUrl(); ?>">
+												<img style="height: <?php echo $height; ?>px;" class="brand-small-image"
+													 alt="<?php echo $brand->getName(); ?>"
+													 src="<?php echo $brand->getSmallImageUrl(); ?>">
+											</a>
+										</div>
+										<?php if ($this->getConfig('list_page_settings/show_brand_name')): ?>
+											<h3 class="brand-title">
+												<a title="<?php echo $brand->getName(); ?>" href="<?php echo $brand->getUrl(); ?>">
+													<?php echo $brand->getName(); ?>
+													<?php if ($this->getConfig('list_page_settings/show_product_count')): ?>
+														<span><?php echo __('(%1)', $block->getProductCount($brand)); ?></span>
+													<?php endif; ?>
+												</a>
+											</h3>
+										<?php endif; ?>
+									</div>
+                                </li>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <li class="item">
+								<div class="brand-content">
+									<div class="brand-image">
+										<a title="<?php echo $brand->getName(); ?>"
+										   href="<?php echo $brand->getUrl(); ?>">
+											<img style="height: <?php echo $height; ?>px;" class="brand-small-image"
+												 alt="<?php echo $brand->getName(); ?>"
+												 src="<?php echo $brand->getSmallImageUrl(); ?>">
+										</a>
+									</div>
+									<?php if ($this->getConfig('list_page_settings/show_brand_name')): ?>
+										<h3 class="brand-title">
+											<a title="<?php echo $brand->getName(); ?>" href="<?php echo $brand->getUrl(); ?>">
+												<?php echo $brand->getName(); ?>
+												<?php if ($this->getConfig('list_page_settings/show_product_count')): ?>
+													<span><?php echo __('(%1)', $block->getProductCount($brand)); ?></span>
+												<?php endif; ?>
+											</a>
+										</h3>
+									<?php endif; ?>
+								</div>
+                            </li>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+					<li class="clear"></li>
+                </ul>
+            </div>
+            <?php if (isset($params['char']) && $params['char'] != '' && $params['char'] == '0-9' && $flagDigit == false): ?>
+                <script type="text/javascript">
+                    require(['jquery'], function ($) {
+                        $('ul.brand-list').hide();
+                    });
+                </script>
+                <div class="message">
+                    <div><?php echo __('Have no brands.') ?></div>
+                </div>
+            <?php endif; ?>
+        <?php else: ?>
+            <div class="message">
+                <div><?php echo __('Have no brands.') ?></div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+<?php echo $this->getPagerHtml() ?>

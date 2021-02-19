@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <brand>
+            <general_settings>
+                <enabled>1</enabled>
+                <route>shop-by-brand</route>
+            </general_settings>
+            <list_page_settings>
+                <title>Shop By Brand</title>
+                <template>1column</template>
+                <small_image_width>240</small_image_width>
+                <small_image_height>180</small_image_height>
+                <show_brand_name>1</show_brand_name>
+                <show_product_count>1</show_product_count>
+                <show_featured_brands>1</show_featured_brands>
+                <meta_keywords>shop by brand</meta_keywords>
+                <meta_description>Magento Shop By Brand</meta_description>
+                <description>Magento Shop By Brand</description>
+            </list_page_settings>
+            <view_page_settings>
+                <template>1column</template>
+                <image_width>1240</image_width>
+                <image_height>600</image_height>
+            </view_page_settings>
+            <product_page_settings>
+                <show_brand>1</show_brand>
+                <small_image_width>240</small_image_width>
+                <small_image_height>180</small_image_height>
+                <show_related_products_by_brand>1</show_related_products_by_brand>
+                <title_related_products>Related Products By Brand</title_related_products>
+                <limit_related_products>5</limit_related_products>
+            </product_page_settings>
+            <sidebar_settings>
+                <enabled>1</enabled>
+                <show_brand_name>1</show_brand_name>
+                <show_product_count>1</show_product_count>
+                <small_image_width>30</small_image_width>
+                <small_image_height>24</small_image_height>
+                <number_of_brands>5</number_of_brands>
+            </sidebar_settings>
+        </brand>
+    </default>
+</config>

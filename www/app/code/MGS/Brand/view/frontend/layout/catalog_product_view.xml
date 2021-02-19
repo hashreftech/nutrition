@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.extrahint">
+            <block class="MGS\Brand\Block\Product\Brand" name="product.brand" after="-" template="MGS_Brand::brand/product-brand.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content.aside">
+            <block class="MGS\Brand\Block\Product\ProductList\Related" name="brand.product.related" after="-" template="MGS_Brand::brand/related-products.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

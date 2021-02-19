@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="MGS_Brand::brand" title="Shop By Brand" sortOrder="10">
+                    <resource id="MGS_Brand::manage_brand" title="Manage Brands" sortOrder="40">
+                        <resource id="MGS_Brand::edit_brand" title="Edit Brand" sortOrder="10"/>
+                        <resource id="MGS_Brand::save_brand" title="Save Brand" sortOrder="20"/>
+                        <resource id="MGS_Brand::delete_brand" title="Delete Brand" sortOrder="30"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="MGS_Brand::config_brand" title="Shop By Brand"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
