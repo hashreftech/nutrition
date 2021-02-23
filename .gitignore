@@ -34,6 +34,7 @@ atlassian*
 /www/.php_cs.cache
 /www/grunt-config.json
 /www/pub/media/*.*
+/www/image-manager/product/
 !/www/pub/media/.htaccess
 /www/pub/media/attribute/*
 !/www/pub/media/attribute/.htaccess
