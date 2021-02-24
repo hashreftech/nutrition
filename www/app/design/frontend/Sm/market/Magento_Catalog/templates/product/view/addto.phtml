@@ -74,21 +74,48 @@ $newDate = date("d-m-Y", strtotime($date));
 
 <?php
 endif;
-$_getMyAttr = $this->getProduct()->getAttributeText('product_icon');
-if($_getMyAttr)
-{
-$icon= explode( ',' , $_getMyAttr) ;
 
-foreach($icon as $icon_label)
+$_getMyAttr = $_product->getResource()->getAttribute('product_icon');
+
+if($_getMyAttr)
+
+{
+
+  $attrTestValue = $_getMyAttr->getFrontend()->getValue($_product);
+  $icon= explode( ',' , $attrTestValue ) ;
+
+  foreach($icon as $icon_label)
+  {?> 
+  <!-- icon class  -->
+  <a  href="
+ <?php   $icon_url=$storeurl."".$icon_label;
+ 
+ echo $iconurl = str_replace(' ', '', $icon_url);  ?>.html" class="<?php echo $icon_label;?>" title="<?php echo $icon_label;?>"  ><?php  echo $icon_label;?></a>
+    
+    <?php  } 
+
+  }
+
+  $sports = $_product->getResource()->getAttribute('sports_icon');
+if($sports)
+{
+
+  $Value = $sports->getFrontend()->getValue($_product);
+
+$sports_icon= explode( ',' , $Value) ;
+
+foreach($sports_icon as $data)
 {?> 
 <!-- icon class  -->
 <a  href="
-<?php   $icon_url=$storeurl."".$icon_label;
-echo $iconurl = str_replace(' ', '', $icon_url);  ?>.html" class="<?php echo $icon_label;?>" title="<?php echo $icon_label;?>"  ><?php  echo $icon_label;?></a>
-  
-  <?php  } 
+<?php   $sportsicon_url=$storeurl."".$data;
+echo $sportsiconurl = str_replace(' ', '', $sportsicon_url);  ?>.html" class="<?php echo $data;?>" title="<?php echo $data;?>"  ><?php  echo $data;?></a>
+ 
+  <?php  }
 
 }
+  // $_getMyAttr = $this->getProduct()->getAttributeText('product_icon');
+
 $productId = $this->getProduct()->getAttributeText('product_id');
 $productFactory = $objectManager->create('\Magento\Catalog\Model\ProductFactory');                            
 $product        = $productFactory->create()->load($productId);

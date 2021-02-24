@@ -12,6 +12,7 @@
          <move element="product.info.overview" destination="product.info.main" before="product.info"/>
         <referenceBlock name="catalog.product.related" remove="true"/>
         <referenceBlock name="product.info.upsell" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true" />
 
         <referenceContainer name="sidebar.additional">
             <block class="Magento\Cms\Block\Block" name="service-sidebar" before="-">

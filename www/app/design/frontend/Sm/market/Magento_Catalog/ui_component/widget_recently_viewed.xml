@@ -70,7 +70,7 @@
                 <bodyTmpl>Magento_Catalog/product/name</bodyTmpl>
             </settings>
         </column>
-        <column name="price" component="Magento_Catalog/js/product/list/columns/price-box" sortOrder="3" displayArea="details-area">
+        <!-- <column name="price" component="Magento_Catalog/js/product/list/columns/price-box" sortOrder="3" displayArea="details-area">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="renders" xsi:type="array">
@@ -124,7 +124,7 @@
             <settings>
                 <label translate="true">Price</label>
             </settings>
-        </column>
+        </column> -->
         <column name="addtocart-button" component="Magento_Catalog/js/product/addtocart-button" displayArea="action-primary-area">
             <settings>
                 <label translate="true">Add To Cart</label>

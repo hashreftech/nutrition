@@ -7,6 +7,10 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+      <head>
+        <css src="css/vendor/slick.css" />
+        <css src="css/vendor/slick-theme.css" />
+    </head>
     <body>
         <referenceBlock name="head.additional">
             <block class="Sm\Market\Block\Template" name="config.theme.setting"
@@ -117,13 +121,13 @@
         <move element="store.settings.language" destination="language-header"/>
         <move element="minicart" destination="cart-header"/>
 
-        <referenceContainer name="sidebar.additional">
+        <!-- <referenceContainer name="sidebar.additional">
             <block class="Magento\Cms\Block\Block" name="product-sidebar">
                 <arguments>
                     <argument name="block_id" xsi:type="string">product-sidebar</argument>
                 </arguments>
             </block>
-        </referenceContainer>
+        </referenceContainer> -->
 
         <referenceContainer name="footer-container">
             <container name="footer" as="footer" label="Page Footer" htmlTag="div" htmlClass="footer footer-wrapper">
