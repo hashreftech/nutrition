@@ -61,7 +61,13 @@ $qty = (int)$stockInfo->getMaxSaleQty();?>
                             </script>
                         </div>
                     </div>
+
+
+                    
                 </div>
+
+
+                
             <?php endif; ?>
             <div class="actions">
                 <button type="submit"
@@ -77,7 +83,87 @@ $qty = (int)$stockInfo->getMaxSaleQty();?>
         </div>
     </div>
 <?php endif; ?>
+
 <?php if (!$block->isRedirectToCartEnabled()) : ?>
+
+
+
+
+
+    <?php
+$date = $_product->getData('expire_date');
+if($date): 
+$servings = $this->getProduct()->getAttributeText('servings'); 
+$newDate = date("d-m-Y", strtotime($date));
+?>
+<span> Before:<?php echo $newDate;?> | Servings:<?php echo $servings?> </span>
+
+<?php
+endif; ?>
+
+<?php if ($_product->getIsSalable()): ?>
+    <div class="stock available"><span><?php /* @escapeNotVerified */
+       echo __('In stock. Immediate delivery.
+       ') ?></span></div>                                           
+   
+     <?php else: ?>
+       <div class="stock unavailable btn-action btn-cart"><span><?php /* @escapeNotVerified */
+        echo __('Out of stock') ?></span></div>
+     <?php endif; ?>
+
+
+
+   
+  <!-- Button trigger modal -->
+<span  data-toggle="modal" data-target="#exampleModalCenter">
+Warning about our product information
+</span>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><?php
+
+$_getMyAttr = $_product->getResource()->getAttribute('product_warning');
+
+if($_getMyAttr)
+
+{
+   echo $product_information_title=$_getMyAttr->getStoreLabel($_product);
+
+
+ }?>
+
+
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    <?php  $_getMyAttr = $_product->getResource()->getAttribute('product_warning');
+
+if($_getMyAttr)
+
+{
+    $product_warning_details = $_getMyAttr->getFrontend()->getValue($_product);
+?>
+<p><?php echo $product_warning_details; ?></p>
+<?php
+ }?>
+
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+
+
+
+
     <script>
         require([
             'jquery',
@@ -114,3 +200,9 @@ $qty = (int)$stockInfo->getMaxSaleQty();?>
     
     </script>
 <?php endif; ?>
+
+<!-- Modal -->
+
+
+
+  

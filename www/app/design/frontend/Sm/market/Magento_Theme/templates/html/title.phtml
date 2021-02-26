@@ -16,6 +16,34 @@ if (trim($block->getPageHeading())) {
         . $block->escapeHtml($block->getPageHeading()) . '</span>';
 }
 ?>
+
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+if($product)
+{
+echo $url= $product->getBaseurl();
+$value = $product->getAttributeText('Brand_Name');
+if($value)
+{ 
+ foreach($value as $data)
+{?> 
+<!-- brand class  -->
+
+
+<a  href="
+<?php   $brand_url=$url."".$data;
+echo $brand_url = str_replace(' ', '', $brand_url);  ?>.html" class="<?php echo $data;?>" title="<?php echo $data;?>"  ><?php  echo $data;?></a>
+ 
+  <?php  }
+}
+}
+
+?>
+
+
+
 <?php if ($title): ?>
     <div class="page-title-wrapper<?php /* @escapeNotVerified */
     echo $cssClass; ?>">
@@ -26,10 +54,13 @@ if (trim($block->getPageHeading())) {
                 aria-labelledby="<?php /* @escapeNotVerified */
                 echo $block->getAddBaseAttributeAria(); ?>"
             <?php endif; ?>>
+            <?php echo $t= $block->getId(); ?>
             <?php /* @escapeNotVerified */
-            echo $title ?>
+            echo $title
+             ?>
         </h1>
         
         <?php echo $block->getChildHtml(); ?>
     </div>
 <?php endif; ?>
+

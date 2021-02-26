@@ -14,38 +14,6 @@ $_wishlistSubmitParams = $this->helper('Magento\Wishlist\Helper\Data')->getAddPa
 $compareHelper         = $this->helper('Magento\Catalog\Helper\Product\Compare');
 $_config               = $this->helper('Sm\Market\Helper\Data');
 ?>
-
-<div class="product-addto-links" data-role="add-to-links">
-    <?php if ($_config->getAdvanced('show_wishlist_button')) { ?>
-        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()) : ?>
-            <a title="<?php echo __('Add to Wish List'); ?>" href="#"
-               class="action towishlist"
-               data-post='<?php /* @escapeNotVerified */
-               echo $_wishlistSubmitParams; ?>'
-               data-action="add-to-wishlist"><span><?php /* @escapeNotVerified */
-                    echo __('Add to Wish List') ?></span></a>
-        <?php endif; ?>
-    <?php } ?>
-
-    <?php if ($_config->getAdvanced('show_compare_button')) { ?>
-        <a title="<?php echo __('Add to Compare'); ?>" href="#" data-post='<?php /* @escapeNotVerified */
-        echo $compareHelper->getPostDataParams($_product); ?>' data-role="add-to-links" class="action tocompare">
-			<span><?php /* @escapeNotVerified */
-                echo __('Add to Compare') ?></span>
-        </a>
-    <?php } ?>
-</div>
-<script type="text/x-magento-init">
-    {
-        "body": {
-            "addToWishlist": <?php /* @escapeNotVerified */
-    echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($block->getWishlistOptions()) ?>
-        }
-    }
-
-
-</script>
-
 <?php
 
 if($product_brand = $this->getProduct()->getAttributeText('product_brand')):
@@ -65,22 +33,16 @@ $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'
 </div>
 
 <?php
-$date = $_product->getData('expire_date');
-if($date): 
-$servings = $this->getProduct()->getAttributeText('servings'); 
-$newDate = date("d-m-Y", strtotime($date));
-?>
-<h4>Best Before:<?php echo $newDate;?> | Servings:<?php echo $servings?>  </h4>
-
-<?php
-endif;
 
 $_getMyAttr = $_product->getResource()->getAttribute('product_icon');
 
 if($_getMyAttr)
 
 {
-
+   $icon_attributeLabel=$_getMyAttr->getStoreLabel($_product);
+?>
+<span><?php echo $icon_attributeLabel; ?></span><br>
+<?php
   $attrTestValue = $_getMyAttr->getFrontend()->getValue($_product);
   $icon= explode( ',' , $attrTestValue ) ;
 
@@ -99,7 +61,10 @@ if($_getMyAttr)
   $sports = $_product->getResource()->getAttribute('sports_icon');
 if($sports)
 {
-
+  $sports_attributeLabel=$sports->getStoreLabel($_product);
+  ?>
+  <span><?php echo $sports_attributeLabel; ?></span><br>
+  <?php
   $Value = $sports->getFrontend()->getValue($_product);
 
 $sports_icon= explode( ',' , $Value) ;
